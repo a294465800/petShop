@@ -1,10 +1,48 @@
 <!--index.wxml-->
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+
+  <!--轮播图-->
+  <swiper indicator-dots autoplay interval="{{interval}}" duration="{{duration}}">
+    <swiper-item wx:for="{{imgUrls}}" wx:key="*this">
+      <image src="{{item}}" class="roll_img" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+  <!--/轮播图-->
+
+  <!--导航条-->
+  <view class="nav_bar">
+    <view class="nav_item" wx:for="{{nav}}">{{item.name}}</view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+  <!--/导航条-->
+
+  <!--店铺内容页-->
+  <swiper circular class="swiper_part">
+
+    <!--第一页=>商家动态-->
+    <swiper-item class="shop_dynamic">
+      <scroll-view scroll-y class="scroll">
+        <view class="dynamic_head">——— 商家最新动态 ———</view>
+        <view class="dynamic_item">
+          <view class="dynamic_item_head">
+            <image src="/images/head.jpg" class="dynamic_item_head_img" mode="aspectFill"></image>
+            <view class="dynamic_item_head_name">瑞文宠物</view>
+          </view>
+          <view class="dynamic_item_pic_list">
+            <image src="/images/img.jpg" mode="aspectFill" class="dynamic_item_pic"></image>
+            <image src="/images/img.jpg" mode="aspectFill" class="dynamic_item_pic"></image>
+            <image src="/images/img.jpg" mode="aspectFill" class="dynamic_item_pic"></image>
+            <image src="/images/img.jpg" mode="aspectFill" class="dynamic_item_pic"></image>
+            <image src="/images/img.jpg" mode="aspectFill" class="dynamic_item_pic"></image>
+            <image src="/images/img.jpg" mode="aspectFill" class="dynamic_item_pic"></image>
+            <image src="/images/img.jpg" mode="aspectFill" class="dynamic_item_pic"></image>
+          </view>
+        </view>
+      </scroll-view>
+
+
+    </swiper-item>
+    <!--/第一页=>商家动态-->
+
+  </swiper>
+  <!--/店铺内容页-->
 </view>

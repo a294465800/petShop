@@ -12,6 +12,8 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "color": "#999",
+    "selectedColor": "#ff963d",
     "list": [{
       "pagePath": "pages/index/index",
       "text": "店铺",
