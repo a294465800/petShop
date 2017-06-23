@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background-color: #fff;
 }
 
 .swiper_part {
@@ -38,12 +39,19 @@
 }
 
 .nav_sift {
-  height: 4rpx;
+  height: 8rpx;
+  border-radius: 50rpx;
   width: 33.3%;
   background-color: #ff963d;
   position: absolute;
   left: 0;
   bottom: 0;
+}
+
+.nav_fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 /*第一页=>商家动态*/
@@ -57,7 +65,7 @@
 }
 
 .dynamic_item_head, .dynamic_item_pic_list, .nav_bar, .dynamic_item_function,
-.dynamic_item_function_p {
+.dynamic_item_function_p, .dynamic_item_love_people {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -109,8 +117,8 @@
 }
 
 .dynamic_item_function_p_icon {
-  width: 40rpx;
-  height: 40rpx;
+  width: 30rpx;
+  height: 30rpx;
 }
 
 .dynamic_item_function_p {
@@ -119,11 +127,34 @@
   margin-left: 30rpx;
 }
 
+.dynamic_item_love_people_name {
+  margin-left: 10rpx;
+}
+
+.dynamic_item_love_people {
+  background-color: #eee;
+  margin: 20rpx 0;
+  position: relative;
+  padding: 10rpx;
+  border-radius: 10rpx;
+}
+
+.dynamic_item_love_people::after {
+  content: '';
+  height: 0;
+  border-width: 30rpx 14rpx;
+  border-style: solid;
+  border-color: transparent transparent #eee transparent;
+  position: absolute;
+  top: -48rpx;
+  left: 20rpx;
+}
+
 /*第二页=>用户评论*/
 
-.shop_comment_item, .shop_comment_item_love, .shop_comment_item_goods_name,
-.shop_comment_item_top, .shop_comment_item_top_r_bottom,
-.shop_comment_item_goods, .shop_comment_item_top_r_top {
+.shop_comment_item, .shop_comment_item_love, .shop_comment_item_top,
+.shop_comment_item_top_r_bottom, .shop_comment_item_goods,
+.shop_comment_item_top_r_top {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -135,19 +166,20 @@
 }
 
 .shop_comment_item_top_r {
-  margin-left: 20rpx;
+  margin-left: 30rpx;
+  /*flex: 1;*/
 }
 
 .shop_comment_item {
   padding: 30rpx 30rpx 20rpx;
-  border-top: 2rpx solid #ccc;
-  border-bottom: 2rpx solid #ccc;
+  border-bottom: 2rpx dashed #ccc;
 }
 
 .shop_comment_item_content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /*width: 520rpx;*/
 }
 
 .shop_comment_item_goods_name, .shop_comment_item_time,
@@ -159,6 +191,13 @@
   font-size: 26rpx;
 }
 
+.shop_comment_item_goods_name {
+  max-width: 200rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .shop_comment_item_top_l {
   width: 90rpx;
   height: 90rpx;
@@ -167,11 +206,12 @@
 
 .shop_comment_item_love {
   align-self: flex-start;
+  min-width: 100rpx;
 }
 
 .shop_comment_item_love_img, .shop_comment_item_goods_cart {
-  width: 40rpx;
-  height: 40rpx;
+  width: 30rpx;
+  height: 30rpx;
 }
 
 .shop_comment_item_bottom {
@@ -182,6 +222,14 @@
 
 .shop_comment_item_username, .shop_comment_item_time {
   margin-right: 30rpx;
+}
+
+.shop_comment_item_username {
+  width: 180rpx;
+  font-size: 30rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .shop_comment_item_love_number, .shop_comment_item_goods_name {
