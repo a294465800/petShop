@@ -12,11 +12,12 @@
   <!--导航条-->
   <view class="nav_bar">
     <view class="nav_item" wx:for="{{nav}}">{{item.name}}</view>
+    <view class="nav_sift"></view>
   </view>
   <!--/导航条-->
 
   <!--店铺内容页-->
-  <swiper circular class="swiper_part">
+  <swiper circular class="swiper_part" bindchange="shiftPage" current="{{current}}">
 
     <!--第一页=>商家动态-->
     <swiper-item class="shop_dynamic">
@@ -33,15 +34,96 @@
             <image src="/images/img.jpg" mode="aspectFill" class="dynamic_item_pic"></image>
             <image src="/images/img.jpg" mode="aspectFill" class="dynamic_item_pic"></image>
             <image src="/images/img.jpg" mode="aspectFill" class="dynamic_item_pic"></image>
-            <image src="/images/img.jpg" mode="aspectFill" class="dynamic_item_pic"></image>
-            <image src="/images/img.jpg" mode="aspectFill" class="dynamic_item_pic"></image>
+          </view>
+          <view class="dynamic_item_message">五一寄养开始啦，有需要的用户联系起来~</view>
+          <view class="dynamic_item_function">
+            <view class="dynamic_item_function_p">
+              <image src="/images/icon/love.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
+              <view class="">点赞</view>
+            </view>
+            <view class="dynamic_item_function_p">
+              <image src="/images/icon/love.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
+              <view class="">评论</view>
+            </view>
           </view>
         </view>
       </scroll-view>
-
-
     </swiper-item>
     <!--/第一页=>商家动态-->
+
+    <!--第二页=>用户评论-->
+    <swiper-item class="shop_dynamic">
+      <scroll-view scroll-y class="scroll">
+        <view class="shop_comment_item">
+          <view class="shop_comment_item_content">
+            <view class="shop_comment_item_top">
+              <image src="/images/head.jpg" mode="aspectFill" class="shop_comment_item_top_l"></image>
+              <view class="shop_comment_item_top_r">
+                <view class="shop_comment_item_top_r_top">
+                  <view class="shop_comment_item_username">用户昵称</view>
+                  <view class="shop_comment_item_goods">
+                    <image src="/images/icon/cart.png" class="shop_comment_item_goods_cart"></image>
+                    <view class="shop_comment_item_goods_name">购买了（。。。）</view>
+                  </view>
+                </view>
+                <view class="shop_comment_item_top_r_bottom">
+                  <view class="shop_comment_item_time">2017/05/16</view>
+                  <view class="shop_comment_item_score"></view>
+                </view>
+              </view>
+            </view>
+            <view class="shop_comment_item_bottom">医生人很帅，也很健谈，感觉很靠谱</view>
+          </view>
+          <view class="shop_comment_item_love">
+            <image src="/images/icon/good.png" class="shop_comment_item_love_img" mode="aspectFill"></image>
+            <view class="shop_comment_item_love_number">156</view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <!--/第二页=>用户评论-->
+
+    <!--第三页=>商家信息-->
+    <swiper-item class="shop_dynamic">
+      <scroll-view class="scroll" scroll-y>
+        <view class="shop_info_item">
+          <view class="shop_info_item_icon_intro">
+            <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
+            <view class="shop_info_item_intro">瑞文宠物寄养中心</view>
+          </view>
+        </view>
+        <view class="shop_info_item">
+          <view class="shop_info_item_icon_intro shop_address">
+            <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
+            <view class="shop_info_item_intro shop_address">广州市番禺区市桥街道</view>
+          </view>
+          <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
+        </view>
+        <view class="shop_info_item">
+          <view class="shop_info_item_icon_intro">
+            <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
+            <view class="shop_info_item_intro">9:00-20:00 全年无休</view>
+          </view>
+        </view>
+        <view class="shop_info_item">
+          <view class="shop_info_item_icon_intro">
+            <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
+            <view class="shop_info_item_intro">123-4567-8910</view>
+          </view>
+          <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
+        </view>
+        <view class="shop_info_item shop_info_item_last">
+          <view class="shop_info_item_icon_intro">
+            <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon shop_info_item_icon_last"></image>
+            <view class="shop_info_item_intro shop_message">门店介绍门店介绍门店介绍门店介绍门店介绍门店介绍门店介绍门店介绍</view>
+          </view>
+        </view>
+        <view class="shop_img_list">
+          <image src="" mode="aspectFill" class="shop_img"></image>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <!--/第三页=>商家信息-->
 
   </swiper>
   <!--/店铺内容页-->

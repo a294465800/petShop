@@ -12,6 +12,11 @@ Page({
     duration: 500,
     userInfo: {},
 
+    current: 0,
+
+    //创建动画
+    animationData: {},
+
     //导航条
     nav: [{
       name: '商家动态',
@@ -25,12 +30,12 @@ Page({
     }]
   },
   //事件处理函数
-  bindViewTap: function () {
+  bindViewTap() {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
+  onLoad() {
     console.log('onLoad')
     var that = this
     //调用应用实例的方法获取全局数据
@@ -40,5 +45,8 @@ Page({
         userInfo: userInfo
       })
     })
+  },
+  shiftPage(e) {
+    console.log(e)
   }
 })

@@ -14,21 +14,25 @@
   "tabBar": {
     "color": "#999",
     "selectedColor": "#ff963d",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "店铺",
-      "iconPath": "",
-      "selectedIconPath": ""
-    },{
-      "pagePath": "pages/shop/shop",
-      "text": "商品",
-      "iconPath": "",
-      "selectedIconPath": ""
-    },{
-      "pagePath": "pages/mine/mine",
-      "text": "我的",
-      "iconPath": "",
-      "selectedIconPath": ""
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "店铺",
+        "iconPath": "/images/tab/manager.png",
+        "selectedIconPath": "/images/tab/manager.png"
+      },
+      {
+        "pagePath": "pages/shop/shop",
+        "text": "商品",
+        "iconPath": "/images/tab/manager.png",
+        "selectedIconPath": "/images/tab/manager.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "/images/tab/manager.png",
+        "selectedIconPath": "/images/tab/manager.png"
+      }
+    ]
   }
 }
