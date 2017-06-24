@@ -32,7 +32,7 @@
           </view>
           <view class="dynamic_item_message">{{shop.content}}</view>
           <view class="dynamic_item_pic_list">
-            <image src="{{item}}" mode="aspectFill" class="dynamic_item_pic" wx:for="{{shop.img}}" wx:key="*this" bindtap="preImg" data-imggup="{{shop.img}}" data-id="{{index}}"></image>
+            <image src="{{item}}" mode="aspectFill" class="dynamic_item_pic" wx:for="{{shop.img}}" wx:key="*this" bindtap="preImg" data-imggup="{{shop.img}}" data-url="{{item}}"></image>
           </view>
           <view class="dynamic_item_function">
             <view class="dynamic_item_function_p">
@@ -45,8 +45,8 @@
             </view>
           </view>
           <view class="dynamic_item_love_people">
-              <image src="/images/icon/love.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
-              <view class="dynamic_item_love_people_name">路人甲、</view>
+            <image src="/images/icon/love.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
+            <view class="dynamic_item_love_people_name">路人甲、</view>
           </view>
         </view>
       </scroll-view>
@@ -55,7 +55,7 @@
 
     <!--第二页=>用户评论-->
     <swiper-item class="shop_dynamic">
-      <scroll-view scroll-y class="scroll">
+      <scroll-view scroll-y class="scroll" bindscrolltoupper="scrollTop">
         <view class="shop_comment_item" wx:for="{{comments}}" wx:key="id">
           <view class="shop_comment_item_content">
             <view class="shop_comment_item_top">
@@ -91,37 +91,37 @@
         <view class="shop_info_item">
           <view class="shop_info_item_icon_intro">
             <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
-            <view class="shop_info_item_intro">瑞文宠物寄养中心</view>
+            <view class="shop_info_item_intro">{{store.name}}</view>
           </view>
         </view>
         <view class="shop_info_item">
           <view class="shop_info_item_icon_intro shop_address">
             <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
-            <view class="shop_info_item_intro shop_address">广州市番禺区市桥街道</view>
+            <view class="shop_info_item_intro shop_address">{{store.address}}</view>
           </view>
-          <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
+          <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon" bindtap="openLocation"></image>
         </view>
         <view class="shop_info_item">
           <view class="shop_info_item_icon_intro">
             <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
-            <view class="shop_info_item_intro">9:00-20:00 全年无休</view>
+            <view class="shop_info_item_intro">{{store.runtime}}</view>
           </view>
         </view>
         <view class="shop_info_item">
           <view class="shop_info_item_icon_intro">
             <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
-            <view class="shop_info_item_intro">123-4567-8910</view>
+            <view class="shop_info_item_intro">{{store.tel}}</view>
           </view>
-          <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
+          <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon" bindtap="callStore"></image>
         </view>
         <view class="shop_info_item shop_info_item_last">
           <view class="shop_info_item_icon_intro">
             <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon shop_info_item_icon_last"></image>
-            <view class="shop_info_item_intro shop_message">门店介绍门店介绍门店介绍门店介绍门店介绍门店介绍门店介绍门店介绍</view>
+            <view class="shop_info_item_intro shop_message">{{store.description}}</view>
           </view>
         </view>
         <view class="shop_img_list">
-          <image src="" mode="aspectFill" class="shop_img"></image>
+          <image src="{{item}}" wx:for="{{store.imgs}}" wx:key="*this" mode="aspectFill" class="shop_img" data-url="{{item}}" bindtap="preStoreImg"></image>
         </view>
       </scroll-view>
     </swiper-item>

@@ -241,7 +241,7 @@
 .shop_info_item {
   width: 100%;
   border-bottom: 2rpx dashed #ccc;
-  padding: 20rpx 30rpx;
+  padding: 20rpx 30rpx 20rpx 20rpx;
 }
 
 .shop_info_item_last {
@@ -252,7 +252,7 @@
   flex: 1;
 }
 
-.shop_info_item, .shop_info_item_icon_intro {
+.shop_info_item, .shop_info_item_icon_intro, .shop_img_list {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -269,11 +269,14 @@
 }
 
 .shop_info_item_intro {
-  margin-left: 30rpx;
+  margin-left: 24rpx;
+  text-align: justify;
 }
 
 .shop_img_list {
-  padding: 0 30rpx;
+  padding: 0 20rpx 0 40rpx;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .shop_info_item_icon_last {
@@ -288,4 +291,5 @@
   width: 200rpx;
   height: 200rpx;
   border: 2rpx solid #ccc;
+  margin: 0 26rpx 30rpx 0;
 }
