@@ -103,7 +103,7 @@ Page({
         'http://img1.100ye.com/img2/4/34/239/9051239/msgpic/35185982.jpg',
         'http://pet.zoneonezone.com/files/shop/img/1068/Pretty_Pet_Shop_Gallery_6.jpg'
       ]
-    }
+    },
   },
   onLoad() {
     console.log('onLoad')
@@ -174,8 +174,10 @@ Page({
   //swiper变动切换函数
   shiftPage(e) {
     const that = this
+    let index = e.detail.current
     that.setData({
-      animationNav: that.animationNav(e.detail.current).export()
+      current: index,
+      animationNav: that.animationNav(index).export()
     })
   },
 

@@ -1,9 +1,31 @@
 <!--shop.wxml-->
 <view class="container">
-  <swiper>
-    <swiper-item>
-      <scroll-view scroll-y style="height: 200px;">你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哇啊啊啊啊啊啊啊啊大多数哇啊阿达啊啊你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哇啊啊啊啊啊啊啊啊大多数哇啊阿达啊啊你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哇啊啊啊啊啊啊啊啊大多数哇啊阿达啊啊你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哇啊啊啊啊啊啊啊啊大多数哇啊阿达啊啊你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哇啊啊啊啊啊啊啊啊大多数哇啊阿达啊啊你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哇啊啊啊啊啊啊啊啊大多数哇啊阿达啊啊你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哇啊啊啊啊啊啊啊啊大多数哇啊阿达啊啊你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哇啊啊啊啊啊啊啊啊大多数哇啊阿达啊啊你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哇啊啊啊啊啊啊啊啊大多数哇啊阿达啊啊你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哇啊啊啊啊啊啊啊啊大多数哇啊阿达啊啊你好啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哇啊啊啊啊啊啊啊啊大多数哇啊阿达啊啊</scroll-view>
+  <!--商品导航-->
+  <view class="shop_category">
+    <view class="shop_category_item {{current == index ?'white': ''}}" wx:for="{{shopCategory}}" wx:key="id" data-id="{{index}}" bindtap="shiftPage">{{item.name}}</view>
+    <view class="shop_category_capsule" style="width: {{width}}%" animation="{{animationBar}}"></view>
+  </view>
+  <!--/商品导航-->
+
+
+  <!--商品列表-->
+  <swiper class="shop_list" current="{{current}}" bindchange="nextPage">
+    <swiper-item wx:for="{{shopCategory}}" wx:key="id">
+      <scroll-view scroll-y class="scroll">
+        <view class="shop_item" wx:for="{{shopItem}}" wx:key="id">
+          <view class="shop_item_l">
+            <image src="{{item.img}}" class="shop_item_img" mode="aspectFill"></image>
+            <view class="shop_item_content">
+              <view class="shop_item_name">{{item.name}}</view>
+              <view class="shop_item_price">￥
+                <text class="shop_item_price_number">{{item.price}}</text>.0</view>
+            </view>
+          </view>
+          <view class="shop_item_r">已售{{item.sell}}份</view>
+        </view>
+      </scroll-view>
     </swiper-item>
   </swiper>
+  <!--/商品列表-->
 
 </view>
