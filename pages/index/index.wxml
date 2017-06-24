@@ -10,10 +10,8 @@
   <!--/轮播图-->
 
   <!--导航条-->
-  <!--导航条遮挡-->
-  <!--<view style="min-height: 80rpx" hidden="{{!flag.nav_flag}}"></view>-->
   <view class="nav_bar">
-    <view class="nav_item" wx:for="{{nav}}" bindtap="nextPage" data-id="{{index}}">{{item.name}}</view>
+    <view class="nav_item" wx:for="{{nav}}" wx:key="id" bindtap="nextPage" data-id="{{index}}">{{item.name}}</view>
     <view class="nav_sift" animation="{{animationNav}}"></view>
   </view>
   <!--/导航条-->
