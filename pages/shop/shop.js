@@ -119,6 +119,13 @@ Page({
       current: index,
       animationBar: that.animationBar(index).export()
     })
+  },
+
+  //商品跳转
+  goToGood(){
+    wx.navigateTo({
+      url: '/pages/commodity/commodity'
+    })
   }
 
 })

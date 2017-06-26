@@ -1,8 +1,9 @@
 {
   "pages": [
-    "pages/mine/mine",
-    "pages/shop/shop",
+    "pages/commodity/commodity",
     "pages/index/index",
+    "pages/shop/shop",
+    "pages/mine/mine",
     "pages/logs/logs"
   ],
   "window": {
