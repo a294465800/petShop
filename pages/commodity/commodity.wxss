@@ -2,6 +2,7 @@
 
 .container {
   background-color: #eee;
+  padding-bottom: 200rpx;
 }
 
 /*轮播图*/
@@ -29,17 +30,21 @@
   text-align: justify;
 }
 
-.commodity_price {
-  color: #ff963d;
+.commodity_price, .commodity_info_sell {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
+}
+
+.commodity_price {
+  color: #ff963d;
   margin-bottom: 10rpx;
+  justify-content: flex-start;
+  font-size: 28rpx;
 }
 
 .commodity_price_number {
-  font-size: 36rpx;
+  font-size: 44rpx;
 }
 
 .commodity_price_first {
@@ -49,9 +54,31 @@
   text-decoration: line-through;
 }
 
-.commodity_info_tips {
+.commodity_info_sell {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.commodity_info_tips, .commodity_info_sellnum {
   font-size: 26rpx;
   color: #666;
+}
+.commodity_info_tips {
+  text-align: justify;
+}
+
+.commodity_info_sellnum {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 30rpx;
+  min-width: 150rpx;
+}
+
+.sell_icon {
+  margin-right: 10rpx;
 }
 
 /*产品说明，购买须知*/
@@ -92,7 +119,8 @@
 
 .shop_comment_item, .shop_comment_item_love, .shop_comment_item_top,
 .shop_comment_item_top_r_bottom, .shop_comment_item_goods,
-.shop_comment_item_top_r_top {
+.shop_comment_item_top_r_top, .commodity_comment_more,
+.commodity_comment_more_btn {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -105,19 +133,17 @@
 
 .shop_comment_item_top_r {
   margin-left: 30rpx;
-  /*flex: 1;*/
 }
 
 .shop_comment_item {
   padding: 30rpx 30rpx 20rpx;
-  border-bottom: 2rpx dashed #ccc;
+  border-bottom: 2rpx solid #ccc;
 }
 
 .shop_comment_item_content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /*width: 520rpx;*/
 }
 
 .shop_comment_item_goods_name, .shop_comment_item_time,
@@ -172,4 +198,41 @@
 
 .shop_comment_item_love_number, .shop_comment_item_goods_name {
   margin-left: 10rpx;
+}
+
+.commodity_comment_more {
+  padding: 20rpx 30rpx;
+}
+
+.commodity_comment_more_num, .commodity_comment_more_btn view {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.commodity_comment_more_btn_img {
+  width: 20rpx;
+  height: 20rpx;
+}
+
+/*购买*/
+
+.commodity_buy {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  padding: 20rpx 30rpx;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  border-top: 2rpx solid #ccc;
+}
+
+.commodity_buy_btn {
+  background-color: #ff963d;
+  color: #fff;
+  font-size: 28rpx;
+  padding: 20rpx 30rpx;
 }

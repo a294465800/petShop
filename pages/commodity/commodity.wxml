@@ -11,11 +11,15 @@
   <!--商品名字价格-->
   <view class="commodity_info">
     <view class="commodity_name">狗狗洗浴</view>
-    <view class="commodity_price">￥
+    <!--<view class="commodity_price">￥
       <text class="commodity_price_number">46</text>.0
       <view class="commodity_price_first">实体价： ￥55</view>
+    </view>-->
+    <view class="commodity_info_sell">
+      <view class="commodity_info_tips">小提示，留着以备</view>
+      <view class="commodity_info_sellnum">
+        <icon type="success" size="13" color="#666" class="sell_icon" />已售2000</view>
     </view>
-    <view class="commodity_info_tips">小提示，留着以备</view>
   </view>
   <!--/商品名字价格-->
 
@@ -76,7 +80,24 @@
         <view class="shop_comment_item_love_number">{{item.commentNumber}}</view>
       </view>
     </view>
+    <view class="commodity_comment_more">
+      <view class="commodity_comment_more_num">共2000条评论</view>
+      <view class="commodity_comment_more_btn" bindtap="toMoreComment">
+        <view class="">查看更多</view>
+        <image src="/images/icon/back-icon.png" mode="aspectFill" class="commodity_comment_more_btn_img"></image>
+      </view>
+    </view>
   </view>
   <!--/评论详情-->
+
+  <!--购买-->
+  <view class="commodity_buy">
+    <view class="commodity_price">￥
+      <text class="commodity_price_number">46.0</text>
+      <view class="commodity_price_first">实体价： ￥55</view>
+    </view>
+    <view class="commodity_buy_btn">立即下单</view>
+  </view>
+  <!--/购买-->
 
 </view>

@@ -53,4 +53,9 @@ Page({
       urls: e.currentTarget.dataset.imggup,
     })
   },
+
+  //查看更多评论
+  toMoreComment(){
+    
+  }
 })
