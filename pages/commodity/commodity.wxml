@@ -26,11 +26,12 @@
   <!--产品说明-->
   <view class="commodity_description">
     <view class="commodity_description_logo">
-      <image src="/images/icon/collect.png" mode="aspectFill" class="commodity_icon"></image>
+      <image src="/images/commodity/description.png" mode="aspectFit" class="commodity_icon"></image>
       <view class="commodity_description_title">产品说明</view>
     </view>
     <view class="commodity_description_info">
-      <text>1.狗狗洗澡一次。 2.使用客户选择的沐浴露清洗，包括吹干。
+      <text>1.狗狗洗澡一次。 
+      2.使用客户选择的沐浴露清洗，包括吹干。
       </text>
     </view>
   </view>
@@ -39,11 +40,13 @@
   <!--购买须知-->
   <view class="commodity_notes">
     <view class="commodity_notes_logo">
-      <image src="/images/icon/collect.png" mode="aspectFill" class="commodity_icon"></image>
+      <image src="/images/commodity/notes.png" mode="aspectFit" class="commodity_icon"></image>
       <view class="commodity_notes_title">购买须知</view>
     </view>
     <view class="commodity_notes_info">
-      <text>● 节假日价格加收10元。 ● 超过5KG加5元 ● 超过15KG加20元
+      <text>● 节假日价格加收10元。 
+      ● 超过5KG加5元 
+      ● 超过15KG加20元
       </text>
     </view>
   </view>
@@ -52,31 +55,37 @@
   <!--评论详情-->
   <view class="commodity_comment">
     <view class="commodity_comment_logo">
-      <image src="/images/icon/collect.png" mode="aspectFill" class="commodity_icon"></image>
+      <image src="/images/commodity/comment.png" mode="aspectFit" class="commodity_icon"></image>
       <view class="commodity_comment_title">评论详情</view>
     </view>
     <view class="shop_comment_item" wx:for="{{comments}}" wx:key="id">
       <view class="shop_comment_item_content">
         <view class="shop_comment_item_top">
-          <image src="{{item.avatar}}" mode="aspectFill" class="shop_comment_item_top_l"></image>
+          <image src="{{item.avatar}}" mode="aspectFit" class="shop_comment_item_top_l"></image>
           <view class="shop_comment_item_top_r">
             <view class="shop_comment_item_top_r_top">
               <view class="shop_comment_item_username">{{item.userName}}</view>
               <view class="shop_comment_item_goods">
-                <image src="/images/icon/cart.png" class="shop_comment_item_goods_cart"></image>
+                <image src="/images/shop/cart.png" class="shop_comment_item_goods_cart"></image>
                 <view class="shop_comment_item_goods_name">购买了({{item.item}})</view>
               </view>
             </view>
             <view class="shop_comment_item_top_r_bottom">
               <view class="shop_comment_item_time">{{item.time}}</view>
-              <view class="shop_comment_item_score"></view>
+              <view class="shop_comment_item_score">
+                <image src="/images/shop/star_f.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
+                <image src="/images/shop/star_f.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
+                <image src="/images/shop/star_f.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
+                <image src="/images/shop/star_h.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
+                <image src="/images/shop/star_n.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
+              </view>
             </view>
           </view>
         </view>
         <view class="shop_comment_item_bottom">{{item.content}}</view>
       </view>
       <view class="shop_comment_item_love">
-        <image src="/images/icon/good.png" class="shop_comment_item_love_img" mode="aspectFill"></image>
+        <image src="/images/shop/like.png" class="shop_comment_item_love_img" mode="aspectFit"></image>
         <view class="shop_comment_item_love_number">{{item.commentNumber}}</view>
       </view>
     </view>

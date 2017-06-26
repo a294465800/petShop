@@ -167,7 +167,6 @@
 
 .shop_comment_item_top_r {
   margin-left: 30rpx;
-  /*flex: 1;*/
 }
 
 .shop_comment_item {
@@ -179,7 +178,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /*width: 520rpx;*/
 }
 
 .shop_comment_item_goods_name, .shop_comment_item_time,
@@ -209,9 +207,18 @@
   min-width: 100rpx;
 }
 
-.shop_comment_item_love_img, .shop_comment_item_goods_cart {
+.shop_comment_item_goods_cart,.shop_comment_item_score_img {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.shop_comment_item_love_img {
   width: 30rpx;
   height: 30rpx;
+}
+
+.shop_comment_item_score_img {
+  margin: 0 2rpx;
 }
 
 .shop_comment_item_bottom {

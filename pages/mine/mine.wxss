@@ -33,8 +33,8 @@
 }
 
 .mine_item_img {
-  width: 30rpx;
-  height: 30rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .mine_item_word {

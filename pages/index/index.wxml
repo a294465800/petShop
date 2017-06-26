@@ -35,11 +35,11 @@
           <view class="dynamic_item_function">
             <view class="dynamic_item_function_p">
               <image src="/images/icon/love.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
-              <view class="">点赞</view>
+              <view>点赞</view>
             </view>
             <view class="dynamic_item_function_p">
               <image src="/images/icon/love.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
-              <view class="">评论</view>
+              <view>评论</view>
             </view>
           </view>
           <view class="dynamic_item_love_people">
@@ -57,25 +57,31 @@
         <view class="shop_comment_item" wx:for="{{comments}}" wx:key="id">
           <view class="shop_comment_item_content">
             <view class="shop_comment_item_top">
-              <image src="{{item.avatar}}" mode="aspectFill" class="shop_comment_item_top_l"></image>
+              <image src="{{item.avatar}}" mode="aspectFit" class="shop_comment_item_top_l"></image>
               <view class="shop_comment_item_top_r">
                 <view class="shop_comment_item_top_r_top">
                   <view class="shop_comment_item_username">{{item.userName}}</view>
                   <view class="shop_comment_item_goods">
-                    <image src="/images/icon/cart.png" class="shop_comment_item_goods_cart"></image>
+                    <image src="/images/shop/cart.png" class="shop_comment_item_goods_cart"></image>
                     <view class="shop_comment_item_goods_name">购买了({{item.item}})</view>
                   </view>
                 </view>
                 <view class="shop_comment_item_top_r_bottom">
                   <view class="shop_comment_item_time">{{item.time}}</view>
-                  <view class="shop_comment_item_score"></view>
+                  <view class="shop_comment_item_score">
+                    <image src="/images/shop/star_f.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
+                    <image src="/images/shop/star_f.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
+                    <image src="/images/shop/star_f.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
+                    <image src="/images/shop/star_h.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
+                    <image src="/images/shop/star_n.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
+                  </view>
                 </view>
               </view>
             </view>
             <view class="shop_comment_item_bottom">{{item.content}}</view>
           </view>
           <view class="shop_comment_item_love">
-            <image src="/images/icon/good.png" class="shop_comment_item_love_img" mode="aspectFill"></image>
+            <image src="/images/shop/like.png" class="shop_comment_item_love_img" mode="aspectFit"></image>
             <view class="shop_comment_item_love_number">{{item.commentNumber}}</view>
           </view>
         </view>
@@ -88,33 +94,33 @@
       <scroll-view class="scroll" scroll-y>
         <view class="shop_info_item">
           <view class="shop_info_item_icon_intro">
-            <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
+            <image src="/images/shop/company.png" mode="aspectFit" class="shop_info_item_icon"></image>
             <view class="shop_info_item_intro">{{store.name}}</view>
           </view>
         </view>
         <view class="shop_info_item">
           <view class="shop_info_item_icon_intro shop_address">
-            <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
+            <image src="/images/shop/address.png" mode="aspectFit" class="shop_info_item_icon"></image>
             <view class="shop_info_item_intro shop_address">{{store.address}}</view>
           </view>
-          <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon" bindtap="openLocation"></image>
+          <image src="/images/shop/located.png" mode="aspectFit" class="shop_info_item_icon" bindtap="openLocation"></image>
         </view>
         <view class="shop_info_item">
           <view class="shop_info_item_icon_intro">
-            <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
+            <image src="/images/shop/time.png" mode="aspectFit" class="shop_info_item_icon"></image>
             <view class="shop_info_item_intro">{{store.runtime}}</view>
           </view>
         </view>
         <view class="shop_info_item">
           <view class="shop_info_item_icon_intro">
-            <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon"></image>
+            <image src="/images/shop/tel_number.png" mode="aspectFit" class="shop_info_item_icon"></image>
             <view class="shop_info_item_intro">{{store.tel}}</view>
           </view>
-          <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon" bindtap="callStore"></image>
+          <image src="/images/shop/call.png" mode="aspectFit" class="shop_info_item_icon" bindtap="callStore"></image>
         </view>
         <view class="shop_info_item shop_info_item_last">
           <view class="shop_info_item_icon_intro">
-            <image src="/images/icon/collect.png" mode="aspectFill" class="shop_info_item_icon shop_info_item_icon_last"></image>
+            <image src="/images/shop/introduce.png" mode="aspectFit" class="shop_info_item_icon shop_info_item_icon_last"></image>
             <view class="shop_info_item_intro shop_message">{{store.description}}</view>
           </view>
         </view>
