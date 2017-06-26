@@ -1,1 +1,46 @@
 /* mine.wxss */
+
+.container {
+  padding-top: 30rpx;
+  background-color: #eee;
+}
+
+.mine_item, .mine_head {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;  
+  padding: 30rpx 30rpx;
+  background-color: #fff;
+}
+
+.mine_item {
+  border-bottom: 2rpx solid #eee;
+}
+
+.mine_head {
+  margin-bottom: 30rpx;
+}
+
+.mine_head_img {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}
+
+.mine_head_info {
+  margin-left: 50rpx;
+}
+
+.mine_item_img {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.mine_item_word {
+  margin-left: 20rpx;
+}
+
+.push_class {
+  background-color: #e0e0e0;
+}

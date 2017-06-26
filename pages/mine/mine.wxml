@@ -1,2 +1,19 @@
 <!--mine.wxml-->
-<text>mine.wxml</text>
+<view class="container">
+  <view class="mine_head" hover-class="push_class" hover-stay-time="150">
+    <image src="{{userInfo.avatarUrl?userInfo.avatarUrl:'/images/head.jpg'}}" mode="aspectFill" class="mine_head_img"></image>
+    <view class="mine_head_info">{{userInfo.nickName?userInfo.nickName:'请登录'}}</view>
+  </view>
+  <view class="mine_item" hover-class="push_class" hover-stay-time="150">
+    <image src="/images/icon/collect.png" mode="aspectFill" class="mine_item_img"></image>
+    <view class="mine_item_word">消费记录</view>
+  </view>
+  <view class="mine_item" hover-class="push_class" hover-stay-time="150">
+    <image src="/images/icon/collect.png" mode="aspectFill" class="mine_item_img"></image>
+    <view class="mine_item_word">优惠券</view>
+  </view>
+  <view class="mine_item" hover-class="push_class" hover-stay-time="150">
+    <image src="/images/icon/collect.png" mode="aspectFill" class="mine_item_img"></image>
+    <view class="mine_item_word">更多信息</view>
+  </view>
+</view>
