@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/coupon/coupon",
     "pages/cost_comment/cost_comment",
     "pages/cost_record/cost_record",
     "pages/commodity/commodity",

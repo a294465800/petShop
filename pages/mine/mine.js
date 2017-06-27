@@ -27,5 +27,12 @@ Page({
     wx.navigateTo({
       url: '/pages/cost_record/cost_record',
     })
+  },
+
+  //优惠券跳转
+  goToCoupon(){
+    wx.navigateTo({
+      url: '/pages/coupon/coupon',
+    })
   }
 })

@@ -8,7 +8,7 @@
     <image src="/images/mine/cost.png" mode="aspectFit" class="mine_item_img"></image>
     <view class="mine_item_word">消费记录</view>
   </view>
-  <view class="mine_item" hover-class="push_class" hover-stay-time="150">
+  <view class="mine_item" hover-class="push_class" hover-stay-time="150" bindtap="goToCoupon">
     <image src="/images/mine/wallet.png" mode="aspectFit" class="mine_item_img"></image>
     <view class="mine_item_word">优惠券</view>
   </view>
