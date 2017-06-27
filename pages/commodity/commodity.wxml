@@ -105,8 +105,14 @@
       <text class="commodity_price_number">46.0</text>
       <view class="commodity_price_first">实体价： ￥55</view>
     </view>
-    <view class="commodity_buy_btn">立即下单</view>
+    <view class="commodity_buy_btn" bindtap="buyCommodity">立即下单</view>
   </view>
   <!--/购买-->
+
+  <!--下单成功-->
+  <view class="buy_interface">
+    
+  </view>
+  <!--/下单成功-->
 
 </view>

@@ -1,10 +1,10 @@
 <!--mine.wxml-->
 <view class="container">
   <view class="mine_head" hover-class="push_class" hover-stay-time="150">
-    <image src="{{userInfo.avatarUrl?userInfo.avatarUrl:'/images/head.jpg'}}" mode="aspectFill" class="mine_head_img"></image>
+    <image src="{{userInfo.avatarUrl?userInfo.avatarUrl:'/images/mine/login.png'}}" mode="aspectFill" class="mine_head_img"></image>
     <view class="mine_head_info">{{userInfo.nickName?userInfo.nickName:'请登录'}}</view>
   </view>
-  <view class="mine_item" hover-class="push_class" hover-stay-time="150">
+  <view class="mine_item" hover-class="push_class" hover-stay-time="150" bindtap="goToCostRecord">
     <image src="/images/mine/cost.png" mode="aspectFit" class="mine_item_img"></image>
     <view class="mine_item_word">消费记录</view>
   </view>

@@ -12,7 +12,7 @@
   <!--导航条-->
   <view class="nav_bar">
     <view class="nav_item" wx:for="{{nav}}" wx:key="id" bindtap="nextPage" data-id="{{index}}">{{item.name}}</view>
-    <view class="nav_sift" animation="{{animationNav}}"></view>
+    <view class="nav_shift" animation="{{animationNav}}"></view>
   </view>
   <!--/导航条-->
 
@@ -34,16 +34,16 @@
           </view>
           <view class="dynamic_item_function">
             <view class="dynamic_item_function_p">
-              <image src="/images/icon/love.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
+              <image src="/images/shop/like_g.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
               <view>点赞</view>
             </view>
             <view class="dynamic_item_function_p">
-              <image src="/images/icon/love.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
+              <image src="/images/shop/comment_g.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
               <view>评论</view>
             </view>
           </view>
           <view class="dynamic_item_love_people">
-            <image src="/images/icon/love.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
+            <image src="/images/shop/like.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
             <view class="dynamic_item_love_people_name">路人甲、</view>
           </view>
         </view>
