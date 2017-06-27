@@ -106,4 +106,11 @@ Page({
     })
   },
 
+  //评论跳转
+  goToComment(){
+    wx.navigateTo({
+      url: '/pages/cost_comment/cost_comment',
+    })
+  }
+
 })

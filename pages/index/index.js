@@ -106,7 +106,6 @@ Page({
     },
   },
   onLoad() {
-    console.log('onLoad')
     var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
@@ -207,7 +206,6 @@ Page({
 
   //电话商家
   callStore() {
-    console.log(1)
     const that = this
     wx.makePhoneCall({
       phoneNumber: that.data.store.tel,
@@ -217,7 +215,6 @@ Page({
   //商家图片预览
   preStoreImg(e) {
     const that = this
-    console.log(e)
     wx.previewImage({
       current: e.currentTarget.dataset.url,
       urls: that.data.store.imgs,
