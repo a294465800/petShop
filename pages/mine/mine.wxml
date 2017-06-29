@@ -12,7 +12,7 @@
     <image src="/images/mine/wallet.png" mode="aspectFit" class="mine_item_img"></image>
     <view class="mine_item_word">优惠券</view>
   </view>
-  <view class="mine_item" hover-class="push_class" hover-stay-time="150">
+  <view class="mine_item" hover-class="push_class" hover-stay-time="150" bindtap="goToMore">
     <image src="/images/mine/more.png" mode="aspectFit" class="mine_item_img"></image>
     <view class="mine_item_word">更多信息</view>
   </view>

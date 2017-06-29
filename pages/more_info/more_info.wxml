@@ -1,0 +1,36 @@
+<!--more_info.wxml-->
+<view class="container">
+
+  <!--宠物镇logo、标题-->
+  <image src="" mode="aspectFill" class="pettown_logo"></image>
+  <view class="pettown_title">宠物镇</view>
+  <!--/宠物镇logo、标题-->
+
+  <!--宠物镇介绍-->
+  <view class="pettown_intro">
+    <text class="pettown_intro_text">宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇宠物镇</text>
+  </view>
+  <!--/宠物镇介绍-->
+
+  <!--宠物镇公众号-->
+  <view class="pettown_id" bindtap="showQRcode">
+    <view class="pettown_id_text">宠物镇公众号</view>
+    <image src="/images/icon/back-icon.png" mode="scaleToFill" class="pettown_id_img"></image>
+  </view>
+  <!--/宠物镇公众号-->
+
+  <!--宠物镇其他信息-->
+  <view class="pettown_other_info">宠物镇—宠物主交汇群：123456789</view>
+  <view class="pettown_other_info">宠物镇信息记录小程序</view>
+  <!--/宠物镇其他信息-->
+
+  <!--公众号二维码-->
+  <view class="QRcode_bg {{!QRcode?'hide':''}}">
+    <view class="QRcode">
+      <view class="QRcode_name">宠物镇公众号</view>
+      <image src="" class="QRcode_img" mode="scaleToFill"></image>
+      <icon type="clear" class="QRcode_close" size="40" bindtap="hideQRcode" />
+    </view>
+  </view>
+  <!--/公众号二维码-->
+</view>

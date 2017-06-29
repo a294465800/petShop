@@ -30,9 +30,16 @@ Page({
   },
 
   //优惠券跳转
-  goToCoupon(){
+  goToCoupon() {
     wx.navigateTo({
       url: '/pages/coupon/coupon',
+    })
+  },
+
+  //更多信息跳转
+  goToMore() {
+    wx.navigateTo({
+      url: '/pages/more_info/more_info',
     })
   }
 })
