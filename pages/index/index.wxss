@@ -59,7 +59,7 @@
 }
 
 .dynamic_item_head, .dynamic_item_pic_list, .nav_bar, .dynamic_item_function,
-.dynamic_item_function_p, .dynamic_item_love_people {
+.dynamic_item_function_p, .dynamic_item_love_people, .dynamic_item_comments_item {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -111,8 +111,8 @@
 }
 
 .dynamic_item_function_p_icon {
-  width: 30rpx;
-  height: 30rpx;
+  width: 28rpx;
+  height: 28rpx;
 }
 
 .dynamic_item_function_p {
@@ -125,16 +125,20 @@
   color: #999;
 }
 
+.dynamic_item_comments {
+  background-color: #eee;
+  margin: 20rpx 0;
+  padding: 6rpx 0 10rpx;
+}
+
 .dynamic_item_love_people_name {
   margin-left: 10rpx;
+  font-size: 28rpx;
 }
 
 .dynamic_item_love_people {
-  background-color: #eee;
-  margin: 20rpx 0;
   position: relative;
   padding: 10rpx 10rpx 10rpx 30rpx;
-  border-radius: 10rpx;
 }
 
 .dynamic_item_love_people::after {
@@ -146,6 +150,29 @@
   position: absolute;
   top: -48rpx;
   left: 20rpx;
+}
+
+.dynamic_item_comments_list {
+  padding: 0 30rpx;
+}
+
+.dynamic_item_comments_item:nth-child(1) {
+  border-top: 2rpx solid #ccc;
+}
+
+.dynamic_item_comments_item {
+  justify-content: flex-start;
+}
+
+.dynamic_item_comments_item_name, .dynamic_item_comments_item_content,
+.dynamic_item_comments_item_more {
+  padding: 6rpx;
+  font-size: 28rpx;
+}
+
+.dynamic_item_comments_item_more {
+  text-align: right;
+  color: #1d53bf;
 }
 
 /*第二页=>用户评论*/
@@ -205,7 +232,7 @@
   min-width: 100rpx;
 }
 
-.shop_comment_item_goods_cart,.shop_comment_item_score_img {
+.shop_comment_item_goods_cart, .shop_comment_item_score_img {
   width: 40rpx;
   height: 40rpx;
 }
