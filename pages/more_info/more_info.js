@@ -25,5 +25,12 @@ Page({
     this.setData({
       QRcode: false
     })
+  },
+
+  //二维码预览
+  preQRcode(e) {
+    wx.previewImage({
+      urls: ['https://mmbiz.qlogo.cn/mmbiz_png/MDVUyENYkQMExia62HDMWiaXJbby9N9EpoAoCEGDxpw8FsKgrLZtVzP6hjdL5yKb5S5VkPmS2Q1bNvwsDhTyFAvw/0?wx_fmt=png'],
+    })
   }
 })

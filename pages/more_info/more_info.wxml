@@ -28,7 +28,7 @@
   <view class="QRcode_bg {{!QRcode?'hide':''}}">
     <view class="QRcode">
       <view class="QRcode_name">宠物镇公众号</view>
-      <image src="" class="QRcode_img" mode="scaleToFill"></image>
+      <image src="/images/mine/QRcode.png" class="QRcode_img" mode="scaleToFill" data-img="/images/mine/QRcode.png" bindtap="preQRcode"></image>
       <icon type="clear" class="QRcode_close" size="40" bindtap="hideQRcode" />
     </view>
   </view>

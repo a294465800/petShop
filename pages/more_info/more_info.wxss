@@ -96,7 +96,6 @@
 .QRcode_img {
   width: 480rpx;
   height: 480rpx;
-  background-color: #000;
 }
 
 .QRcode_close {
