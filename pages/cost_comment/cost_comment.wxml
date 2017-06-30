@@ -5,6 +5,20 @@
   <textarea auto-focus class="comment_inut" placeholder="请评价" />
   <!--/评论输入-->
 
+  <!--插入图片-->
+  <view class="comment_add_img">
+    <view class="comment_add_img_title">添加图片</view>
+    <view class="comment_add_imgs">
+    <image src="{{item}}" class="comment_add_img_btn" mode="aspectFill" wx:for="{{imgs}}" data-imgs="{{imgs}}" data-img="{{item}}" bindtap="preImg">
+    <icon type="clear" size="20" class="comment_del_img_btn" catchtap="delImg" data-img="{{item}}" />
+    </image>
+      <block wx:if="{{imgs.length < 3}}">
+        <image class="comment_add_img_btn" src="/images/icon/add_img.png" mode="aspectFit" bindtap="addImg"></image>
+      </block>
+    </view>
+  </view>
+  <!--/插入图片-->
+
   <!--打分-->
   <view class="comment_star">
     <view class="comment_service_star comment_part">
