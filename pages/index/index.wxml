@@ -2,7 +2,7 @@
 <view class="container" bindtouchstart="touchStart" bindtouchend="touchEnd">
 
   <!--轮播图-->
-  <swiper indicator-dots autoplay interval="{{interval}}" duration="{{duration}}" animation="{{animationImg}}">
+  <swiper indicator-dots autoplay interval="{{interval}}" class="ad_imgs" duration="{{duration}}" animation="{{animationImg}}">
     <swiper-item wx:for="{{imgUrls}}" wx:key="*this">
       <image src="{{item}}" class="roll_img" mode="aspectFill"></image>
     </swiper-item>
@@ -17,6 +17,7 @@
   <!--/导航条-->
 
   <!--店铺内容页-->
+
   <swiper class="swiper_part" bindchange="shiftPage" current="{{current}}">
 
     <!--第一页=>商家动态-->
@@ -30,7 +31,7 @@
           </view>
           <view class="dynamic_item_message">{{shop.content}}</view>
           <view class="dynamic_item_pic_list">
-            <image src="{{item}}" mode="aspectFill" class="dynamic_item_pic" wx:for="{{shop.img}}" wx:key="*this" bindtap="preImg" data-imggup="{{shop.img}}" data-url="{{item}}"></image>
+            <image src="{{item}}" mode="aspectFill" class="dynamic_item_pic" wx:for="{{shop.img}}" wx:key="*this" bindtap="preImg" data-imggup="{{shop.img}}" data- url="{{item}}"></image>
           </view>
           <view class="dynamic_item_function">
             <view class="dynamic_item_function_p">
@@ -74,13 +75,17 @@
                   <view class="shop_comment_item_username">{{comment.userName}}</view>
                   <view class="shop_comment_item_goods">
                     <image src="/images/shop/cart.png" class="shop_comment_item_goods_cart"></image>
-                    <view class="shop_comment_item_goods_name">购买了({{comment.item}})</view>
+                    <view class="shop_comment_item_goods_name">购买了({{comment.item}})
+
+                    </view>
                   </view>
                 </view>
                 <view class="shop_comment_item_top_r_bottom">
                   <view class="shop_comment_item_time">{{comment.time}}</view>
                   <view class="shop_comment_item_score">
-                    <image src="{{index < comment.score? star_img.ok: star_img.no}}" mode="aspectFit" class="shop_comment_item_score_img" wx:for="{{star_count}}">{{index}}</image>
+                    <image src="{{index < comment.score? star_img.ok: star_img.no}}" mode="aspectFit" class="shop_comment_item_score_img" wx:for="{{star_count}}">{{index}}
+
+                    </image>
                   </view>
                 </view>
               </view>
@@ -102,33 +107,37 @@
         <view class="shop_info_item">
           <view class="shop_info_item_icon_intro">
             <image src="/images/shop/company.png" mode="aspectFit" class="shop_info_item_icon"></image>
-            <view class="shop_info_item_intro">{{store.name}}</view>
+            <view class="shop_info_item_intro">{{shop.name}}</view>
           </view>
         </view>
         <view class="shop_info_item">
           <view class="shop_info_item_icon_intro shop_address">
             <image src="/images/shop/address.png" mode="aspectFit" class="shop_info_item_icon"></image>
-            <view class="shop_info_item_intro shop_address">{{store.address}}</view>
+            <view class="shop_info_item_intro shop_address">{{shop.location}}</view>
           </view>
           <image src="/images/shop/located.png" mode="aspectFit" class="shop_info_item_icon" bindtap="openLocation"></image>
         </view>
         <view class="shop_info_item">
           <view class="shop_info_item_icon_intro">
             <image src="/images/shop/time.png" mode="aspectFit" class="shop_info_item_icon"></image>
-            <view class="shop_info_item_intro">{{store.runtime}}</view>
+            <view class="shop_info_item_intro">{{shop.time}}</view>
           </view>
         </view>
         <view class="shop_info_item">
           <view class="shop_info_item_icon_intro">
             <image src="/images/shop/tel_number.png" mode="aspectFit" class="shop_info_item_icon"></image>
-            <view class="shop_info_item_intro">{{store.tel}}</view>
           </view>
-          <image src="/images/shop/call.png" mode="aspectFit" class="shop_info_item_icon" bindtap="callStore"></image>
+          <view class="shop_info_item_telgroup">
+            <view class="shop_info_item_telgroup_item" wx:for="{{shop.number}}">
+              <view class="">{{item}}</view>
+              <image src="/images/shop/call.png" mode="aspectFit" class="shop_info_item_icon" bindtap="callStore"></image>
+            </view>
+          </view>
         </view>
         <view class="shop_info_item shop_info_item_last">
           <view class="shop_info_item_icon_intro">
             <image src="/images/shop/introduce.png" mode="aspectFit" class="shop_info_item_icon shop_info_item_icon_last"></image>
-            <view class="shop_info_item_intro shop_message">{{store.description}}</view>
+            <view class="shop_info_item_intro shop_message">{{shop.content}}</view>
           </view>
         </view>
         <view class="shop_img_list">

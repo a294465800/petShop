@@ -10,6 +10,11 @@
 
 .swiper_part {
   flex: 1;
+  height: 92%;
+}
+
+.ad_imgs {
+  height: 380rpx;
 }
 
 .scroll {
@@ -20,7 +25,7 @@
 
 .roll_img {
   width: 100%;
-  height: 300rpx;
+  height: 100%;
 }
 
 /*导航条样式*/
@@ -51,7 +56,9 @@
 /*第一页=>商家动态*/
 
 .shop_dynamic {
-  height: auto;
+  /*top: 0;
+  bottom: 0;
+  height: unset!important;*//*flex: 1;*/
 }
 
 .dynamic_item {
@@ -300,9 +307,24 @@
   height: 40rpx;
 }
 
-.shop_info_item_intro {
+.shop_info_item_telgroup {
   margin-left: 24rpx;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.shop_info_item_intro {
   text-align: justify;
+  margin-left: 24rpx;
+}
+
+.shop_info_item_telgroup_item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
 }
 
 .shop_img_list {

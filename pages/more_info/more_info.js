@@ -30,7 +30,7 @@ Page({
   //二维码预览
   preQRcode(e) {
     wx.previewImage({
-      urls: ['https://mmbiz.qlogo.cn/mmbiz_png/MDVUyENYkQMExia62HDMWiaXJbby9N9EpoAoCEGDxpw8FsKgrLZtVzP6hjdL5yKb5S5VkPmS2Q1bNvwsDhTyFAvw/0?wx_fmt=png'],
+      urls: ['https://github.com/a294465800/petShop/blob/master/images/mine/QRcode.png?raw=true'],
     })
   }
 })

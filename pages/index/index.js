@@ -5,6 +5,7 @@ let app = getApp()
 let start = 0
 Page({
   data: {
+    shop: app.globalData.shop,
     imgUrls: [
       'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
@@ -147,6 +148,24 @@ Page({
         star_count: arr
       })
     })
+    wx.request({
+      url: app.globalData.host + 'moments',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'AppVersion': app.globalData.version,
+        'storeNumber': app.globalData.storeNumber
+      },
+      success: res => {
+        console.log(res)
+      }
+    })
+  },
+
+  onShow() {
+    const that = this
+    that.setData({
+      shop: app.globalData.shop
+    })
   },
 
   //记录用户初次触摸屏幕位置
@@ -177,7 +196,7 @@ Page({
       duration: 500,
       timingFunction: 'ease'
     })
-    animation = animation.height('300rpx').step()
+    animation = animation.height('380rpx').step()
     that.setData({
       animationImg: animation.export(),
     })

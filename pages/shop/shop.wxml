@@ -2,8 +2,8 @@
 <view class="container">
   <!--商品导航-->
   <view class="shop_category">
-    <view class="shop_category_item {{current == index ?'white': ''}}" wx:for="{{shopCategory}}" wx:key="id" data-id="{{index}}" bindtap="shiftPage">{{item.name}}</view>
-    <view class="shop_category_capsule" style="width: {{width}}%" animation="{{animationBar}}"></view>
+    <view class="shop_category_item {{current == index ?'white': ''}}" wx:for="{{shopCategory}}" wx:key="id" data-index="{{index}}" data-id="{{item.id}}" bindtap="shiftPage">{{item.title}}</view>
+    <view class="shop_category_capsule" style="width: {{width}}%;" animation="{{animationBar}}"></view>
   </view>
   <!--/商品导航-->
 
@@ -12,11 +12,11 @@
   <swiper class="shop_list" current="{{current}}" bindchange="nextPage">
     <swiper-item wx:for="{{shopCategory}}" wx:key="id">
       <scroll-view scroll-y class="scroll">
-        <view class="shop_item" wx:for="{{shopItem}}" wx:key="id" bindtap="goToGood" hover-class="push_class" hover-stay-time="150">
+        <view class="shop_item" wx:for="{{shopItem[index]}}" wx:key="id" bindtap="goToGood" hover-class="push_class" hover-stay-time="150" data-id="{{item.id}}">
           <view class="shop_item_l">
-            <image src="{{item.img}}" class="shop_item_img" mode="aspectFill"></image>
+            <image src="{{item.cover}}" class="shop_item_img" mode="aspectFill"></image>
             <view class="shop_item_content">
-              <view class="shop_item_name">{{item.name}}</view>
+              <view class="shop_item_name">{{item.title}}</view>
               <view class="shop_item_price">￥
                 <text class="shop_item_price_number">{{item.price}}</text>.0</view>
             </view>

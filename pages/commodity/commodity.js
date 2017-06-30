@@ -1,34 +1,14 @@
 // commodity.js
 let app = getApp()
-//时间选择器
-// // let date = new Date()
-// const months = []
-// const days = []
-// const hours = []
-// const minutes = []
-
-// for (let i = 1; i <= 12; i++) {
-//   // if()
-//   months.push(i)
-// }
-
-// for (let i = 1; i <= 31; i++) {
-//   days.push(i)
-// }
-
-// for (let i = 1; i <= 24; i++) {
-//   hours.push(i)
-// }
-
-// for (let i = 0; i <= 60; i++) {
-//   minutes.push(i)
-// }
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    //商品
+    commodity_id: 0,
+    commodity: {},
     imgUrls: [
       'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
@@ -38,12 +18,6 @@ Page({
     duration: 500,
     indicator_color: '#666',
     indicator_active_color: '#ff963d',
-
-    // //时间选择器
-    // months: months,
-    // days: days,
-    // hours: hours,
-    // minutes: minutes,
 
     //时间选择期
     date: '日期',
@@ -80,7 +54,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    const that = this
+    that.setData({
+      commodity_id: options.commodity_id
+    })
+    wx.request({
+      url: app.globalData.host + 'product/' + options.commodity_id,
+      header: app.globalData.header,
+      success: res => {
+        console.log(res)
+        that.setData({
+          commodity: res.data.data
+        })
+      }
+    })
+  },
+  onShow() {
+    const that = this
+    that.setData({
+      buy: false
+    })
   },
 
   //商品图片预览

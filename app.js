@@ -1,10 +1,21 @@
 //app.js
 App({
   onLaunch() {
-    //调用API从本地缓存中获取数据
-    let logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    const that = this
+    wx.request({
+      url: that.globalData.host + 'store',
+      header: that.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          that.globalData.shop = res.data.data
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '该小程序已经关闭',
+          })
+        }
+      }
+    })
   },
 
   getUserInfo(cb) {
@@ -15,7 +26,7 @@ App({
       //调用登录接口
       wx.getUserInfo({
         withCredentials: false,
-        success:(res) => {
+        success: (res) => {
           that.globalData.userInfo = res.userInfo
           typeof cb == "function" && cb(that.globalData.userInfo)
         }
@@ -24,7 +35,14 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    userInfo: null,
+    host: 'http://119.23.255.177:8083/api/',
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+      'AppVersion': '4.0',
+      'storeNumber': '1400344af3767f15f957ff6c4d7c3f2c'
+    },
+    shop: null
   },
 
   //获取用户设置
