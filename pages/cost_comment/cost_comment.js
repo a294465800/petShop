@@ -87,4 +87,16 @@ Page({
     })
   },
 
+  commentPost() {
+    const that = this
+    wx.uploadFile({
+      url: 'http://192.168.3.22:8080/upload',
+      filePath: that.data.imgs[0],
+      name: 'image',
+      success: res => {
+        console.log(res)
+      }
+    })
+  }
+
 })

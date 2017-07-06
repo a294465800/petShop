@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/cost_comment/cost_comment",
     "pages/index/index",
+    "pages/tel_input/tel_input",
+    "pages/cost_comment/cost_comment",
     "pages/more_info/more_info",
     "pages/coupon/coupon",
     "pages/cost_record/cost_record",
@@ -13,7 +14,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "宠物镇 — 瑞文宠物",
+    "navigationBarTitleText": "小主帮 — 瑞文宠物",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

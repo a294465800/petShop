@@ -47,7 +47,7 @@ Page({
         name: '美容'
       }
     ],
-    shopItems: [
+    shopItem: [
       {
         id: 0,
         name: '黄毛换肤黄毛换肤黄毛换肤黄毛换肤',
@@ -93,63 +93,68 @@ Page({
    */
   onLoad(options) {
     const that = this
-    wx.request({
-      url: app.globalData.host + 'category',
-      header: app.globalData.header,
-      success: res => {
-        that.setData({
-          shopCategory: res.data.data,
-          width: Math.floor(100 / res.data.data.length),
-          category_id: res.data.data[0].id
-        })
-      }
+    // wx.request({
+    //   url: app.globalData.host + 'category',
+    //   header: app.globalData.header,
+    //   success: res => {
+    //     that.setData({
+    //       shopCategorys: res.data.data,
+    //       width: Math.floor(100 / res.data.data.length),
+    //       category_id: res.data.data[0].id
+    //     })
+    //   }
+    // })
+    that.setData({
+      // shopCategorys: res.data.data,
+      width: Math.floor(100 / that.data.shopCategory.length),
+      // category_id: res.data.data[0].id
     })
   },
 
   onShow() {
     const that = this
-    wx.request({
-      url: app.globalData.host + 'category',
-      header: app.globalData.header,
-      success: res => {
-        that.setData({
-          shopCategory: res.data.data
-        })
-        wx.showLoading({
-          title: '加载中',
-        })
-        wx.request({
-          url: app.globalData.host + 'products/' + that.data.category_id,
-          header: app.globalData.header,
-          success: rs => {
-            let temp = 'shopItem[' + that.data.current + ']'
-            that.setData({
-              [temp]: rs.data.data
-            })
-            wx.hideLoading()
-          }
-        })
-      }
-    })
+    // wx.request({
+    //   url: app.globalData.host + 'category',
+    //   header: app.globalData.header,
+    //   success: res => {
+    //     that.setData({
+    //       shopCategorys: res.data.data
+    //     })
+    //     wx.showLoading({
+    //       title: '加载中',
+    //     })
+    //     wx.request({
+    //       url: app.globalData.host + 'products/' + that.data.category_id,
+    //       header: app.globalData.header,
+    //       success: rs => {
+    //         let temp = 'shopItems[' + that.data.current + ']'
+    //         that.setData({
+    //           [temp]: rs.data.data
+    //         })
+    //         wx.hideLoading()
+    //       }
+    //     })
+    //   }
+    // })
   },
 
   //请求商品封装
   getShopItem(id, index) {
     const that = this
-    wx.showLoading({
-      title: '加载中',
-    })
-    wx.request({
-      url: app.globalData.host + 'products/' + id,
-      header: app.globalData.header,
-      success: res => {
-        let temp = 'shopItem[' + index + ']'
-        that.setData({
-          [temp]: res.data.data
-        })
-        wx.hideLoading()
-      }
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    // })
+    // wx.request({
+    //   url: app.globalData.host + 'products/' + id,
+    //   header: app.globalData.header,
+    //   success: res => {
+    //     let temp = 'shopItem[' + index + ']'
+    //     that.setData({
+    //       [temp]: res.data.data
+    //     })
+    //     wx.hideLoading()
+    //   }
+    // })
   },
 
   //动画封装

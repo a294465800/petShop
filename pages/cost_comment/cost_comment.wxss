@@ -29,6 +29,7 @@
   position: absolute;
   right: -14rpx;
   top: -14rpx;
+  z-index: 1;
 }
 
 /*评分*/

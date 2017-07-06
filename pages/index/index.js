@@ -2,7 +2,8 @@
 //获取应用实例
 let app = getApp()
 //记录触摸位置
-let start = 0
+let startY = 0
+let startX = 0
 Page({
   data: {
     shop: app.globalData.shop,
@@ -54,7 +55,7 @@ Page({
         avatar: '/images/head.jpg',
         img: [
           'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498243041784&di=0da5739e9ef474746938dc78ec91629b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2Fimg013%2Fv4%2F18%2Fd%2F97.jpg',
-          'http://stu.hyes.tyc.edu.tw/blog/gallery/236/3807-1111.jpg',
+          'http://img5.duitang.com/uploads/item/201508/30/20150830052842_dGEfi.thumb.700_0.jpeg',
           'http://s2.buzzhand.net/uploads/d0/7/456525/14218526072156.jpg',
           'http://imgapi.nownews.com/?w=640&q=60&src=http%3A%2F%2Fs.nownews.com%2Fa4%2F9e%2Fa49e049bc9aec44b9d7ee408d6450782.JPG'
         ],
@@ -73,7 +74,7 @@ Page({
         avatar: '/images/head.jpg',
         img: [
           'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498243041784&di=0da5739e9ef474746938dc78ec91629b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2Fimg013%2Fv4%2F18%2Fd%2F97.jpg',
-          'http://stu.hyes.tyc.edu.tw/blog/gallery/236/3807-1111.jpg',
+          'http://img5.duitang.com/uploads/item/201508/30/20150830052842_dGEfi.thumb.700_0.jpeg',
           'http://s2.buzzhand.net/uploads/d0/7/456525/14218526072156.jpg',
           'http://imgapi.nownews.com/?w=640&q=60&src=http%3A%2F%2Fs.nownews.com%2Fa4%2F9e%2Fa49e049bc9aec44b9d7ee408d6450782.JPG'
         ],
@@ -114,7 +115,49 @@ Page({
         content: '瞬间爆炸',
         commentNumber: 22,
         score: 4
-      }
+      },
+      {
+        id: 0,
+        userName: '小郭小郭小郭小郭小郭小郭',
+        avatar: '/images/head.jpg',
+        item: '洗澡',
+        time: '2017/05/16',
+        content: '医生人很帅，也很健谈，感觉很靠谱',
+        commentNumber: 156,
+        score: 2
+      },
+
+      {
+        id: 1,
+        userName: '小白',
+        avatar: '/images/head.jpg',
+        item: '疫苗',
+        time: '2017/05/10',
+        content: '瞬间爆炸',
+        commentNumber: 22,
+        score: 4
+      },
+      {
+        id: 0,
+        userName: '小郭小郭小郭小郭小郭小郭',
+        avatar: '/images/head.jpg',
+        item: '洗澡',
+        time: '2017/05/16',
+        content: '医生人很帅，也很健谈，感觉很靠谱',
+        commentNumber: 156,
+        score: 2
+      },
+
+      {
+        id: 1,
+        userName: '小白',
+        avatar: '/images/head.jpg',
+        item: '疫苗',
+        time: '2017/05/10',
+        content: '瞬间爆炸',
+        commentNumber: 22,
+        score: 4
+      },
     ],
 
     //店家信息
@@ -124,7 +167,7 @@ Page({
       address: '广州市番禺区市桥街道',
       runtime: '9:00 - 20:00 全年无休',
       tel: '123-4567-8910',
-      description: '我們是專業的犬舍，跟普通的寵物店大有不同。我們接受無數電視台和雜誌訪問，在犬展場上獲勝無數，所出售的優秀幼犬，經獸醫檢驗，不帶有遺傳問題。有14天健康合約保障。',
+      description: '我們是專業的犬舍，跟普通的寵物店大有不同。我們接受無數電視台和雜誌訪問，在犬展場上獲勝無數，所出售的優秀幼犬，經獸醫檢驗，不帶有遺傳問題。有14天健康合約保障。我們是專業的犬舍，跟普通的寵物店大有不同。我們接受無數電視台和雜誌訪問，在犬展場上獲勝無數，所出售的優秀幼犬，經獸醫檢驗，不帶有遺傳問題。有14天健康合約保障。我們是專業的犬舍，跟普通的寵物店大有不同。我們接受無數電視台和雜誌訪問，在犬展場上獲勝無數，所出售的優秀幼犬，經獸醫檢驗，不帶有遺傳問題。有14天健康合約保障。我們是專業的犬舍，跟普通的寵物店大有不同。我們接受無數電視台和雜誌訪問，在犬展場上獲勝無數，所出售的優秀幼犬，經獸醫檢驗，不帶有遺傳問題。有14天健康合約保障。我們是專業的犬舍，跟普通的寵物店大有不同。我們接受無數電視台和雜誌訪問，在犬展場上獲勝無數，所出售的優秀幼犬，經獸醫檢驗，不帶有遺傳問題。有14天健康合約保障。',
       imgs: [
         'http://www.okaydj.com/uploads/allimg/140313/1-140313130R4.jpg',
         'https://img.grouponcdn.com/deal/js6sX3YFGJHf3rW8fT8E/KC-700x400',
@@ -168,9 +211,16 @@ Page({
     })
   },
 
+  //禁止轮播触摸移动
+  stopMove() {
+    console.log('move')
+    return false
+  },
+
   //记录用户初次触摸屏幕位置
   touchStart(e) {
-    start = e.touches[0].clientY
+    startY = e.touches[0].clientY
+    startX = e.touches[0].clientX
   },
 
   //根据动作判断隐藏轮播
@@ -181,8 +231,12 @@ Page({
       timingFunction: 'ease'
     })
     animation = animation.height(0).step()
-    let end = e.changedTouches[0].clientY
-    if (start > end) {
+    let endY = e.changedTouches[0].clientY
+    let endX = e.changedTouches[0].clientX
+    let minus = startY - endY
+    let offset = startX - endX
+    console.log(offset)
+    if (minus > 0 && offset > -30 && offset < 30) {
       that.setData({
         animationImg: animation.export()
       })

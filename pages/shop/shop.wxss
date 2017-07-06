@@ -48,6 +48,7 @@
 .shop_list {
   width: 100%;
   flex: 1;
+  height: 92%;
 }
 
 .scroll {

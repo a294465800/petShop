@@ -37,7 +37,7 @@
   <!--/打分-->
 
   <!--提交-->
-  <view class="comment_submit">提交</view>
+  <view class="comment_submit" bindtap="commentPost">提交</view>
   <!--/提交-->
 
 </view>
