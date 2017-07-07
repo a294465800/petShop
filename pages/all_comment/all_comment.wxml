@@ -1,0 +1,4 @@
+<!--all_comment.wxml-->
+<view class="container">
+  <include src="../comment/comments.wxml"/>
+</view>

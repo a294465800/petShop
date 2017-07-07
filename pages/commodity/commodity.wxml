@@ -55,37 +55,7 @@
       <image src="/images/commodity/comment.png" mode="aspectFit" class="commodity_icon"></image>
       <view class="commodity_comment_title">评论详情</view>
     </view>
-    <view class="shop_comment_item" wx:for="{{comments}}" wx:key="id">
-      <view class="shop_comment_item_content">
-        <view class="shop_comment_item_top">
-          <image src="{{item.avatar}}" mode="aspectFit" class="shop_comment_item_top_l"></image>
-          <view class="shop_comment_item_top_r">
-            <view class="shop_comment_item_top_r_top">
-              <view class="shop_comment_item_username">{{item.userName}}</view>
-              <view class="shop_comment_item_goods">
-                <image src="/images/shop/cart.png" class="shop_comment_item_goods_cart"></image>
-                <view class="shop_comment_item_goods_name">购买了({{item.item}})</view>
-              </view>
-            </view>
-            <view class="shop_comment_item_top_r_bottom">
-              <view class="shop_comment_item_time">{{item.time}}</view>
-              <view class="shop_comment_item_score">
-                <image src="/images/shop/star_f.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
-                <image src="/images/shop/star_f.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
-                <image src="/images/shop/star_f.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
-                <image src="/images/shop/star_h.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
-                <image src="/images/shop/star_n.png" mode="aspectFit" class="shop_comment_item_score_img"></image>
-              </view>
-            </view>
-          </view>
-        </view>
-        <view class="shop_comment_item_bottom">{{item.content}}</view>
-      </view>
-      <view class="shop_comment_item_love">
-        <image src="/images/shop/like.png" class="shop_comment_item_love_img" mode="aspectFit"></image>
-        <view class="shop_comment_item_love_number">{{item.commentNumber}}</view>
-      </view>
-    </view>
+    <include src="../comment/comments.wxml" />
     <view class="commodity_comment_more">
       <view class="commodity_comment_more_num">共2000条评论</view>
       <view class="commodity_comment_more_btn" bindtap="toMoreComment">

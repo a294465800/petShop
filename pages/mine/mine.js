@@ -14,12 +14,22 @@ Page({
    */
   onLoad: function (options) {
     const that = this
-    app.getUserInfo((userInfo) => {
-      that.setData({
-        userInfo: userInfo
-      })
-      console.log(that.data.userInfo)
+    // app.checkLogin((userInfo) => {
+    //   that.setData({
+    //     userInfo: userInfo
+    //   })
+    // })
+  },
+  onShow(){
+    const that = this
+    that.setData({
+      userInfo: app.globalData.userInfo
     })
+  },
+
+  //登录
+  Login(){
+    app.getSetting()
   },
 
   //消费记录跳转

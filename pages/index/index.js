@@ -184,24 +184,24 @@ Page({
     //评论星数数量
     arr.length = 5
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      that.setData({
-        userInfo: userInfo,
-        star_count: arr
-      })
-    })
-    wx.request({
-      url: app.globalData.host + 'moments',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'AppVersion': app.globalData.version,
-        'storeNumber': app.globalData.storeNumber
-      },
-      success: res => {
-        console.log(res)
-      }
-    })
+    // app.getUserInfo(function (userInfo) {
+    //   //更新数据
+    //   that.setData({
+    //     userInfo: userInfo,
+    //     star_count: arr
+    //   })
+    // })
+    // wx.request({
+    //   url: app.globalData.host + 'moments',
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded',
+    //     'AppVersion': app.globalData.version,
+    //     'storeNumber': app.globalData.storeNumber
+    //   },
+    //   success: res => {
+    //     console.log(res)
+    //   }
+    // })
   },
 
   onShow() {

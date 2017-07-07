@@ -1,0 +1,5 @@
+/* all_comment.wxss */
+
+.container {
+  padding-bottom: 200rpx;
+}

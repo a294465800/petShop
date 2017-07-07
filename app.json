@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/all_comment/all_comment",
     "pages/tel_input/tel_input",
     "pages/cost_comment/cost_comment",
     "pages/more_info/more_info",

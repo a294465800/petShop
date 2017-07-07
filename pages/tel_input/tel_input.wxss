@@ -39,3 +39,7 @@
 .tel_input {
   font: normal 28rpx "Microsoft YaHei";
 }
+
+.captcha_btn {
+  min-width: 200rpx;
+}

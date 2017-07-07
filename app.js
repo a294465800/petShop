@@ -16,24 +16,24 @@ App({
     //     }
     //   }
     // })
-    // that.getSetting()
+    that.getSetting()
   },
 
-  getUserInfo(cb) {
-    const that = this
-    if (this.globalData.userInfo) {
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    } else {
-      //调用登录接口
-      wx.getUserInfo({
-        withCredentials: false,
-        success: (res) => {
-          that.globalData.userInfo = res.userInfo
-          typeof cb == "function" && cb(that.globalData.userInfo)
-        }
-      })
-    }
-  },
+  // getUserInfo(cb) {
+  //   const that = this
+  //   if (this.globalData.userInfo) {
+  //     typeof cb == "function" && cb(this.globalData.userInfo)
+  //   } else {
+  //     //调用登录接口
+  //     wx.getUserInfo({
+  //       withCredentials: false,
+  //       success: (res) => {
+  //         that.globalData.userInfo = res.userInfo
+  //         typeof cb == "function" && cb(that.globalData.userInfo)
+  //       }
+  //     })
+  //   }
+  // },
 
   globalData: {
     userInfo: null,
@@ -75,59 +75,29 @@ App({
                           showCancel: false
                         })
                         return
-                      }
-                      else if (0 == e.data.register){
-                        wx.showModal({
-                          title: '提示',
-                          content: '你还没有绑定手机号码？',
-                          confirmText: '确认绑定',
-                          success: res => {
-                            if(res.confirm){
-                              
-                            }
-                          }
-                        })
-                        // wx.request({
-                        //   url: that.globalData.host + 'sms',
-                        //   data: {
-                        //     number: 18142883149
-                        //   },
-                        //   success: res => {
-
-                        //   }
+                      } else {
+                        // wx.setStorage({
+                        //   key: 'LaravelID',
+                        //   data: e.header['Set-Cookie'].split(";")[0]
                         // })
+                        that.globalData.header.Cookie = e.header['Set-Cookie'].split(";")[0]
+                        if (0 == e.data.data.register) {
+                          wx.showModal({
+                            title: '提示',
+                            content: '你还没有绑定手机号码？',
+                            confirmText: '确认绑定',
+                            success: res => {
+                              if (res.confirm) {
+                                wx.navigateTo({
+                                  url: '/pages/tel_input/tel_input',
+                                })
+                              }
+                            }
+                          })
+                        }else {
+                          that.checkLogin()
+                        }
                       }
-                      // wx.request({
-                      //   url: that.globalData.host + 'checkLogin',
-                      //   method: 'post',
-                      //   header: {
-                      //     'content-type': 'application/x-www-form-urlencoded',
-                      //     'Cookie': e.header['Set-Cookie'].split(";")[0]
-                      //   },
-                      //   success: res => {
-                      //     if (200 == res.data.code) {
-                      //       wx.setStorage({
-                      //         key: 'LaravelID',
-                      //         data: e.header['Set-Cookie'].split(";")[0],
-                      //       })
-                      //       if (that.globalData.userInfo) {
-                      //         typeof cb == "function" && cb(that.globalData.userInfo)
-                      //       }
-                      //       else {
-                      //         that.globalData.userInfo = res.data.data
-                      //         that.globalData.LaravelID = e.header['Set-Cookie'].split(";")[0]
-                      //         wx.showToast({
-                      //           title: '登录成功',
-                      //         })
-                      //         typeof cb == "function" && cb(that.globalData.userInfo)
-                      //       }
-                      //     } else {
-                      //       wx.showToast({
-                      //         title: '登录失败',
-                      //       })
-                      //     }
-                      //   }
-                      // })
                     }
                   })
                 }
@@ -138,6 +108,42 @@ App({
       }
     })
   },
+
+  checkLogin(cb) {
+    const that = this
+    wx.request({
+      url: that.globalData.host + 'auth/check',
+      header: that.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          // wx.setStorage({
+          //   key: 'LaravelID',
+          //   data: e.header['Set-Cookie'].split(";")[0],
+          // })
+          if (that.globalData.userInfo) {
+            typeof cb == "function" && cb(that.globalData.userInfo)
+          }
+          else {
+            that.globalData.userInfo = res.data.data
+            // that.globalData.LaravelID = e.header['Set-Cookie'].split(";")[0]
+            wx.showToast({
+              title: '登录成功',
+            })
+            typeof cb == "function" && cb(that.globalData.userInfo)
+          }
+        } else {
+          wx.showToast({
+            title: '登录失败',
+          })
+        }
+      },
+      error: () => {
+        wx.showToast({
+          title: '登录失败',
+        })
+      }
+    })
+  }
 
   // //直接登录
   // Login() {
