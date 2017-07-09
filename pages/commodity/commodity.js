@@ -86,7 +86,9 @@ Page({
 
   //查看更多评论
   toMoreComment() {
-
+    wx.navigateTo({
+      url: '/pages/all_comment/all_comment',
+    })
   },
 
   //立即下单

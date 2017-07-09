@@ -1,16 +1,6 @@
 <!--index.wxml-->
 <view class="container">
 
-  <!--轮播图-->
-  <view catchtouchmove="stopMove">
-    <swiper indicator-dots autoplay interval="{{interval}}" class="ad_imgs" duration="{{duration}}" animation="{{animationImg}}">
-      <swiper-item wx:for="{{imgUrls}}" wx:key="*this">
-        <image src="{{item}}" class="roll_img" mode="aspectFill"></image>
-      </swiper-item>
-    </swiper>
-  </view>
-  <!--/轮播图-->
-
   <!--导航条-->
   <view class="nav_bar" catchtouchmove="stopMove">
     <view class="nav_item" wx:for="{{nav}}" wx:key="id" bindtap="nextPage" data-id="{{index}}">{{item.name}}</view>
@@ -19,135 +9,132 @@
   <!--/导航条-->
 
   <!--店铺内容页-->
-  <view class="swiper_part" bindtouchstart="touchStart" bindtouchend="touchEnd">
-    <swiper class="swiper_part_swiper" bindchange="shiftPage" current="{{current}}">
+  <view>
+    <!--轮播图-->
+    <view catchtouchmove="stopMove">
+      <swiper indicator-dots autoplay interval="{{interval}}" class="ad_imgs" duration="{{duration}}" animation="{{animationImg}}">
+        <swiper-item wx:for="{{imgUrls}}" wx:key="*this">
+          <image src="{{item}}" class="roll_img" mode="aspectFill"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+    <!--/轮播图-->
 
-      <!--第一页=>商家动态-->
-      <swiper-item class="shop_dynamic">
-        <scroll-view scroll-y class="scroll" bindscrolltoupper="scrollTop">
-          <view class="dynamic_head">——— 商家最新动态 ———</view>
-          <view class="dynamic_item" wx:for="{{shops}}" wx:key="id" wx:for-item="shop">
-            <view class="dynamic_item_head">
-              <image src="{{shop.avatar}}" class="dynamic_item_head_img" mode="aspectFill"></image>
-              <view class="dynamic_item_head_name">{{shop.name}}</view>
-            </view>
-            <view class="dynamic_item_message">{{shop.content}}</view>
-            <view class="dynamic_item_pic_list">
-              <image src="{{item}}" mode="aspectFill" class="dynamic_item_pic" wx:for="{{shop.img}}" wx:key="*this" bindtap="preImg" data-imggup="{{shop.img}}" data-url="{{item}}"></image>
-            </view>
-            <view class="dynamic_item_function">
-              <view class="dynamic_item_function_p">
-                <image src="/images/shop/like_g.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
-                <view>点赞</view>
-              </view>
-              <view class="dynamic_item_function_p" catchtap="pullComment">
-                <image src="/images/shop/comment_g.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
-                <view>评论</view>
-              </view>
-            </view>
-            <view class="dynamic_item_comments">
-              <view class="dynamic_item_love_people">
-                <image src="/images/shop/like.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
-                <view class="dynamic_item_love_people_name">路人甲、</view>
-              </view>
-              <view class="dynamic_item_comments_list">
-                <view class="dynamic_item_comments_item" wx:for="{{shop.comments}}" wx:key="id">
-                  <view class="dynamic_item_comments_item_name">{{item.name}}：</view>
-                  <view class="dynamic_item_comments_item_content">{{item.content}}</view>
-                </view>
-                <block wx:if="{{index > 10}}">
-                  <view class="dynamic_item_comments_item_more">查看更多</view>
-                </block>
-              </view>
-            </view>
+    <!--第一页=>商家动态-->
+    <view hidden="{{!(current == 0)}}">
+      <view class="dynamic_head">——— 商家最新动态 ———</view>
+      <view class="dynamic_item" wx:for="{{shops}}" wx:key="id" wx:for-item="shop">
+        <view class="dynamic_item_head">
+          <image src="{{shop.avatar}}" class="dynamic_item_head_img" mode="aspectFill"></image>
+          <view class="dynamic_item_head_name">{{shop.name}}</view>
+        </view>
+        <view class="dynamic_item_message">{{shop.content}}</view>
+        <view class="dynamic_item_pic_list">
+          <image src="{{item}}" mode="aspectFill" class="dynamic_item_pic" wx:for="{{shop.img}}" wx:key="*this" bindtap="preImg" data-imggup="{{shop.img}}" data-url="{{item}}"></image>
+        </view>
+        <view class="dynamic_item_function">
+          <view class="dynamic_item_function_p">
+            <image src="/images/shop/like_g.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
+            <view>点赞</view>
           </view>
-        </scroll-view>
-      </swiper-item>
-      <!--/第一页=>商家动态-->
+          <view class="dynamic_item_function_p" catchtap="pullComment">
+            <image src="/images/shop/comment_g.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
+            <view>评论</view>
+          </view>
+        </view>
+        <view class="dynamic_item_comments">
+          <view class="dynamic_item_love_people">
+            <image src="/images/shop/like.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
+            <view class="dynamic_item_love_people_name">路人甲、</view>
+          </view>
+          <view class="dynamic_item_comments_list">
+            <view class="dynamic_item_comments_item" wx:for="{{shop.comments}}" wx:key="id">
+              <view class="dynamic_item_comments_item_name">{{item.name}}：</view>
+              <view class="dynamic_item_comments_item_content">{{item.content}}</view>
+            </view>
+            <block wx:if="{{index > 10}}">
+              <view class="dynamic_item_comments_item_more">查看更多</view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--/第一页=>商家动态-->
 
-      <!--第二页=>用户评论-->
-      <swiper-item class="shop_dynamic">
-        <scroll-view scroll-y class="scroll" bindscrolltoupper="scrollTop">
-          <view class="shop_comment_item" wx:for="{{comments}}" wx:key="id" wx:for-item="comment">
-            <view class="shop_comment_item_content">
-              <view class="shop_comment_item_top">
-                <image src="{{comment.avatar}}" mode="aspectFit" class="shop_comment_item_top_l"></image>
-                <view class="shop_comment_item_top_r">
-                  <view class="shop_comment_item_top_r_top">
-                    <view class="shop_comment_item_username">{{comment.userName}}</view>
-                    <view class="shop_comment_item_goods">
-                      <image src="/images/shop/cart.png" class="shop_comment_item_goods_cart"></image>
-                      <view class="shop_comment_item_goods_name">购买了({{comment.item}})
-
-                      </view>
-                    </view>
-                  </view>
-                  <view class="shop_comment_item_top_r_bottom">
-                    <view class="shop_comment_item_time">{{comment.time}}</view>
-                    <view class="shop_comment_item_score">
-                      <image src="{{index < comment.score? star_img.ok: star_img.no}}" mode="aspectFit" class="shop_comment_item_score_img" wx:for="{{star_count}}">{{index}}
-
-                      </image>
-                    </view>
-                  </view>
+    <!--第二页=>用户评论-->
+    <view hidden="{{!(current == 1)}}">
+      <view class="shop_comment_item" wx:for="{{comments}}" wx:key="id" wx:for-item="comment">
+        <view class="shop_comment_item_content">
+          <view class="shop_comment_item_top">
+            <image src="{{comment.avatar}}" mode="aspectFit" class="shop_comment_item_top_l"></image>
+            <view class="shop_comment_item_top_r">
+              <view class="shop_comment_item_top_r_top">
+                <view class="shop_comment_item_username">{{comment.userName}}</view>
+                <view class="shop_comment_item_goods">
+                  <image src="/images/shop/cart.png" class="shop_comment_item_goods_cart"></image>
+                  <view class="shop_comment_item_goods_name">购买了({{comment.item}})</view>
                 </view>
               </view>
-              <view class="shop_comment_item_bottom">{{comment.content}}</view>
-            </view>
-            <view class="shop_comment_item_love">
-              <image src="/images/shop/like.png" class="shop_comment_item_love_img" mode="aspectFit"></image>
-              <view class="shop_comment_item_love_number">{{comment.commentNumber}}</view>
+              <view class="shop_comment_item_top_r_bottom">
+                <view class="shop_comment_item_time">{{comment.time}}</view>
+                <view class="shop_comment_item_score">
+                  <image src="{{index < comment.score? star_img.ok: star_img.no}}" mode="aspectFit" class="shop_comment_item_score_img" wx:for="{{star_count}}"></image>
+                </view>
+              </view>
             </view>
           </view>
-        </scroll-view>
-      </swiper-item>
-      <!--/第二页=>用户评论-->
+          <view class="shop_comment_item_bottom">{{comment.content}}</view>
+        </view>
+        <view class="shop_comment_item_love">
+          <image src="/images/shop/like.png" class="shop_comment_item_love_img" mode="aspectFit"></image>
+          <view class="shop_comment_item_love_number">{{comment.commentNumber}}</view>
+        </view>
+      </view>
+    </view>
+    <!--/第二页=>用户评论-->
 
-      <!--第三页=>商家信息-->
-      <swiper-item class="shop_dynamic">
-        <scroll-view class="scroll" scroll-y bindscrolltoupper="scrollTop">
-          <view class="shop_info_item">
-            <view class="shop_info_item_icon_intro">
-              <image src="/images/shop/company.png" mode="aspectFit" class="shop_info_item_icon"></image>
-              <view class="shop_info_item_intro">{{store.name}}</view>
-            </view>
-          </view>
-          <view class="shop_info_item">
-            <view class="shop_info_item_icon_intro shop_address">
-              <image src="/images/shop/address.png" mode="aspectFit" class="shop_info_item_icon"></image>
-              <view class="shop_info_item_intro shop_address">{{store.address}}</view>
-            </view>
-            <image src="/images/shop/located.png" mode="aspectFit" class="shop_info_item_icon" bindtap="openLocation"></image>
-          </view>
-          <view class="shop_info_item">
-            <view class="shop_info_item_icon_intro">
-              <image src="/images/shop/time.png" mode="aspectFit" class="shop_info_item_icon"></image>
-              <view class="shop_info_item_intro">{{store.runtime}}</view>
-            </view>
-          </view>
-          <view class="shop_info_item">
-            <view class="shop_info_item_icon_intro">
-              <image src="/images/shop/tel_number.png" mode="aspectFit" class="shop_info_item_icon"></image>
-            </view>
-            <view class="shop_info_item_telgroup">
-              <view class="">{{store.tel}}</view>
-              <image src="/images/shop/call.png" mode="aspectFit" class="shop_info_item_icon" bindtap="callStore"></image>
-            </view>
-          </view>
-          <view class="shop_info_item shop_info_item_last">
-            <view class="shop_info_item_icon_intro">
-              <image src="/images/shop/introduce.png" mode="aspectFit" class="shop_info_item_icon shop_info_item_icon_last"></image>
-              <view class="shop_info_item_intro shop_message">{{store.description}}</view>
-            </view>
-          </view>
-          <view class="shop_img_list">
-            <image src="{{item}}" wx:for="{{store.imgs}}" wx:key="*this" mode="aspectFill" class="shop_img" data-url="{{item}}" bindtap="preStoreImg"></image>
-          </view>
-        </scroll-view>
-      </swiper-item>
-      <!--/第三页=>商家信息-->
+    <!--第三页=>商家信息-->
+    <view hidden="{{!(current == 2)}}">
+      <view class="shop_info_item">
+        <view class="shop_info_item_icon_intro">
+          <image src="/images/shop/company.png" mode="aspectFit" class="shop_info_item_icon"></image>
+          <view class="shop_info_item_intro">{{store.name}}</view>
+        </view>
+      </view>
+      <view class="shop_info_item">
+        <view class="shop_info_item_icon_intro shop_address">
+          <image src="/images/shop/address.png" mode="aspectFit" class="shop_info_item_icon"></image>
+          <view class="shop_info_item_intro shop_address">{{store.address}}</view>
+        </view>
+        <image src="/images/shop/located.png" mode="aspectFit" class="shop_info_item_icon" bindtap="openLocation"></image>
+      </view>
+      <view class="shop_info_item">
+        <view class="shop_info_item_icon_intro">
+          <image src="/images/shop/time.png" mode="aspectFit" class="shop_info_item_icon"></image>
+          <view class="shop_info_item_intro">{{store.runtime}}</view>
+        </view>
+      </view>
+      <view class="shop_info_item">
+        <view class="shop_info_item_icon_intro">
+          <image src="/images/shop/tel_number.png" mode="aspectFit" class="shop_info_item_icon"></image>
+        </view>
+        <view class="shop_info_item_telgroup">
+          <view class="">{{store.tel}}</view>
+          <image src="/images/shop/call.png" mode="aspectFit" class="shop_info_item_icon" bindtap="callStore"></image>
+        </view>
+      </view>
+      <view class="shop_info_item shop_info_item_last">
+        <view class="shop_info_item_icon_intro">
+          <image src="/images/shop/introduce.png" mode="aspectFit" class="shop_info_item_icon shop_info_item_icon_last"></image>
+          <view class="shop_info_item_intro shop_message">{{store.description}}</view>
+        </view>
+      </view>
+      <view class="shop_img_list">
+        <image src="{{item}}" wx:for="{{store.imgs}}" wx:key="*this" mode="aspectFill" class="shop_img" data-url="{{item}}" bindtap="preStoreImg"></image>
+      </view>
+    </view>
+    <!--/第三页=>商家信息-->
 
-    </swiper>
   </view>
   <!--/店铺内容页-->
 

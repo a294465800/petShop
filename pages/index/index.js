@@ -1,9 +1,7 @@
 //index.js
 //获取应用实例
 let app = getApp()
-//记录触摸位置
-let startY = 0
-let startX = 0
+
 Page({
   data: {
     shop: app.globalData.shop,
@@ -188,6 +186,9 @@ Page({
     let arr = []
     //评论星数数量
     arr.length = 5
+    that.setData({
+      star_count: arr
+    })
     //调用应用实例的方法获取全局数据
     // app.getUserInfo(function (userInfo) {
     //   //更新数据
@@ -204,7 +205,6 @@ Page({
     //     'storeNumber': app.globalData.storeNumber
     //   },
     //   success: res => {
-    //     console.log(res)
     //   }
     // })
   },
@@ -216,49 +216,16 @@ Page({
     })
   },
 
-  //禁止轮播触摸移动
-  stopMove() {
-    console.log('move')
-    return false
-  },
-
-  //记录用户初次触摸屏幕位置
-  touchStart(e) {
-    startY = e.touches[0].clientY
-    startX = e.touches[0].clientX
-  },
-
-  //根据动作判断隐藏轮播
-  touchEnd(e) {
-    const that = this
-    let animation = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'ease'
-    })
-    animation = animation.height(0).step()
-    let endY = e.changedTouches[0].clientY
-    let endX = e.changedTouches[0].clientX
-    let minus = startY - endY
-    let offset = startX - endX
-    console.log(offset)
-    if (minus > 0 && offset > -30 && offset < 30) {
-      that.setData({
-        animationImg: animation.export()
-      })
+  onShareAppMessage(res) {
+    return {
+      title: '小主帮',
+      path: '/page/index/index'
     }
   },
 
-  //到达顶部出现轮播
-  scrollTop(e) {
-    const that = this
-    let animation = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'ease'
-    })
-    animation = animation.height('380rpx').step()
-    that.setData({
-      animationImg: animation.export(),
-    })
+  //禁止轮播触摸移动
+  stopMove() {
+    return false
   },
 
   //动画封装
@@ -278,16 +245,6 @@ Page({
     that.setData({
       current: id,
       animationNav: that.animationNav(id).export()
-    })
-  },
-
-  //swiper变动切换函数
-  shiftPage(e) {
-    const that = this
-    let index = e.detail.current
-    that.setData({
-      current: index,
-      animationNav: that.animationNav(index).export()
     })
   },
 
