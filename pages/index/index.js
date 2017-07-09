@@ -45,6 +45,11 @@ Page({
       nav_flag: false
     },
 
+    //用户评论
+    user_comments: null,
+    comments_left: 200,
+    comment_hide: true,
+
     //模拟数据
     //商家动态
     shops: [
@@ -325,5 +330,50 @@ Page({
       current: e.currentTarget.dataset.url,
       urls: that.data.store.imgs,
     })
+  },
+
+  //评论框拉起
+  pullComment(){
+    const that = this
+    if(that.data.comment_hide){
+      that.setData({
+        comment_hide: false
+      })
+    }else {
+      that.setData({
+        comment_hide: true
+      })
+    }
+  },
+
+  //用户评论获取
+  getComments(e){
+    const that = this
+    let comment_content = e.detail.value
+    that.setData({
+      user_comments: comment_content,
+      comments_left: 200 - comment_content.length
+    })
+  },
+
+  //评论提交
+  commentPost(){
+    const that = this
+    if(that.data.user_comments){
+      wx.request({
+        url: app.globalData.host + '',
+        method: 'POST',
+        header: app.globalData.header,
+        success: res => {
+
+        }
+      })
+    }else {
+      wx.showModal({
+        title: '提示',
+        content: '请填写评论',
+        showCancel: false
+      })
+    }
   }
 })

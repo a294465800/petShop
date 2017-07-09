@@ -1,4 +1,6 @@
 // cost_comment.js
+let app = getApp()
+
 Page({
 
   /**
@@ -7,6 +9,9 @@ Page({
   data: {
     //评论总星数
     star_count: [],
+
+    //评论内容
+    comments: null,
 
     //上传图片
     imgs: [],
@@ -44,7 +49,7 @@ Page({
       sizeType: ['compressed'],
       success: res => {
         let temp = [...that.data.imgs, ...res.tempFilePaths]
-        if(temp.length > 3){
+        if (temp.length > 3) {
           temp.length = 3
         }
         that.setData({
@@ -87,14 +92,45 @@ Page({
     })
   },
 
+  //文件上传递归
+  imgUpload(imgs, i) {
+    const that = this
+    
+    if (imgs[i]) {
+      wx.uploadFile({
+        url: app.globalData.host + '',
+        filePath: imgs[i],
+        name: 'image',
+        success: res => {
+          if (200 == res.data.code && imgs[i + 1]) {
+            that.imgUpload(imgs, i + 1)
+          }
+        }
+      })
+    }
+  },
+
+  //获取评论
+  getComments(e){
+    this.setData({
+      comments: e.detail.value
+    })
+  },
+
   commentPost() {
     const that = this
-    wx.uploadFile({
-      url: 'http://192.168.3.22:8080/upload',
-      filePath: that.data.imgs[0],
-      name: 'image',
+    //上传图片
+    that.imgUpload(that.data.imgs, 0)
+
+    wx.request({
+      url: app.globalData.host + '',
+      method: 'POST',
+      header: app.globalData.header,
       success: res => {
-        console.log(res)
+        console.log(that.data.comments)
+      },
+      error: res => {
+        console.log(that.data.comments)
       }
     })
   }

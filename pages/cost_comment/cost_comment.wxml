@@ -2,7 +2,7 @@
 <view class="container">
 
   <!--评论输入-->
-  <textarea auto-focus class="comment_inut" placeholder="请评价" />
+  <textarea auto-focus class="comment_inut" placeholder="请评价" maxlength="200" bindblur="getComments" />
   <!--/评论输入-->
 
   <!--插入图片-->
