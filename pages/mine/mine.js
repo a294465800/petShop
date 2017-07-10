@@ -20,7 +20,7 @@ Page({
     //   })
     // })
   },
-  onShow(){
+  onShow() {
     const that = this
     that.setData({
       userInfo: app.globalData.userInfo
@@ -28,7 +28,7 @@ Page({
   },
 
   //登录
-  Login(){
+  Login() {
     app.getSetting()
   },
 
@@ -50,6 +50,13 @@ Page({
   goToMore() {
     wx.navigateTo({
       url: '/pages/more_info/more_info',
+    })
+  },
+
+  //积分跳转
+  goToPoints() {
+    wx.navigateTo({
+      url: '/pages/points/points',
     })
   }
 })

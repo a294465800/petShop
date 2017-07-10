@@ -10,7 +10,8 @@
     "pages/commodity/commodity",
     "pages/mine/mine",
     "pages/shop/shop",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/points/points"
   ],
   "window": {
     "backgroundTextStyle": "light",

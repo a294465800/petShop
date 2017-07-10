@@ -16,6 +16,10 @@
     <image src="/images/mine/more.png" mode="aspectFit" class="mine_item_img"></image>
     <view class="mine_item_word">更多信息</view>
   </view>
+  <view class="mine_item" hover-class="push_class" hover-stay-time="150" bindtap="goToPoints">
+    <image src="/images/mine/more.png" mode="aspectFit" class="mine_item_img"></image>
+    <view class="mine_item_word">我的积分</view>
+  </view>
   <button class="mine_item" hover-class="push_class" hover-stay-time="150" open-type="contact">
     <image src="/images/mine/kefu.png" mode="aspectFit" class="mine_item_img"></image>
     <view class="mine_item_word">在线客服</view>

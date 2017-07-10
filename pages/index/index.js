@@ -258,17 +258,25 @@ Page({
 
   //打开商家地图
   openLocation() {
-    wx.getLocation({
-      type: 'gcj02',
+    wx.showLoading({
+      title: '地图加载中',
+    })
+    // wx.getLocation({
+    //   type: 'gcj02',
+    //   success: res => {
+    //   },
+    // })
+    let latitude = 23.138595
+    let longitude = 113.328032
+    wx.openLocation({
+      latitude: latitude,
+      longitude: longitude,
+      scale: 28,
+      name: '广州天河又一城',
+      address: '广州市xxxxxxxx',
       success: res => {
-        let latitude = res.latitude
-        let longitude = res.longitude
-        wx.openLocation({
-          latitude: latitude,
-          longitude: longitude,
-          scale: 28
-        })
-      },
+        wx.hideLoading()
+      }
     })
   },
 
@@ -290,13 +298,13 @@ Page({
   },
 
   //评论框拉起
-  pullComment(){
+  pullComment() {
     const that = this
-    if(that.data.comment_hide){
+    if (that.data.comment_hide) {
       that.setData({
         comment_hide: false
       })
-    }else {
+    } else {
       that.setData({
         comment_hide: true
       })
@@ -304,7 +312,7 @@ Page({
   },
 
   //用户评论获取
-  getComments(e){
+  getComments(e) {
     const that = this
     let comment_content = e.detail.value
     that.setData({
@@ -314,9 +322,9 @@ Page({
   },
 
   //评论提交
-  commentPost(){
+  commentPost() {
     const that = this
-    if(that.data.user_comments){
+    if (that.data.user_comments) {
       wx.request({
         url: app.globalData.host + '',
         method: 'POST',
@@ -325,7 +333,7 @@ Page({
 
         }
       })
-    }else {
+    } else {
       wx.showModal({
         title: '提示',
         content: '请填写评论',
