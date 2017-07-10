@@ -40,7 +40,8 @@ Page({
 
     //开关
     flag: {
-      nav_flag: false
+      nav_flag: false,
+      good_flag: false
     },
 
     //用户评论
@@ -207,16 +208,27 @@ Page({
     //   success: res => {
     //   }
     // })
+    // app.getSetting((userInfo) => {
+    //   that.setData({
+    //     userInfo: userInfo
+    //   })
+    // })
   },
 
   onShow() {
     const that = this
     that.setData({
-      shop: app.globalData.shop
+      shop: app.globalData.shop,
     })
   },
 
-  onShareAppMessage(res) {
+  //下拉刷新
+  onPullDownRefresh() {
+    wx.stopPullDownRefresh()
+  },
+
+  //分享
+  onShareAppMessage() {
     return {
       title: '小主帮',
       path: '/page/index/index'
@@ -295,6 +307,20 @@ Page({
       current: e.currentTarget.dataset.url,
       urls: that.data.store.imgs,
     })
+  },
+
+  //点赞设置
+  good() {
+    const that = this
+    if (that.data.flag.good_flag) {
+      that.setData({
+        'flag.good_flag': false
+      })
+    } else {
+      that.setData({
+        'flag.good_flag': true
+      })
+    }
   },
 
   //评论框拉起

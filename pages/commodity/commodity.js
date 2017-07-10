@@ -104,16 +104,25 @@ Page({
         product_id: 1
       },
       success: res => {
-        that.setData({
-          buy: !that.data.buy
+        wx.requestPayment({
+          timeStamp: res.data.data.timeStamp,
+          nonceStr: res.data.data.nonceStr,
+          package: res.data.data.package,
+          signType: res.data.data.signType,
+          paySign: res.data.data.paySign,
+          success: rs => {
+            console.log(rs)
+            wx.showToast({
+              title: '下单成功',
+            })
+            that.setData({
+              buy: !that.data.buy
+            })
+            wx.request({
+              url: '',
+            })
+          }
         })
-        // wx.requestPayment({
-        //   timeStamp: timestamp,
-        //   nonceStr: '',
-        //   package: '',
-        //   signType: '',
-        //   paySign: '',
-        // })
       }
     })
   },

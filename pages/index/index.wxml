@@ -34,8 +34,8 @@
           <image src="{{item}}" mode="aspectFill" class="dynamic_item_pic" wx:for="{{shop.img}}" wx:key="*this" bindtap="preImg" data-imggup="{{shop.img}}" data-url="{{item}}"></image>
         </view>
         <view class="dynamic_item_function">
-          <view class="dynamic_item_function_p">
-            <image src="/images/shop/like_g.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
+          <view class="dynamic_item_function_p" bindtap="good">
+            <image src="{{flag.good_flag?'/images/shop/like_gf.png':'/images/shop/like_g.png'}}" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
             <view>点赞</view>
           </view>
           <view class="dynamic_item_function_p" catchtap="pullComment">

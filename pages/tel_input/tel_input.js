@@ -15,6 +15,7 @@ Page({
 
     //验证码
     captcha_input: 0,
+    captcha_key: null,
 
     //手机号
     telNumber: 0,
@@ -62,6 +63,9 @@ Page({
       },
       success: res => {
         if (200 != res.data.code) {
+          that.setData({
+            captcha_key: res.data.data.key
+          })
           wx.showModal({
             title: '提示',
             content: res.data.msg,
@@ -125,6 +129,7 @@ Page({
               method: 'POST',
               data: {
                 captcha: that.data.captcha_input,
+                captchaKey: that.data.captcha_key,
                 code: rs.code,
                 encryptedData: res.encryptedData,
                 iv: res.iv

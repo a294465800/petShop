@@ -16,7 +16,6 @@ App({
     //     }
     //   }
     // })
-    that.getSetting()
   },
 
   // getUserInfo(cb) {
@@ -84,7 +83,8 @@ App({
                         })
                       } else {
                         that.globalData.header.Cookie = e.header['Set-Cookie'].split(";")[0]
-                        if (0 == (e.data.data.register ? e.data.data.register : 1)) {
+
+                        if (e.data.data.register) {
                           wx.showModal({
                             title: '提示',
                             content: '你还没有绑定手机号码？',
@@ -118,6 +118,7 @@ App({
       url: that.globalData.host + 'auth/check',
       header: that.globalData.header,
       success: res => {
+        console.log(res)
         if (200 == res.data.code) {
           // wx.setStorage({
           //   key: 'LaravelID',
