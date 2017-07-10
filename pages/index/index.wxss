@@ -6,10 +6,15 @@
   flex-direction: column;
   justify-content: flex-start;
   background-color: #fff;
+  padding-top: 80rpx;
 }
 
 .ad_imgs {
   height: 380rpx;
+}
+
+.page {
+  padding-bottom: 100rpx;
 }
 
 /*轮播图样式*/
@@ -66,12 +71,16 @@
   color: #999;
 }
 
-.dynamic_head {
+.dynamic_head,.dynamic_bottom {
   width: 100%;
   font-size: 30rpx;
   text-align: center;
   color: #999;
   margin-top: 20rpx;
+}
+
+.dynamic_bottom {
+  margin-top: 50rpx;
 }
 
 .dynamic_item_head {

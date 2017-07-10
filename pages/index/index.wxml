@@ -2,7 +2,7 @@
 <view class="container">
 
   <!--导航条-->
-  <view class="nav_bar"></view>
+  <!--<view class="nav_bar"></view>-->
   <view class="nav_bar fixed" catchtouchmove="stopMove">
     <view class="nav_item" wx:for="{{nav}}" wx:key="id" bindtap="nextPage" data-id="{{index}}">{{item.name}}</view>
     <view class="nav_shift" animation="{{animationNav}}"></view>
@@ -22,7 +22,7 @@
     <!--/轮播图-->
 
     <!--第一页=>商家动态-->
-    <view hidden="{{!(current == 0)}}">
+    <view hidden="{{!(current == 0)}}" class="page">
       <view class="dynamic_head">——— 商家最新动态 ———</view>
       <view class="dynamic_item" wx:for="{{shops}}" wx:key="id" wx:for-item="shop">
         <view class="dynamic_item_head">
@@ -59,11 +59,12 @@
           </view>
         </view>
       </view>
+      <view class="dynamic_bottom">——— 已展示全部动态 ———</view>
     </view>
     <!--/第一页=>商家动态-->
 
     <!--第二页=>用户评论-->
-    <view hidden="{{!(current == 1)}}">
+    <view hidden="{{!(current == 1)}}" class="page">
       <view class="shop_comment_item" wx:for="{{comments}}" wx:key="id" wx:for-item="comment">
         <view class="shop_comment_item_content">
           <view class="shop_comment_item_top">
@@ -91,11 +92,12 @@
           <view class="shop_comment_item_love_number">{{comment.commentNumber}}</view>
         </view>
       </view>
+      <view class="dynamic_bottom">——— 已加载全部评论 ———</view>
     </view>
     <!--/第二页=>用户评论-->
 
     <!--第三页=>商家信息-->
-    <view hidden="{{!(current == 2)}}">
+    <view hidden="{{!(current == 2)}}" class="page">
       <view class="shop_info_item">
         <view class="shop_info_item_icon_intro">
           <image src="/images/shop/company.png" mode="aspectFit" class="shop_info_item_icon"></image>

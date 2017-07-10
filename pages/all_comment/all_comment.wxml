@@ -1,4 +1,5 @@
 <!--all_comment.wxml-->
 <view class="container">
-  <include src="../comment/comments.wxml"/>
+  <include src="../comment/comments.wxml" />
+  <view class="dynamic_bottom">——— 已加载全部评论 ———</view>
 </view>

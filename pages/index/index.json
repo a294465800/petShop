@@ -1,3 +1,4 @@
 {
-  "backgroundColor": "#eee"
+  "backgroundColor": "#eee",
+  "enablePullDownRefresh": true
 }
