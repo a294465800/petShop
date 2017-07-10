@@ -93,22 +93,22 @@ Page({
    */
   onLoad(options) {
     const that = this
-    // wx.request({
-    //   url: app.globalData.host + 'category',
-    //   header: app.globalData.header,
-    //   success: res => {
-    //     that.setData({
-    //       shopCategorys: res.data.data,
-    //       width: Math.floor(100 / res.data.data.length),
-    //       category_id: res.data.data[0].id
-    //     })
-    //   }
-    // })
-    that.setData({
-      // shopCategorys: res.data.data,
-      width: Math.floor(100 / that.data.shopCategory.length),
-      // category_id: res.data.data[0].id
+    wx.request({
+      url: app.globalData.host + 'category',
+      header: app.globalData.header,
+      success: res => {
+        that.setData({
+          shopCategorys: res.data.data,
+          width: Math.floor(100 / res.data.data.length),
+          category_id: res.data.data[0].id
+        })
+      }
     })
+    // that.setData({
+    //   // shopCategorys: res.data.data,
+    //   width: Math.floor(100 / that.data.shopCategory.length),
+    //   // category_id: res.data.data[0].id
+    // })
   },
 
   onShow() {

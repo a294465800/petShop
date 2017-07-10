@@ -49,6 +49,9 @@ App({
   //获取用户设置
   getSetting(cb) {
     let that = this
+    wx.showLoading({
+      title: '登录中',
+    })
     wx.getSetting({
       success: setting => {
         if (setting.authSetting["scope.userInfo"] == true) {
@@ -68,20 +71,20 @@ App({
                       iv: res.iv
                     },
                     success: e => {
+                      wx.hideLoading()
                       if (!e.header) {
                         wx.showModal({
                           title: '提示',
                           content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。',
                           showCancel: false
                         })
-                        return
+                      } else if (200 != e.data.code) {
+                        wx.showToast({
+                          title: '登录失败',
+                        })
                       } else {
-                        // wx.setStorage({
-                        //   key: 'LaravelID',
-                        //   data: e.header['Set-Cookie'].split(";")[0]
-                        // })
                         that.globalData.header.Cookie = e.header['Set-Cookie'].split(";")[0]
-                        if (0 == e.data.data.register) {
+                        if (0 == (e.data.data.register ? e.data.data.register : 1)) {
                           wx.showModal({
                             title: '提示',
                             content: '你还没有绑定手机号码？',
@@ -94,7 +97,7 @@ App({
                               }
                             }
                           })
-                        }else {
+                        } else {
                           that.checkLogin()
                         }
                       }

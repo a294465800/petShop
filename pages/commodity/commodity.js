@@ -96,8 +96,25 @@ Page({
   //立即下单
   buyCommodity() {
     const that = this
-    that.setData({
-      buy: !that.data.buy
+    let timestamp = new Date().getTime()
+    wx.request({
+      url: app.globalData.host + 'order/pay',
+      header: app.globalData.header,
+      data: {
+        product_id: 1
+      },
+      success: res => {
+        that.setData({
+          buy: !that.data.buy
+        })
+        // wx.requestPayment({
+        //   timeStamp: timestamp,
+        //   nonceStr: '',
+        //   package: '',
+        //   signType: '',
+        //   paySign: '',
+        // })
+      }
     })
   },
 
