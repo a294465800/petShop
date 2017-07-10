@@ -104,7 +104,7 @@
           <view class="buy_interface_order">
             <view class="buy_interface_order_name">预约时间：</view>
             <view class="buy_interface_order_time">
-              <picker mode="date" start="2017-01-01" end="2017-12-31" value="{{date}}" bindchange="getDate">{{date}}</picker>
+              <picker mode="date" start="{{(today_year-1)+'-01-01'}}" end="{{(today_year+1)+'-12-31'}}" value="{{date}}" bindchange="getDate">{{date}}</picker>
               <picker mode="time" start="00:00" end="24:00" value="{{time}}" bindchange="getTime">{{time}}</picker>
             </view>
           </view>
@@ -112,21 +112,6 @@
         <view class="buy_interface_btn">预约</view>
       </view>
     </image>
-
-    <!--自制picker-->
-    <!--<view class="buy_interface_time">
-      <view class="buy_interface_time_btn">
-        <view class="buy_interface_time_btn_cancel">取消</view>
-        <view class="buy_interface_time_btn_submit">确定</view>
-      </view>
-      <picker-view indicator-style="height: 50px;" value="{{value}}" bindchange="bindChange" class="buy_interface_time_picker" indicator-class="buy_interface_time_picker_choose">
-        <picker-view-column class="buy_interface_time_picker_column">1月</picker-view-column>
-        <picker-view-column class="buy_interface_time_picker_column">2日</picker-view-column>
-        <picker-view-column class="buy_interface_time_picker_column">3时</picker-view-column>
-        <picker-view-column class="buy_interface_time_picker_column">4分</picker-view-column>
-      </picker-view>
-    </view>-->
-    <!--/自制picker-->
   </view>
   <!--/下单成功-->
 </view>

@@ -1,4 +1,5 @@
 // commodity.js
+let date = new Date()
 let app = getApp()
 Page({
 
@@ -22,6 +23,7 @@ Page({
     //时间选择期
     date: '日期',
     time: '时间',
+    today_year: date.getFullYear(),
 
     //下单操作
     buy: false,
