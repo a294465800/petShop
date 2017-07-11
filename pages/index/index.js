@@ -208,11 +208,11 @@ Page({
     //   success: res => {
     //   }
     // })
-    // app.getSetting((userInfo) => {
-    //   that.setData({
-    //     userInfo: userInfo
-    //   })
-    // })
+    app.getSetting((userInfo) => {
+      that.setData({
+        userInfo: userInfo
+      })
+    })
   },
 
   onShow() {

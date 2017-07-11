@@ -63,9 +63,6 @@ Page({
       },
       success: res => {
         if (200 != res.data.code) {
-          that.setData({
-            captcha_key: res.data.data.key
-          })
           wx.showModal({
             title: '提示',
             content: res.data.msg,
@@ -79,6 +76,9 @@ Page({
             }
           })
         } else {
+          that.setData({
+            captcha_key: res.data.data.key
+          })
           timer = setInterval(() => {
             if (0 == i) {
               that.setData({
@@ -154,6 +154,7 @@ Page({
                   wx.showModal({
                     title: '提示',
                     content: res.data.msg,
+                    showCancel: false
                   })
                 }
               }

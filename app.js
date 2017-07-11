@@ -84,7 +84,7 @@ App({
                       } else {
                         that.globalData.header.Cookie = e.header['Set-Cookie'].split(";")[0]
 
-                        if (e.data.data.register) {
+                        if (0 == e.data.data.register) {
                           wx.showModal({
                             title: '提示',
                             content: '你还没有绑定手机号码？',

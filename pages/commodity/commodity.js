@@ -27,6 +27,7 @@ Page({
 
     //下单操作
     buy: false,
+    order_id: null,
 
     //用户评论
     comments: [
@@ -98,31 +99,46 @@ Page({
     const that = this
     let timestamp = new Date().getTime()
     wx.request({
-      url: app.globalData.host + 'order/pay',
+      url: app.globalData.host + 'order/make',
       header: app.globalData.header,
-      data: {
-        product_id: 1
-      },
       success: res => {
-        wx.requestPayment({
-          timeStamp: res.data.data.timeStamp,
-          nonceStr: res.data.data.nonceStr,
-          package: res.data.data.package,
-          signType: res.data.data.signType,
-          paySign: res.data.data.paySign,
-          success: rs => {
-            console.log(rs)
-            wx.showToast({
-              title: '下单成功',
-            })
-            that.setData({
-              buy: !that.data.buy
-            })
-            wx.request({
-              url: '',
-            })
-          }
-        })
+        if (200 == res.data.code) {
+          let order_id = res.data.data
+          that.setData({
+            order_id: order_id
+          })
+          wx.request({
+            url: app.globalData.host + 'order/pay',
+            header: app.globalData.header,
+            method: 'POST',
+            data: {
+              product_id: 1,
+              number: order_id
+            },
+            success: res => {
+              wx.requestPayment({
+                timeStamp: res.data.data.timeStamp,
+                nonceStr: res.data.data.nonceStr,
+                package: res.data.data.package,
+                signType: res.data.data.signType,
+                paySign: res.data.data.paySign,
+                success: rs => {
+                  console.log(rs)
+                  wx.showToast({
+                    title: '下单成功',
+                  })
+                  that.setData({
+                    buy: !that.data.buy
+                  })
+                }
+              })
+            }
+          })
+        } else {
+          wx.showToast({
+            title: '下单失败',
+          })
+        }
       }
     })
   },

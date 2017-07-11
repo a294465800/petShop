@@ -65,7 +65,7 @@
 
     <!--第二页=>用户评论-->
     <view hidden="{{!(current == 1)}}" class="page">
-      <view class="shop_comment_item" wx:for="{{comments}}" wx:key="id" wx:for-item="comment">
+      <!--<view class="shop_comment_item" wx:for="{{comments}}" wx:key="id" wx:for-item="comment">
         <view class="shop_comment_item_content">
           <view class="shop_comment_item_top">
             <image src="{{comment.avatar}}" mode="aspectFit" class="shop_comment_item_top_l"></image>
@@ -91,7 +91,8 @@
           <image src="/images/shop/like.png" class="shop_comment_item_love_img" mode="aspectFit"></image>
           <view class="shop_comment_item_love_number">{{comment.commentNumber}}</view>
         </view>
-      </view>
+      </view>-->
+      <include src="../comment/comments.wxml" />
       <view class="dynamic_bottom">——— 已加载全部评论 ———</view>
     </view>
     <!--/第二页=>用户评论-->
