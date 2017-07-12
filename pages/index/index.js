@@ -44,11 +44,6 @@ Page({
       good_flag: false
     },
 
-    //用户评论
-    user_comments: null,
-    comments_left: 200,
-    comment_hide: true,
-
     //模拟数据
     //商家动态
     shop: [
@@ -302,11 +297,6 @@ Page({
     wx.showLoading({
       title: '地图加载中',
     })
-    // wx.getLocation({
-    //   type: 'gcj02',
-    //   success: res => {
-    //   },
-    // })
     let latitude = 23.138595
     let longitude = 113.328032
     wx.openLocation({
@@ -352,48 +342,11 @@ Page({
     }
   },
 
-  //评论框拉起
-  pullComment() {
-    const that = this
-    if (that.data.comment_hide) {
-      that.setData({
-        comment_hide: false
-      })
-    } else {
-      that.setData({
-        comment_hide: true
-      })
-    }
-  },
-
-  //用户评论获取
-  getComments(e) {
-    const that = this
-    let comment_content = e.detail.value
-    that.setData({
-      user_comments: comment_content,
-      comments_left: 200 - comment_content.length
+  //评论
+  goToComment(e){
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/dynamic_comment/dynamic_comment?id=' + id,
     })
-  },
-
-  //评论提交
-  commentPost() {
-    const that = this
-    if (that.data.user_comments) {
-      wx.request({
-        url: app.globalData.host + '',
-        method: 'POST',
-        header: app.globalData.header,
-        success: res => {
-
-        }
-      })
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '请填写评论',
-        showCancel: false
-      })
-    }
-  },
+  }
 })

@@ -11,7 +11,8 @@
     "pages/mine/mine",
     "pages/shop/shop",
     "pages/logs/logs",
-    "pages/points/points"
+    "pages/points/points",
+    "pages/dynamic_comment/dynamic_comment"
   ],
   "window": {
     "backgroundTextStyle": "light",
