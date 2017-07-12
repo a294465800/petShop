@@ -24,37 +24,36 @@ Page({
 
     //评分
     score: {
-      environment: 0,
-      service: 0
-    }
+      environment: 5,
+      service: 5
+    },
+
+    //图片数据
+    baseurl: '',
+    host: 'https://www.sennkisystem.cn/'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(options) {
     const that = this
     let arr = []
     arr.length = 5
     that.setData({
-      star_count: arr
+      star_count: arr,
+      order_id: options.id
     })
   },
 
-  //图片上传
+  //图片选择、上传
   addImg() {
     const that = this
     wx.chooseImage({
       count: 3,
       sizeType: ['compressed'],
       success: res => {
-        let temp = [...that.data.imgs, ...res.tempFilePaths]
-        if (temp.length > 3) {
-          temp.length = 3
-        }
-        that.setData({
-          imgs: temp
-        })
+        that.imgUpload(res.tempFilePaths, 0)
       },
     })
   },
@@ -98,11 +97,25 @@ Page({
     
     if (imgs[i]) {
       wx.uploadFile({
-        url: app.globalData.host + '',
+        url: app.globalData.host + 'upload',
         filePath: imgs[i],
         name: 'image',
         success: res => {
-          if (200 == res.data.code && imgs[i + 1]) {
+          let json = JSON.parse(res.data)
+          let temp = that.data.host + json.baseurl
+          let arr = [...that.data.imgs, temp]
+          let index = that.data.imgs.indexOf(temp)
+          console.log(arr)
+          console.log(index)
+          if(arr.length > 3){
+            arr.length = 3
+          } else if (index > -1 && arr.length > 1){
+            arr.splice(index,1)
+          }
+          that.setData({
+            imgs: arr
+          })
+          if (200 == json.code && imgs[i + 1]) {
             that.imgUpload(imgs, i + 1)
           }
         }
@@ -120,17 +133,37 @@ Page({
   commentPost() {
     const that = this
     //上传图片
-    that.imgUpload(that.data.imgs, 0)
+    if (!that.data.comments){
+      wx,wx.showModal({
+        title: '提示',
+        content: '请输入评论内容',
+        showCancel: true,
+        success: res => {
+          return false
+        }
+      })
+    }
+    let baseurl = ''
+    for (let i in that.data.imgs){
+      baseurl += that.data.imgs[i].replace(that.data.host,'') + ';'
+    }
 
     wx.request({
-      url: app.globalData.host + '',
+      url: app.globalData.host + 'comment',
       method: 'POST',
       header: app.globalData.header,
+      data: {
+        orderID: that.data.order_id,
+        content: that.data.comments,
+        score_en: that.data.score.environment,
+        score_at: that.data.score.service,
+        img: baseurl
+      },
       success: res => {
-        console.log(that.data.comments)
+        console.log(res)
       },
       error: res => {
-        console.log(that.data.comments)
+        console.log(res)
       }
     })
   }

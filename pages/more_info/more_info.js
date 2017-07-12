@@ -32,5 +32,13 @@ Page({
     wx.previewImage({
       urls: ['https://github.com/a294465800/petShop/blob/master/images/mine/QRcode.png?raw=true'],
     })
-  }
+  },
+
+  //电话小主帮
+  callUs(e) {
+    const that = this
+    wx.makePhoneCall({
+      phoneNumber: e.currentTarget.dataset.tel,
+    })
+  },
 })

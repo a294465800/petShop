@@ -135,6 +135,7 @@ Page({
                 iv: res.iv
               },
               success: res => {
+                console.log('注册成功')
                 if (200 == res.data.code) {
                   wx.showModal({
                     title: '提示',
@@ -151,6 +152,8 @@ Page({
                     }
                   })
                 } else {
+                  console.log('显示错误')
+                  console.log(res)
                   wx.showModal({
                     title: '提示',
                     content: res.data.msg,

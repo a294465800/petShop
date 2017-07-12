@@ -72,7 +72,7 @@
   align-self: flex-end;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin-left: 30rpx;
   min-width: 150rpx;

@@ -51,7 +51,7 @@ Page({
 
     //模拟数据
     //商家动态
-    shops: [
+    shop: [
       {
         id: 0,
         name: '瑞文宠物',
@@ -183,6 +183,7 @@ Page({
 
     //接口数据
     store: null,
+    shops: null,
   },
   onLoad() {
     let that = this
@@ -206,7 +207,9 @@ Page({
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          console.log(res.data.data)
+          that.setData({
+            shops: res.data.data
+          })
         }
       }
     })
@@ -216,7 +219,6 @@ Page({
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          console.log(res.data.data)
         }
       }
     })
@@ -226,7 +228,6 @@ Page({
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          console.log(res.data.data)
           that.setData({
             store: res.data.data
           })
@@ -312,8 +313,8 @@ Page({
       latitude: latitude,
       longitude: longitude,
       scale: 28,
-      name: '广州天河又一城',
-      address: '广州市xxxxxxxx',
+      name: '森乾科技',
+      address: '广东省广州市番禺区永恒大街6号花城创意园2号楼122',
       success: res => {
         wx.hideLoading()
       }
@@ -333,7 +334,7 @@ Page({
     const that = this
     wx.previewImage({
       current: e.currentTarget.dataset.url,
-      urls: that.data.store.img,
+      urls: that.data.store.images,
     })
   },
 

@@ -26,8 +26,8 @@
       <view class="dynamic_head">——— 商家最新动态 ———</view>
       <view class="dynamic_item" wx:for="{{shops}}" wx:key="id" wx:for-item="shop">
         <view class="dynamic_item_head">
-          <image src="{{shop.avatar}}" class="dynamic_item_head_img" mode="aspectFill"></image>
-          <view class="dynamic_item_head_name">{{shop.name}}</view>
+          <image src="{{shop.store_cover}}" class="dynamic_item_head_img" mode="aspectFill"></image>
+          <view class="dynamic_item_head_name">{{shop.store_name}}</view>
         </view>
         <view class="dynamic_item_message">{{shop.content}}</view>
         <view class="dynamic_item_pic_list">
@@ -43,10 +43,10 @@
             <view>评论</view>
           </view>
         </view>
-        <view class="dynamic_item_comments">
+        <view class="dynamic_item_comments" wx:if="{{shop.likes.length > 0}}">
           <view class="dynamic_item_love_people">
             <image src="/images/shop/like.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
-            <view class="dynamic_item_love_people_name">路人甲、</view>
+            <view class="dynamic_item_love_people_name"><block wx:for="{{shop.likes}}">{{item}}、</block></view>
           </view>
           <view class="dynamic_item_comments_list">
             <view class="dynamic_item_comments_item" wx:for="{{shop.comments}}" wx:key="id">
@@ -65,33 +65,6 @@
 
     <!--第二页=>用户评论-->
     <view hidden="{{!(current == 1)}}" class="page">
-      <!--<view class="shop_comment_item" wx:for="{{comments}}" wx:key="id" wx:for-item="comment">
-        <view class="shop_comment_item_content">
-          <view class="shop_comment_item_top">
-            <image src="{{comment.avatar}}" mode="aspectFit" class="shop_comment_item_top_l"></image>
-            <view class="shop_comment_item_top_r">
-              <view class="shop_comment_item_top_r_top">
-                <view class="shop_comment_item_username">{{comment.userName}}</view>
-                <view class="shop_comment_item_goods">
-                  <image src="/images/shop/cart.png" class="shop_comment_item_goods_cart"></image>
-                  <view class="shop_comment_item_goods_name">购买了({{comment.item}})</view>
-                </view>
-              </view>
-              <view class="shop_comment_item_top_r_bottom">
-                <view class="shop_comment_item_time">{{comment.time}}</view>
-                <view class="shop_comment_item_score">
-                  <image src="{{index < comment.score? star_img.ok: star_img.no}}" mode="aspectFit" class="shop_comment_item_score_img" wx:for="{{star_count}}"></image>
-                </view>
-              </view>
-            </view>
-          </view>
-          <view class="shop_comment_item_bottom">{{comment.content}}</view>
-        </view>
-        <view class="shop_comment_item_love">
-          <image src="/images/shop/like.png" class="shop_comment_item_love_img" mode="aspectFit"></image>
-          <view class="shop_comment_item_love_number">{{comment.commentNumber}}</view>
-        </view>
-      </view>-->
       <include src="../comment/comments.wxml" />
       <view class="dynamic_bottom">——— 已加载全部评论 ———</view>
     </view>
@@ -125,7 +98,7 @@
         <view class="shop_info_item_telgroup">
           <block wx:for="{{store.number}}" wx:key="*this">
             <view>{{item}}</view>
-            <image src="/images/shop/call.png" mode="aspectFit" class="shop_info_item_icon" bindtap="callStore" data-tel="item"></image>
+            <image src="/images/shop/call.png" mode="aspectFit" class="shop_info_item_icon" bindtap="callStore" data-tel="{{item}}"></image>
           </block>
         </view>
       </view>
@@ -136,7 +109,7 @@
         </view>
       </view>
       <view class="shop_img_list">
-        <image src="{{item}}" wx:for="{{store.imgs}}" wx:key="*this" mode="aspectFill" class="shop_img" data-url="{{item}}" bindtap="preStoreImg"></image>
+        <image src="{{item}}" wx:for="{{store.images}}" wx:key="*this" mode="aspectFill" class="shop_img" data-url="{{item}}" bindtap="preStoreImg"></image>
       </view>
     </view>
     <!--/第三页=>商家信息-->

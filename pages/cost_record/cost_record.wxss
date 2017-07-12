@@ -11,6 +11,14 @@
   color: #ff963d !important;
 }
 
+.order-none {
+  width: 100%;
+  font-size: 30rpx;
+  text-align: center;
+  color: #999;
+  padding-top: 30rpx;
+}
+
 /*消费记录导航*/
 
 .cost_record_nav, .been_comment, .been_comment_content {

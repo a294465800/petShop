@@ -17,7 +17,7 @@ Page({
     current: 0,
 
     //商品分类
-    shopCategory: [],
+    // shopCategory: [],
     category_id: 0,
 
     //商品
@@ -47,45 +47,10 @@ Page({
         name: '美容'
       }
     ],
-    shopItem: [
-      {
-        id: 0,
-        name: '黄毛换肤黄毛换肤黄毛换肤黄毛换肤',
-        price: 46,
-        sell: 2000,
-        img: 'http://photocdn.sohu.com/20151020/mp36640609_1445309900965_2.jpeg'
-      }, {
-        id: 1,
-        name: '黄毛换肤黄毛换肤黄毛换肤黄毛换肤',
-        price: 46,
-        sell: 2000,
-        img: 'http://photocdn.sohu.com/20151020/mp36640609_1445309900965_2.jpeg'
-      }, {
-        id: 2,
-        name: '黄毛换肤黄毛换肤黄毛换肤黄毛换肤',
-        price: 46,
-        sell: 2000,
-        img: 'http://photocdn.sohu.com/20151020/mp36640609_1445309900965_2.jpeg'
-      }, {
-        id: 3,
-        name: '黄毛换肤黄毛换肤黄毛换肤黄毛换肤',
-        price: 46,
-        sell: 2000,
-        img: 'http://photocdn.sohu.com/20151020/mp36640609_1445309900965_2.jpeg'
-      }, {
-        id: 4,
-        name: '黄毛换肤黄毛换肤黄毛换肤黄毛换肤',
-        price: 46,
-        sell: 2000,
-        img: 'http://photocdn.sohu.com/20151020/mp36640609_1445309900965_2.jpeg'
-      }, {
-        id: 5,
-        name: '黄毛换肤黄毛换肤黄毛换肤黄毛换肤',
-        price: 46,
-        sell: 2000,
-        img: 'http://photocdn.sohu.com/20151020/mp36640609_1445309900965_2.jpeg'
-      },
-    ]
+
+    //接口数据
+    shopCategorys: null,
+    shopItem: null
   },
 
   /**
@@ -97,11 +62,29 @@ Page({
       url: app.globalData.host + 'category',
       header: app.globalData.header,
       success: res => {
-        that.setData({
-          shopCategorys: res.data.data,
-          width: Math.floor(100 / res.data.data.length),
-          category_id: res.data.data[0].id
-        })
+        if (200 == res.data.code) {
+          that.setData({
+            shopCategorys: res.data.data,
+            width: Math.floor(100 / res.data.data.length),
+            category_id: res.data.data[0].id
+          })
+          wx.showLoading({
+            title: '加载中',
+          })
+          wx.request({
+            url: app.globalData.host + 'products/' + that.data.category_id,
+            header: app.globalData.header,
+            success: rs => {
+              if(200 == rs.data.code){
+                let temp = 'shopItem[' + that.data.current + ']'
+                that.setData({
+                  [temp]: rs.data.data
+                })
+                wx.hideLoading()
+              }
+            }
+          })
+        }
       }
     })
     // that.setData({
@@ -113,48 +96,28 @@ Page({
 
   onShow() {
     const that = this
-    // wx.request({
-    //   url: app.globalData.host + 'category',
-    //   header: app.globalData.header,
-    //   success: res => {
-    //     that.setData({
-    //       shopCategorys: res.data.data
-    //     })
-    //     wx.showLoading({
-    //       title: '加载中',
-    //     })
-    //     wx.request({
-    //       url: app.globalData.host + 'products/' + that.data.category_id,
-    //       header: app.globalData.header,
-    //       success: rs => {
-    //         let temp = 'shopItems[' + that.data.current + ']'
-    //         that.setData({
-    //           [temp]: rs.data.data
-    //         })
-    //         wx.hideLoading()
-    //       }
-    //     })
-    //   }
-    // })
   },
 
   //请求商品封装
   getShopItem(id, index) {
     const that = this
-    // wx.showLoading({
-    //   title: '加载中',
-    // })
-    // wx.request({
-    //   url: app.globalData.host + 'products/' + id,
-    //   header: app.globalData.header,
-    //   success: res => {
-    //     let temp = 'shopItem[' + index + ']'
-    //     that.setData({
-    //       [temp]: res.data.data
-    //     })
-    //     wx.hideLoading()
-    //   }
-    // })
+    if (that.data.shopItem[index]){
+      return
+    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: app.globalData.host + 'products/' + id,
+      header: app.globalData.header,
+      success: res => {
+        let temp = 'shopItem[' + index + ']'
+        that.setData({
+          [temp]: res.data.data
+        })
+        wx.hideLoading()
+      }
+    })
   },
 
   //动画封装
@@ -177,18 +140,22 @@ Page({
 
     that.setData({
       current: index,
+      category_id: id,
       animationBar: that.animationBar(index).export()
     })
     that.getShopItem(id, index)
   },
 
   nextPage(e) {
-    let index = e.detail.current
     const that = this
+    let index = e.detail.current
+    let id = that.data.shopCategorys[index].id
     that.setData({
       current: index,
+      category_id: id,
       animationBar: that.animationBar(index).export()
     })
+    that.getShopItem(id, index)
   },
 
   //商品跳转

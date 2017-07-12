@@ -13,7 +13,8 @@
   width: 170rpx;
   height: 170rpx;
   border-radius: 50%;
-  background-color: #ccc;
+  background-color: #fff;
+  border: 1px solid #ececec;
   margin-bottom: 30rpx;
 }
 
@@ -58,6 +59,18 @@
   padding: 20rpx 30rpx;
   width: 100%;
   text-align: left;
+}
+
+.pettown_other_info_tel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pettown_other_info_tel_img {
+  width: 40rpx;
+  height: 40rpx;
 }
 
 /*二维码*/

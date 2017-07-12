@@ -10,15 +10,15 @@
 
   <!--商品名字价格-->
   <view class="commodity_info">
-    <view class="commodity_name">狗狗洗浴</view>
+    <view class="commodity_name">{{commodity.title}}</view>
     <!--<view class="commodity_price">￥
       <text class="commodity_price_number">46</text>.0
       <view class="commodity_price_first">实体价： ￥55</view>
     </view>-->
     <view class="commodity_info_sell">
-      <view class="commodity_info_tips">小提示，留着以备</view>
+      <view class="commodity_info_tips">{{comodity.remark}}</view>
       <view class="commodity_info_sellnum">
-        <icon type="success" size="13" color="#666" class="sell_icon" />已售2000</view>
+        <icon type="success" size="13" color="#666" class="sell_icon" />已售{{commodity.sell}}</view>
     </view>
   </view>
   <!--/商品名字价格-->
@@ -30,8 +30,7 @@
       <view class="commodity_description_title">产品说明</view>
     </view>
     <view class="commodity_description_info">
-      <text>1.狗狗洗澡一次。 2.使用客户选择的沐浴露清洗，包括吹干。
-      </text>
+      <text>{{commodity.description}}</text>
     </view>
   </view>
   <!--/产品说明-->
@@ -43,8 +42,7 @@
       <view class="commodity_notes_title">购买须知</view>
     </view>
     <view class="commodity_notes_info">
-      <text>● 节假日价格加收10元。 ● 超过5KG加5元 ● 超过15KG加20元
-      </text>
+      <text>{{commodity.notice}}</text>
     </view>
   </view>
   <!--/购买须知-->
@@ -69,10 +67,10 @@
   <!--购买-->
   <view class="commodity_buy">
     <view class="commodity_price">￥
-      <text class="commodity_price_number">46.0</text>
-      <view class="commodity_price_first">实体价： ￥55</view>
+      <text class="commodity_price_number">{{commodity.price}}</text>
+      <view class="commodity_price_first">实体价： ￥{{commodity.entity_price}}</view>
     </view>
-    <view class="commodity_buy_btn" bindtap="buyCommodity">立即下单</view>
+    <view class="commodity_buy_btn" bindtap="buyCommodity" data-id="{{commodity.id}}">立即下单</view>
   </view>
   <!--/购买-->
 
@@ -87,12 +85,12 @@
         </view>
         <view class="buy_interface_name">
           <image src="/images/commodity/commodity.png" class="buy_interface_icon"></image>
-          <view class="buy_interface_name_word">商品：猫咪洗澡</view>
+          <view class="buy_interface_name_word">商品：{{commodity.title}}</view>
         </view>
         <view class="buy_interface_name">
           <image src="/images/commodity/price.png" class="buy_interface_icon"></image>
           <view class="buy_interface_price">价格：
-            <text class="buy_interface_price_name">￥58</text>
+            <text class="buy_interface_price_name">￥{{commodity.price}}</text>
           </view>
         </view>
         <view class="buy_interface_name">

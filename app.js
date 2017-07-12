@@ -52,7 +52,12 @@ App({
       title: '登录中',
     })
     wx.getSetting({
+      complete: a => {
+        console.log('complete')
+        wx.hideLoading()
+      },
       success: setting => {
+        console.log(setting)
         if (setting.authSetting["scope.userInfo"] == true) {
           //调用登录接口
           wx.login({
@@ -70,6 +75,7 @@ App({
                       iv: res.iv
                     },
                     success: e => {
+                      console.log('success')
                       wx.hideLoading()
                       if (!e.header) {
                         wx.showModal({
@@ -101,12 +107,19 @@ App({
                           that.checkLogin()
                         }
                       }
+                    },
+                    error: e => {
+                      console.log(e)
+                      wx.hideLoading()
                     }
                   })
                 }
               })
             }
           })
+        }else {
+          console.log('else')
+          wx.hideLoading()
         }
       }
     })
@@ -118,7 +131,6 @@ App({
       url: that.globalData.host + 'auth/check',
       header: that.globalData.header,
       success: res => {
-        console.log(res)
         if (200 == res.data.code) {
           // wx.setStorage({
           //   key: 'LaravelID',

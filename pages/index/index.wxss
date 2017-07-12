@@ -15,6 +15,7 @@
 
 .page {
   padding-bottom: 100rpx;
+  background-color: #fff;
 }
 
 /*轮播图样式*/
@@ -60,7 +61,8 @@
 /*第一页=>商家动态*/
 
 .dynamic_item {
-  padding: 0 30rpx;
+  padding: 0 30rpx 20rpx;
+  border-bottom: 1px solid #ececec;
 }
 
 .dynamic_item_head, .dynamic_item_pic_list, .nav_bar, .dynamic_item_function,

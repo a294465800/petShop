@@ -10,11 +10,7 @@ Page({
     //商品
     commodity_id: 0,
     commodity: {},
-    imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-    ],
+    imgUrls: [],
     interval: 4000,
     duration: 500,
     indicator_color: '#666',
@@ -65,9 +61,9 @@ Page({
       url: app.globalData.host + 'product/' + options.commodity_id,
       header: app.globalData.header,
       success: res => {
-        console.log(res)
         that.setData({
-          commodity: res.data.data
+          commodity: res.data.data,
+          imgUrls: res.data.data.img
         })
       }
     })
@@ -95,9 +91,10 @@ Page({
   },
 
   //立即下单
-  buyCommodity() {
+  buyCommodity(e) {
     const that = this
     let timestamp = new Date().getTime()
+    let product_id = e.currentTarget.dataset.id
     wx.request({
       url: app.globalData.host + 'order/make',
       header: app.globalData.header,
@@ -112,7 +109,7 @@ Page({
             header: app.globalData.header,
             method: 'POST',
             data: {
-              product_id: 1,
+              product_id: product_id,
               number: order_id
             },
             success: res => {

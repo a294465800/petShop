@@ -1,4 +1,5 @@
 // cost_record.js
+let app = getApp()
 Page({
 
   /**
@@ -66,14 +67,32 @@ Page({
         name: '宠物洗澡',
         shop: '瑞文宠物'
       },
-    ]
+    ],
+
+    //接口数据
+    orders: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad(options) {
+    const that = this
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: app.globalData.host + 'orders',
+      header: app.globalData.header,
+      success: res => {
+        if(200 == res.data.code){
+          that.setData({
+            orders: res.data.data
+          })
+        }
+        wx.hideLoading()
+      }
+    })
   },
 
   //动画封装
@@ -107,9 +126,10 @@ Page({
   },
 
   //评论跳转
-  goToComment(){
+  goToComment(e){
+    let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/cost_comment/cost_comment',
+      url: '/pages/cost_comment/cost_comment?id=' + id,
     })
   }
 
