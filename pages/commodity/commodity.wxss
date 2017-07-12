@@ -307,7 +307,7 @@
 .buy_interface_name {
   width: 100%;
   margin-bottom: 30rpx;
-  padding-left: 70rpx;
+  padding-left: 30rpx;
 }
 
 .buy_interface_icon {
@@ -333,7 +333,7 @@
 }
 
 .buy_interface_btn {
-  padding: 20rpx 100rpx;
+  padding: 14rpx 60rpx;
   background-color: #ff6464;
   color: #fff;
   border-radius: 50rpx;
@@ -386,4 +386,18 @@
 .buy_interface_time_picker_column {
   line-height: 50px;
   text-align: center;
+}
+
+.buy_interface_btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 8%;
+}
+
+.cancel {
+  background-color: #fff;
+  color: #000;
 }

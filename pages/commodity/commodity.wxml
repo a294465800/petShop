@@ -76,8 +76,8 @@
 
 
   <!--下单成功-->
-  <view class="buy_interface" hidden="{{!buy}}" catchtap="hideBuy">
-    <image src="/images/commodity/buy_bg.png" class="buy_interface_img" mode="widthFix" catchtap="holdBuy">
+  <view class="buy_interface" hidden="{{!buy}}">
+    <image src="/images/commodity/buy_bg.png" class="buy_interface_img" mode="widthFix">
       <view class="buy_interface_part">
         <view class="buy_interface_title">
           <icon type="success" color="#ff6464" size="18" />
@@ -107,7 +107,10 @@
             </view>
           </view>
         </view>
-        <view class="buy_interface_btn">预约</view>
+        <view class="buy_interface_btns">
+          <view class="buy_interface_btn" bindtap="getOrderTime">预约</view>
+          <view class="buy_interface_btn cancel" bindtap="cancelOrderTime">取消</view>
+        </view>
       </view>
     </image>
   </view>

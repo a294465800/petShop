@@ -69,10 +69,6 @@ Page({
     })
   },
   onShow() {
-    const that = this
-    that.setData({
-      buy: false
-    })
   },
 
   //商品图片预览
@@ -125,8 +121,9 @@ Page({
                     title: '下单成功',
                   })
                   that.setData({
-                    buy: !that.data.buy
+                    buy: true
                   })
+                  console.log(that.data.buy)
                 }
               })
             }
@@ -147,7 +144,6 @@ Page({
       date: val.replace(/\d{4}-/, '')
     })
   },
-
   getTime(e) {
     const that = this
     if (that.data.date == '日期') {
@@ -164,19 +160,19 @@ Page({
     })
   },
 
-  //保持下单显示
-  holdBuy() {
-    this.setData({
-      buy: true
+  //预约
+  getOrderTime(){
+    const that = this
+    that.setData({
+      buy: false
     })
   },
 
-  //隐藏下单
-  hideBuy() {
-    this.setData({
+  //取消预约
+  cancelOrderTime(){
+    const that = this
+    that.setData({
       buy: false
     })
   }
-
-
 })

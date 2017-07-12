@@ -255,11 +255,6 @@ Page({
     }
   },
 
-  //禁止轮播触摸移动
-  stopMove() {
-    return false
-  },
-
   //动画封装
   animationNav(id) {
     let left = (id * 33.3) + '%'
