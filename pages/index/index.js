@@ -165,7 +165,7 @@ Page({
     ],
 
     //店家信息
-    store: {
+    stores: {
       id: 0,
       name: '瑞文宠物寄养中心',
       address: '广州市番禺区市桥街道',
@@ -180,6 +180,9 @@ Page({
         'http://pet.zoneonezone.com/files/shop/img/1068/Pretty_Pet_Shop_Gallery_6.jpg'
       ]
     },
+
+    //接口数据
+    store: null,
   },
   onLoad() {
     let that = this
@@ -198,16 +201,41 @@ Page({
     //     star_count: arr
     //   })
     // })
-    // wx.request({
-    //   url: app.globalData.host + 'moments',
-    //   header: {
-    //     'content-type': 'application/x-www-form-urlencoded',
-    //     'AppVersion': app.globalData.version,
-    //     'storeNumber': app.globalData.storeNumber
-    //   },
-    //   success: res => {
-    //   }
-    // })
+    wx.request({
+      url: app.globalData.host + 'moments',
+      header: app.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          console.log(res.data.data)
+        }
+      }
+    })
+
+    wx.request({
+      url: app.globalData.host + 'comments',
+      header: app.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          console.log(res.data.data)
+        }
+      }
+    })
+
+    wx.request({
+      url: app.globalData.host + 'store',
+      header: app.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          console.log(res.data.data)
+          that.setData({
+            store: res.data.data
+          })
+          wx.setNavigationBarTitle({
+            title: '小主帮 — ' + res.data.data.name,
+          })
+        }
+      }
+    })
     app.getSetting((userInfo) => {
       that.setData({
         userInfo: userInfo
@@ -293,10 +321,10 @@ Page({
   },
 
   //电话商家
-  callStore() {
+  callStore(e) {
     const that = this
     wx.makePhoneCall({
-      phoneNumber: that.data.store.tel,
+      phoneNumber: e.currentTarget.dataset.tel,
     })
   },
 
@@ -305,7 +333,7 @@ Page({
     const that = this
     wx.previewImage({
       current: e.currentTarget.dataset.url,
-      urls: that.data.store.imgs,
+      urls: that.data.store.img,
     })
   },
 
@@ -366,5 +394,5 @@ Page({
         showCancel: false
       })
     }
-  }
+  },
 })

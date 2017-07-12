@@ -102,20 +102,20 @@
       <view class="shop_info_item">
         <view class="shop_info_item_icon_intro">
           <image src="/images/shop/company.png" mode="aspectFit" class="shop_info_item_icon"></image>
-          <view class="shop_info_item_intro">{{store.name}}</view>
+          <view class="shop_info_item_intro">{{store.full_name}}</view>
         </view>
       </view>
       <view class="shop_info_item">
         <view class="shop_info_item_icon_intro shop_address">
           <image src="/images/shop/address.png" mode="aspectFit" class="shop_info_item_icon"></image>
-          <view class="shop_info_item_intro shop_address">{{store.address}}</view>
+          <view class="shop_info_item_intro shop_address">{{store.location}}</view>
         </view>
         <image src="/images/shop/located.png" mode="aspectFit" class="shop_info_item_icon" bindtap="openLocation"></image>
       </view>
       <view class="shop_info_item">
         <view class="shop_info_item_icon_intro">
           <image src="/images/shop/time.png" mode="aspectFit" class="shop_info_item_icon"></image>
-          <view class="shop_info_item_intro">{{store.runtime}}</view>
+          <view class="shop_info_item_intro">{{store.time}}</view>
         </view>
       </view>
       <view class="shop_info_item">
@@ -123,14 +123,16 @@
           <image src="/images/shop/tel_number.png" mode="aspectFit" class="shop_info_item_icon"></image>
         </view>
         <view class="shop_info_item_telgroup">
-          <view class="">{{store.tel}}</view>
-          <image src="/images/shop/call.png" mode="aspectFit" class="shop_info_item_icon" bindtap="callStore"></image>
+          <block wx:for="{{store.number}}" wx:key="*this">
+            <view>{{item}}</view>
+            <image src="/images/shop/call.png" mode="aspectFit" class="shop_info_item_icon" bindtap="callStore" data-tel="item"></image>
+          </block>
         </view>
       </view>
       <view class="shop_info_item shop_info_item_last">
         <view class="shop_info_item_icon_intro">
           <image src="/images/shop/introduce.png" mode="aspectFit" class="shop_info_item_icon shop_info_item_icon_last"></image>
-          <view class="shop_info_item_intro shop_message">{{store.description}}</view>
+          <view class="shop_info_item_intro shop_message">{{store.content}}</view>
         </view>
       </view>
       <view class="shop_img_list">

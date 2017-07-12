@@ -16,7 +16,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "小主帮 — 瑞文宠物",
+    "navigationBarTitleText": "小主帮",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
