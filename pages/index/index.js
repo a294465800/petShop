@@ -240,10 +240,6 @@ Page({
   },
 
   onShow() {
-    const that = this
-    that.setData({
-      shop: app.globalData.shop,
-    })
   },
 
   //下拉刷新

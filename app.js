@@ -52,13 +52,8 @@ App({
       title: '登录中',
     })
     wx.getSetting({
-      complete: a => {
-        console.log('complete')
-        wx.hideLoading()
-      },
       success: setting => {
-        console.log(setting)
-        if (setting.authSetting["scope.userInfo"] == true) {
+        if (setting.authSetting["scope.userInfo"]) {
           //调用登录接口
           wx.login({
             withCredentials: true,
@@ -75,7 +70,6 @@ App({
                       iv: res.iv
                     },
                     success: e => {
-                      console.log('success')
                       wx.hideLoading()
                       if (!e.header) {
                         wx.showModal({
@@ -104,22 +98,39 @@ App({
                             }
                           })
                         } else {
-                          that.checkLogin()
+                          that.checkLogin(cb)
                         }
                       }
-                    },
-                    error: e => {
-                      console.log(e)
-                      wx.hideLoading()
                     }
                   })
                 }
               })
             }
           })
-        }else {
-          console.log('else')
+        } else if (setting.authSetting["scope.userInfo"] === false){
           wx.hideLoading()
+          wx.showModal({
+            title: '提示',
+            content: '您之前拒绝了授权，现在是否开启？',
+            success: res => {
+              if(res.confirm){
+                wx.openSetting({
+                  success: rs => {
+                    if (rs.authSetting["scope.userInfo"]) {
+                      that.getSetting(cb)
+                    }
+                  }
+                })
+              }
+            }
+          })
+        }else {
+          wx.hideLoading()
+          wx.getUserInfo({
+            success: res => {
+              that.getSetting(cb)
+            }
+          })
         }
       }
     })
@@ -132,20 +143,15 @@ App({
       header: that.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          // wx.setStorage({
-          //   key: 'LaravelID',
-          //   data: e.header['Set-Cookie'].split(";")[0],
-          // })
           if (that.globalData.userInfo) {
             typeof cb == "function" && cb(that.globalData.userInfo)
           }
           else {
             that.globalData.userInfo = res.data.data
-            // that.globalData.LaravelID = e.header['Set-Cookie'].split(";")[0]
             wx.showToast({
               title: '登录成功',
             })
-            typeof cb == "function" && cb(that.globalData.userInfo)
+            typeof cb == "function" && cb(res.data.data)
           }
         } else {
           wx.showToast({

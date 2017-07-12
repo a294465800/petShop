@@ -50,7 +50,7 @@
                 <view class="not_comment_score">还没有评分</view>
               </view>
             </view>
-            <view class="been_comment_btn not_comment_btn" bindtap="goToComment" data-id="{{item.number}}">未评价</view>
+            <view class="been_comment_btn not_comment_btn" bindtap="goToComment" data-id="{{item.number}}">去评价</view>
           </view>
         </block>
         <block wx:else>

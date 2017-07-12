@@ -12,24 +12,24 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    const that = this
-    // app.checkLogin((userInfo) => {
-    //   that.setData({
-    //     userInfo: userInfo
-    //   })
-    // })
-  },
-  onShow() {
+  onLoad(options) {
     const that = this
     that.setData({
       userInfo: app.globalData.userInfo
     })
   },
+  onShow() {
+  },
 
   //登录
   Login() {
-    app.getSetting()
+    const that = this
+
+    app.getSetting((userInfo) => {
+      that.setData({
+        userInfo: userInfo
+      })
+    })
   },
 
   //消费记录跳转
