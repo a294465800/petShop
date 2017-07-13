@@ -11,7 +11,7 @@
   <!--商品列表-->
   <swiper class="shop_list" current="{{current}}" bindchange="nextPage">
     <swiper-item wx:for="{{shopCategorys}}" wx:key="id">
-      <scroll-view scroll-y class="scroll">
+      <scroll-view scroll-y class="scroll" bindscrolltolower="toBottom">
         <view class="shop_item" wx:for="{{shopItem[index]}}" wx:key="id" bindtap="goToGood" hover-class="push_class" hover-stay-time="150" data-id="{{item.id}}">
           <view class="shop_item_l">
             <image src="{{item.img}}" class="shop_item_img" mode="aspectFill"></image>
@@ -24,6 +24,7 @@
           </view>
           <view class="shop_item_r">已售{{item.sell}}份</view>
         </view>
+        <view class="shop_bottom" hidden="{{!tips_all[index]}}">——— 已展示全部商品 ———</view>
       </scroll-view>
     </swiper-item>
   </swiper>

@@ -14,6 +14,8 @@ Page({
       no: '/images/shop/star_n.png'
     },
 
+    commodity: {},
+
     //加载提示
     tips_flag: false,
     tips_all: false,
@@ -41,7 +43,8 @@ Page({
     arr.length = 5
     that.setData({
       star_count: arr,
-      product_id: options.id
+      product_id: options.id,
+      'commodity.title': options.title
     })
     wx.request({
       url: app.globalData.host + 'product/comments',

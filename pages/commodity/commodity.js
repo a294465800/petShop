@@ -113,14 +113,12 @@ Page({
                 signType: res.data.data.signType,
                 paySign: res.data.data.paySign,
                 success: rs => {
-                  console.log(rs)
                   wx.showToast({
                     title: '下单成功',
                   })
                   that.setData({
                     buy: true
                   })
-                  console.log(that.data.buy)
                 }
               })
             }
@@ -174,7 +172,6 @@ Page({
       },
       success: res => {
         if( 200 == res.data.code){
-          console.log(res)
           wx.showModal({
             title: '提示',
             content: '预约成功！有其他问题可直接联系商家',
@@ -187,19 +184,18 @@ Page({
 
   //取消预约
   cancelOrderTime(){
-    const that = this
-    that.setData({
+    this.setData({
       buy: false
     })
   },
 
   //查看所有评论
   goToAllComments(e){
+    const that = this
     let id = e.currentTarget.dataset.id
-    console.log(id)
-    console.log(e)
+    let title = that.data.commodity.title
     wx.navigateTo({
-      url: '/pages/all_comment/all_comment?id=' + id,
+      url: '/pages/all_comment/all_comment?id=' + id + '&title=' + title,
     })
   },
 

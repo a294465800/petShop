@@ -95,3 +95,13 @@
   font-size: 28rpx;
 }
 
+/*底部*/
+
+.shop_bottom {
+  width: 100%;
+  font-size: 30rpx;
+  text-align: center;
+  color: #999;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
+}

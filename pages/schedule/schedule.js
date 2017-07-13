@@ -29,7 +29,6 @@ Page({
       },
       success: res => {
         if (200 == res.data.code) {
-          console.log(res)
           that.setData({
             order_info: res.data.data
           })

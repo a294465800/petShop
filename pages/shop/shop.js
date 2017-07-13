@@ -23,30 +23,13 @@ Page({
     shopItem: {},
 
     //判断当前分类页数
-    page: {
-      0: 1,
-      1: 1,
-      2: 1
-    },
+    page: {},
 
     //加载提示
-    tips_flag: {
-      0: false,
-      1: false,
-      2: true
-    },
-    tips_all: {
-      0: false,
-      1: false,
-      2: false
-    },
+    tips_all: {},
 
     //关闭触底刷新
-    close: {
-      0: false,
-      1: false,
-      2: true
-    },
+    close: {},
 
     //接口数据
     shopCategorys: null,
@@ -90,7 +73,6 @@ Page({
   },
 
   onShow() {
-    const that = this
   },
 
   //请求商品封装
@@ -158,6 +140,50 @@ Page({
     wx.navigateTo({
       url: '/pages/commodity/commodity?commodity_id=' + id
     })
-  }
+  },
+
+  //触底刷新
+  toBottom() {
+    const that = this
+    let current = that.data.current
+    let now_close = that.data.close[current] || false
+    
+    if (now_close) {
+      return false
+    }
+    let id = that.data.category_id
+    let page = "page." + current
+    let now_page = (that.data.page[current] || 1) + 1
+    let tips_all = "tips_all." + current
+    let close = "close." + current
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    wx.request({
+      url: app.globalData.host + 'products/' + id,
+      header: app.globalData.header,
+      data: {
+        page: now_page
+      },
+      success: res => {
+        if (200 == res.data.code) {
+          wx.hideLoading()
+          if (res.data.data.length < 1) {
+            that.setData({
+              [tips_all]: true,
+              [close]: true
+            })
+            return false
+          }
+          let temp = [...that.data.shopItem[current], ...res.data.data]
+          that.setData({
+            [page]: now_page
+          })
+        }
+      }
+    })
+  },
+
 
 })

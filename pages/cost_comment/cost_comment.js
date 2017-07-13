@@ -101,7 +101,6 @@ Page({
         filePath: imgs[i],
         name: 'image',
         success: res => {
-          console.log(res)
           let json = JSON.parse(res.data)
           let temp = that.data.host + json.baseurl
           let arr = [...that.data.imgs, temp]

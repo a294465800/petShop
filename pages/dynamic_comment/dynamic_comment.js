@@ -48,7 +48,6 @@ Page({
         header: app.globalData.header,
         success: res => {
           if(200 == res.data.code){
-            console.log(res)
             wx.showToast({
               title: '评论成功',
             })

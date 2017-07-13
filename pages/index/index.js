@@ -253,18 +253,18 @@ Page({
           let like_temp = "moments[" + index + '].likes'
           let nickName = that.data.userInfo.nickName
 
-          if (res.data.data == 0) {
+          if (res.data.data == 1) {
+            likes.unshift(nickName)
+            that.setData({
+              [like_temp]: likes,
+              [temp]: 1
+            })
+          } else {
             let indexOf = likes.indexOf(nickName)
             likes.splice(indexOf, 1)
             that.setData({
               [like_temp]: likes,
               [temp]: 0
-            })
-          } else {
-            likes.unshift(nickName)
-            that.setData({
-              [like_temp]: likes,
-              [temp]: 1
             })
           }
         }
