@@ -55,9 +55,9 @@
     </view>
     <include src="../common/comments.wxml" />
     <view class="commodity_comment_more">
-      <view class="commodity_comment_more_num">共2000条评论</view>
+      <view class="commodity_comment_more_num">共{{comments.length}}条评论</view>
       <view class="commodity_comment_more_btn" bindtap="toMoreComment">
-        <view class="">查看更多</view>
+        <view data-id="{{commodity.id}}" catchtap="goToAllComments">查看更多</view>
         <image src="/images/icon/back-icon.png" mode="aspectFill" class="commodity_comment_more_btn_img"></image>
       </view>
     </view>

@@ -7,7 +7,7 @@ Page({
     shop: app.globalData.shop,
     imgUrls: [
       '/images/ad.jpg'
-      ],
+    ],
     interval: 4000,
     duration: 500,
     userInfo: {},
@@ -332,7 +332,7 @@ Page({
   },
 
   //评论
-  goToComment(e){
+  goToComment(e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/dynamic_comment/dynamic_comment?id=' + id,

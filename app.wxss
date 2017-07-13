@@ -141,7 +141,7 @@ view {
 }
 
 .shop_comment_item_imgs {
-  justify-content: space-around;
+  justify-content: flex-start;
   width: 100%;
   margin: 20rpx 0;
 }
@@ -149,7 +149,6 @@ view {
 .shop_comment_item_img {
   width: 150rpx;
   height: 150rpx;
-  background-color: #eee;
 }
 
 .shop_comment_item_replay_text {

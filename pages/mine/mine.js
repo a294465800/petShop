@@ -21,7 +21,6 @@ Page({
   onShow() {
     const that = this
     if (!that.data.userInfo) {
-      console.log(1)
       that.setData({
         userInfo: app.globalData.userInfo
       })

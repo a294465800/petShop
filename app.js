@@ -2,20 +2,20 @@
 App({
   onLaunch() {
     const that = this
-    // wx.request({
-    //   url: that.globalData.host + 'store',
-    //   header: that.globalData.header,
-    //   success: res => {
-    //     if (200 == res.data.code) {
-    //       that.globalData.shop = res.data.data
-    //     } else {
-    //       wx.showModal({
-    //         title: '提示',
-    //         content: '该小程序已经关闭',
-    //       })
-    //     }
-    //   }
-    // })
+    wx.request({
+      url: that.globalData.host + 'store',
+      header: that.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          that.globalData.shop = res.data.data
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '该小程序已经关闭',
+          })
+        }
+      }
+    })
   },
 
   // getUserInfo(cb) {

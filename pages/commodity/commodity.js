@@ -25,28 +25,38 @@ Page({
     buy: false,
     order_id: null,
 
-    //用户评论
-    comments: [
-      {
-        id: 0,
-        userName: '小郭小郭小郭小郭小郭小郭',
-        avatar: '/images/head.jpg',
-        item: '洗澡',
-        time: '2017/05/16',
-        content: '医生人很帅，也很健谈，感觉很靠谱',
-        commentNumber: 156
-      },
+    //星星图片
+    star_count: [],
+    star_img: {
+      ok: '/images/shop/star_f.png',
+      no: '/images/shop/star_n.png'
+    },
 
-      {
-        id: 1,
-        userName: '小白',
-        avatar: '/images/head.jpg',
-        item: '疫苗',
-        time: '2017/05/10',
-        content: '瞬间爆炸',
-        commentNumber: 22
-      }
-    ],
+    //用户评论
+    // comments: [
+    //   {
+    //     id: 0,
+    //     userName: '小郭小郭小郭小郭小郭小郭',
+    //     avatar: '/images/head.jpg',
+    //     item: '洗澡',
+    //     time: '2017/05/16',
+    //     content: '医生人很帅，也很健谈，感觉很靠谱',
+    //     commentNumber: 156
+    //   },
+
+    //   {
+    //     id: 1,
+    //     userName: '小白',
+    //     avatar: '/images/head.jpg',
+    //     item: '疫苗',
+    //     time: '2017/05/10',
+    //     content: '瞬间爆炸',
+    //     commentNumber: 22
+    //   }
+    // ],
+
+    //接口数据
+    comments: null
   },
 
   /**
@@ -54,8 +64,12 @@ Page({
    */
   onLoad(options) {
     const that = this
+    let arr = []
+    //评论星数数量
+    arr.length = 5
     that.setData({
-      commodity_id: options.commodity_id
+      commodity_id: options.commodity_id,
+      star_count: arr
     })
     wx.request({
       url: app.globalData.host + 'product/' + options.commodity_id,
@@ -63,7 +77,8 @@ Page({
       success: res => {
         that.setData({
           commodity: res.data.data,
-          imgUrls: res.data.data.img
+          imgUrls: res.data.data.img,
+          comments: res.data.data.comments
         })
       }
     })
@@ -173,6 +188,16 @@ Page({
     const that = this
     that.setData({
       buy: false
+    })
+  },
+
+  //查看所有评论
+  goToAllComments(e){
+    let id = e.currentTarget.dataset.id
+    console.log(id)
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/all_comment/all_comment?id=' + id,
     })
   }
 })
