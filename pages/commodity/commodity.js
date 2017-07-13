@@ -20,6 +20,7 @@ Page({
     date: '日期',
     time: '时间',
     today_year: date.getFullYear(),
+    real_date: null,
 
     //下单操作
     buy: false,
@@ -31,29 +32,6 @@ Page({
       ok: '/images/shop/star_f.png',
       no: '/images/shop/star_n.png'
     },
-
-    //用户评论
-    // comments: [
-    //   {
-    //     id: 0,
-    //     userName: '小郭小郭小郭小郭小郭小郭',
-    //     avatar: '/images/head.jpg',
-    //     item: '洗澡',
-    //     time: '2017/05/16',
-    //     content: '医生人很帅，也很健谈，感觉很靠谱',
-    //     commentNumber: 156
-    //   },
-
-    //   {
-    //     id: 1,
-    //     userName: '小白',
-    //     avatar: '/images/head.jpg',
-    //     item: '疫苗',
-    //     time: '2017/05/10',
-    //     content: '瞬间爆炸',
-    //     commentNumber: 22
-    //   }
-    // ],
 
     //接口数据
     comments: null
@@ -156,7 +134,8 @@ Page({
   getDate(e) {
     let val = e.detail.value
     this.setData({
-      date: val.replace(/\d{4}-/, '')
+      date: val.replace(/\d{4}-/, ''),
+      real_date: val
     })
   },
   getTime(e) {
@@ -180,6 +159,25 @@ Page({
     const that = this
     that.setData({
       buy: false
+    })
+    wx.request({
+      url: app.globalData.host + 'schedule/add',
+      header: app.globalData.header,
+      method: 'POST',
+      data: {
+        number: that.data.order_id,
+        time: that.data.real_date + ' ' + that.data.time
+      },
+      success: res => {
+        if( 200 == res.data.code){
+          console.log(res)
+          wx.showModal({
+            title: '提示',
+            content: '预约成功！有其他问题可直接联系商家',
+            showCancel: false
+          })
+        }
+      }
     })
   },
 

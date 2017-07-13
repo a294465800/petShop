@@ -49,6 +49,7 @@ App({
   getSetting(cb) {
     let that = this
     if(that.globalData.userInfo){
+      typeof cb == "function" && cb(that.globalData.userInfo)
       return false
     }
     wx.showLoading({

@@ -73,7 +73,7 @@
   color: #999;
 }
 
-.dynamic_head,.dynamic_bottom {
+.dynamic_head, .dynamic_bottom {
   width: 100%;
   font-size: 30rpx;
   text-align: center;
@@ -124,6 +124,10 @@
 .dynamic_item_function_p_icon {
   width: 28rpx;
   height: 28rpx;
+}
+
+.dynamic_item_function_p_icon_r {
+  align-self: flex-start;
 }
 
 .dynamic_item_function_p {
@@ -352,4 +356,3 @@
   border: 2rpx solid #ccc;
   margin: 0 26rpx 30rpx 0;
 }
-

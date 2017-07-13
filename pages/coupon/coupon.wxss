@@ -75,7 +75,7 @@
   font-size: 26rpx;
 }
 
-.dcoupons_bottom {
+.coupons_bottom {
   width: 100%;
   font-size: 30rpx;
   text-align: center;

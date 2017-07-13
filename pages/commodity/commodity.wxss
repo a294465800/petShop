@@ -277,7 +277,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  padding: 200rpx 40rpx 30rpx;
+  padding: 180rpx 40rpx 30rpx;
   align-items: center;
 }
 

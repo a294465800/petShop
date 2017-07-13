@@ -270,7 +270,7 @@ Page({
               [temp]: 0
             })
           } else {
-            likes.push(nickName)
+            likes.unshift(nickName)
             that.setData({
               [like_temp]: likes,
               [temp]: 1
@@ -304,7 +304,7 @@ Page({
     let tips_flag = "tips_flag." + current
     let tips_all = "tips_all." + current
     let close = "close." + current
-    console.log(now_page)
+    
     that.setData({
       [tips_flag]: true
     })
