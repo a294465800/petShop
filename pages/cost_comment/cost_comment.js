@@ -131,9 +131,9 @@ Page({
 
   commentPost() {
     const that = this
-    //上传图片
+
     if (!that.data.comments) {
-      wx, wx.showModal({
+      wx.showModal({
         title: '提示',
         content: '请输入评论内容',
         showCancel: true,
@@ -141,38 +141,39 @@ Page({
           return false
         }
       })
-    }
-    let baseurl = ''
-    for (let i in that.data.imgs) {
-      baseurl += that.data.imgs[i].replace(that.data.host, '') + ';'
-    }
-
-    wx.request({
-      url: app.globalData.host + 'order/comment',
-      method: 'POST',
-      header: app.globalData.header,
-      data: {
-        orderID: that.data.order_id,
-        content: that.data.comments,
-        score_en: that.data.score.environment,
-        score_at: that.data.score.service,
-        img: baseurl
-      },
-      success: res => {
-        if (200 == res.data.code) {
-          wx.showToast({
-            title: '评论成功',
-          })
-          wx.reLaunch({
-            url: '/pages/mine/mine',
-          })
-        } else {
-          wx.showToast({
-            title: '评论失败',
-          })
-        }
+    } else {
+      let baseurl = ''
+      for (let i in that.data.imgs) {
+        baseurl += that.data.imgs[i].replace(that.data.host, '') + ';'
       }
-    })
+
+      wx.request({
+        url: app.globalData.host + 'order/comment',
+        method: 'POST',
+        header: app.globalData.header,
+        data: {
+          orderID: that.data.order_id,
+          content: that.data.comments,
+          score_en: that.data.score.environment,
+          score_at: that.data.score.service,
+          img: baseurl
+        },
+        success: res => {
+          if (200 == res.data.code) {
+            wx.showToast({
+              title: '评论成功',
+            })
+            wx.reLaunch({
+              url: '/pages/mine/mine',
+            })
+          } else {
+            wx.showToast({
+              title: '评论失败',
+            })
+          }
+        }
+      })
+    }
   }
 
 })

@@ -68,6 +68,8 @@ Page({
       close: false
     })
   },
+
+  //触底刷新评论
   onReachBottom() {
     const that = this
     let page = that.data.page + 1
@@ -102,6 +104,41 @@ Page({
           })
         }
       }
+    })
+  },
+
+  //具体评论点赞
+  commentGood(e) {
+    const that = this
+    let id = e.currentTarget.dataset.id
+    let index = e.currentTarget.dataset.index
+    let temp = "comments[" + index + '].likes'
+    wx.request({
+      url: app.globalData.host + 'product/comment/like',
+      method: 'POST',
+      header: app.globalData.header,
+      data: {
+        comment_id: id
+      },
+      success: res => {
+        if (200 == res.data.code) {
+          that.setData({
+            [temp]: (Number(that.data.comments[index].likes) + Number(res.data.data))
+          })
+        }
+      }
+    })
+  },
+
+  //具体评论图片预览
+  commentPreImg(e) {
+    const that = this
+    let img = e.currentTarget.dataset.img
+    let index = e.currentTarget.dataset.index
+    let imgs = that.data.comments[index].img
+    wx.previewImage({
+      urls: imgs,
+      current: img
     })
   }
 

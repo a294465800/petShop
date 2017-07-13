@@ -103,7 +103,7 @@ Page({
   },
 
   //请求第一页数据函数
-  requestAll(cb){
+  requestAll(cb) {
     const that = this
     wx.request({
       url: app.globalData.host + 'moments',
@@ -247,15 +247,15 @@ Page({
       data: {
         id: id
       },
-      success: res=> {
-        if(200 == res.data.code) {
+      success: res => {
+        if (200 == res.data.code) {
           let likes = that.data.moments[index].likes
           let like_temp = "moments[" + index + '].likes'
           let nickName = that.data.userInfo.nickName
 
           if (res.data.data == 0) {
             let indexOf = likes.indexOf(nickName)
-            likes.splice(indexOf,1)
+            likes.splice(indexOf, 1)
             that.setData({
               [like_temp]: likes,
               [temp]: 0
@@ -286,7 +286,7 @@ Page({
     const that = this
     let current = that.data.current
     let now_close = that.data.close[current]
-    if (now_close){
+    if (now_close) {
       return false
     }
     let category = that.data.category[current]
@@ -295,7 +295,7 @@ Page({
     let tips_flag = "tips_flag." + current
     let tips_all = "tips_all." + current
     let close = "close." + current
-    
+
     that.setData({
       [tips_flag]: true
     })
@@ -306,8 +306,8 @@ Page({
         page: now_page
       },
       success: res => {
-        if( 200 == res.data.code){
-          if(res.data.data.length < 1){
+        if (200 == res.data.code) {
+          if (res.data.data.length < 1) {
             that.setData({
               [tips_flag]: false,
               [tips_all]: true,
@@ -327,13 +327,13 @@ Page({
   },
 
   //展开更多评论
-  getMoreComment(e){
+  getMoreComment(e) {
     const that = this
     let index = e.currentTarget.dataset.index
     let temp = 'moments[' + index + '].limit'
     let limit = that.data.moments[index].limit + 5
     let length = that.data.moments[index].comments.length
-    if(limit > length){
+    if (limit > length) {
       wx.showToast({
         title: '没有了',
       })
@@ -345,12 +345,47 @@ Page({
   },
 
   //收起更多评论
-  hideMoreComment(e){
+  hideMoreComment(e) {
     const that = this
     let index = e.currentTarget.dataset.index
     let temp = 'moments[' + index + '].limit'
     that.setData({
       [temp]: 5
+    })
+  },
+
+  //具体评论点赞
+  commentGood(e) {
+    const that = this
+    let id = e.currentTarget.dataset.id
+    let index = e.currentTarget.dataset.index
+    let temp = "comments[" + index + '].likes'
+    wx.request({
+      url: app.globalData.host + 'product/comment/like',
+      method: 'POST',
+      header: app.globalData.header,
+      data: {
+        comment_id: id
+      },
+      success: res => {
+        if (200 == res.data.code) {
+          that.setData({
+            [temp]: (Number(that.data.comments[index].likes) + Number(res.data.data))
+          })
+        }
+      }
+    })
+  },
+
+  //具体评论图片预览
+  commentPreImg(e) {
+    const that = this
+    let img = e.currentTarget.dataset.img
+    let index = e.currentTarget.dataset.index
+    let imgs = that.data.comments[index].img
+    wx.previewImage({
+      urls: imgs,
+      current: img
     })
   }
 })

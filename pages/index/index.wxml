@@ -2,7 +2,6 @@
 <view class="container">
 
   <!--导航条-->
-  <!--<view class="nav_bar"></view>-->
   <view class="nav_bar fixed">
     <view class="nav_item" wx:for="{{nav}}" wx:key="id" bindtap="nextPage" data-id="{{index}}">{{item.name}}</view>
     <view class="nav_shift" animation="{{animationNav}}"></view>

@@ -38,6 +38,10 @@ Page({
     })
   },
 
+  onReachBottom() {
+    return false
+  },
+
   //消费记录跳转
   goToCostRecord() {
     wx.navigateTo({
