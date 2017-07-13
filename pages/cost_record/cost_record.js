@@ -77,6 +77,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+  },
+
+  onShow() {
     const that = this
     wx.showLoading({
       title: '加载中',
@@ -134,10 +137,10 @@ Page({
   },
 
   //查看订单
-  goToOrder() {
+  goToOrder(e) {
+    let id = e.currentTarget.dataset.order_id
     wx.navigateTo({
-      url: '/pages/schedule/schedule',
+      url: '/pages/schedule/schedule?id=' + id,
     })
   }
-
 })

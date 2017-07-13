@@ -101,12 +101,11 @@ Page({
         filePath: imgs[i],
         name: 'image',
         success: res => {
+          console.log(res)
           let json = JSON.parse(res.data)
           let temp = that.data.host + json.baseurl
           let arr = [...that.data.imgs, temp]
           let index = that.data.imgs.indexOf(temp)
-          console.log(arr)
-          console.log(index)
           if (arr.length > 3) {
             arr.length = 3
           } else if (index > -1 && arr.length > 1) {
