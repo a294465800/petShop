@@ -150,6 +150,7 @@
 .dynamic_item_love_people {
   position: relative;
   padding: 10rpx 10rpx 10rpx 30rpx;
+  border-bottom: 2rpx solid #ccc;
 }
 
 .dynamic_item_love_people::after {
@@ -167,9 +168,9 @@
   padding: 0 30rpx;
 }
 
-.dynamic_item_comments_item:nth-child(1) {
+/* .dynamic_item_comments_item:nth-child(1) {
   border-top: 2rpx solid #ccc;
-}
+} */
 
 .dynamic_item_comments_item {
   justify-content: flex-start;
@@ -179,6 +180,10 @@
 .dynamic_item_comments_item_more {
   padding: 6rpx;
   font-size: 28rpx;
+}
+
+.dynamic_item_comments_item_name {
+  color: #ff963d;
 }
 
 .dynamic_item_comments_item_more {

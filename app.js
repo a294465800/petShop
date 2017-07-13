@@ -48,6 +48,9 @@ App({
   //获取用户设置
   getSetting(cb) {
     let that = this
+    if(that.globalData.userInfo){
+      return false
+    }
     wx.showLoading({
       title: '登录中',
     })

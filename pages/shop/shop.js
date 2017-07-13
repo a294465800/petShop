@@ -13,40 +13,40 @@ Page({
     //动画效果
     animationBar: {},
 
-    //当前页数
+    //当前目录
     current: 0,
 
     //商品分类
-    // shopCategory: [],
     category_id: 0,
 
     //商品
     shopItem: {},
 
-    //模拟数据
-    //商品导航
-    shopCategory: [
-      {
-        id: 0,
-        name: '医疗'
-      },
-      {
-        id: 1,
-        name: '寄养'
-      },
-      {
-        id: 2,
-        name: '生活'
-      },
-      {
-        id: 3,
-        name: '保健'
-      },
-      {
-        id: 4,
-        name: '美容'
-      }
-    ],
+    //判断当前分类页数
+    page: {
+      0: 1,
+      1: 1,
+      2: 1
+    },
+
+    //加载提示
+    tips_flag: {
+      0: false,
+      1: false,
+      2: true
+    },
+    tips_all: {
+      0: false,
+      1: false,
+      2: false
+    },
+
+    //关闭触底刷新
+    close: {
+      0: false,
+      1: false,
+      2: true
+    },
 
     //接口数据
     shopCategorys: null,
@@ -87,11 +87,6 @@ Page({
         }
       }
     })
-    // that.setData({
-    //   // shopCategorys: res.data.data,
-    //   width: Math.floor(100 / that.data.shopCategory.length),
-    //   // category_id: res.data.data[0].id
-    // })
   },
 
   onShow() {
@@ -145,7 +140,6 @@ Page({
     })
     that.getShopItem(id, index)
   },
-
   nextPage(e) {
     const that = this
     let index = e.detail.current

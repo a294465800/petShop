@@ -232,9 +232,10 @@ Page({
 
   //评论
   goToComment(e) {
-    let id = e.currentTarget.dataset.id
+    let moment_id = e.currentTarget.dataset.moment_id
+    let comment_id = e.currentTarget.dataset.comment_id
     wx.navigateTo({
-      url: '/pages/dynamic_comment/dynamic_comment?id=' + id,
+      url: '/pages/dynamic_comment/dynamic_comment?moment_id=' + moment_id + '&comment_id=' + comment_id,
     })
   },
 
