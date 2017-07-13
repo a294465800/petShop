@@ -66,7 +66,8 @@
 }
 
 .dynamic_item_head, .dynamic_item_pic_list, .nav_bar, .dynamic_item_function,
-.dynamic_item_function_p, .dynamic_item_love_people, .dynamic_item_comments_item {
+.dynamic_item_function_p, .dynamic_item_love_people, .dynamic_item_comments_item,
+.dynamic_item_comments_item_comment_btns {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -177,7 +178,8 @@
 }
 
 .dynamic_item_comments_item_name, .dynamic_item_comments_item_content,
-.dynamic_item_comments_item_more {
+.dynamic_item_comments_item_more, .dynamic_item_comments_item_newest,
+.dynamic_item_comments_item_more_hide {
   padding: 6rpx;
   font-size: 28rpx;
 }
@@ -186,9 +188,17 @@
   color: #ff963d;
 }
 
-.dynamic_item_comments_item_more {
-  text-align: right;
+.dynamic_item_comments_item_comment_btns {
+  justify-content: space-between;
+}
+
+.dynamic_item_comments_item_more,.dynamic_item_comments_item_more_hide {
   color: #1d53bf;
+}
+
+.dynamic_item_comments_item_newest {
+  text-align: left;
+  color: #999;
 }
 
 /*第二页=>用户评论*/

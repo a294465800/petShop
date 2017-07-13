@@ -237,15 +237,6 @@ Page({
   //点赞设置
   good(e) {
     const that = this
-    // if (that.data.flag.good_flag) {
-    //   that.setData({
-    //     'flag.good_flag': false
-    //   })
-    // } else {
-    //   that.setData({
-    //     'flag.good_flag': true
-    //   })
-    // }
     let id = e.currentTarget.dataset.id
     let index = e.currentTarget.dataset.index
     let temp = "moments[" + index + '].isLike'
@@ -332,6 +323,34 @@ Page({
           })
         }
       }
+    })
+  },
+
+  //展开更多评论
+  getMoreComment(e){
+    const that = this
+    let index = e.currentTarget.dataset.index
+    let temp = 'moments[' + index + '].limit'
+    let limit = that.data.moments[index].limit + 5
+    let length = that.data.moments[index].comments.length
+    if(limit > length){
+      wx.showToast({
+        title: '没有了',
+      })
+      return false
+    }
+    that.setData({
+      [temp]: limit
+    })
+  },
+
+  //收起更多评论
+  hideMoreComment(e){
+    const that = this
+    let index = e.currentTarget.dataset.index
+    let temp = 'moments[' + index + '].limit'
+    that.setData({
+      [temp]: 5
     })
   }
 })

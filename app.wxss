@@ -16,6 +16,10 @@ view {
   box-sizing: border-box;
 }
 
+.no_padding {
+  padding: 0!important;
+}
+
 /*隐藏、显示*/
 
 .hide {
