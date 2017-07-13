@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    coupons:[
+    coupon:[
       {
         id: 0,
         name: '宠物洗澡通用券',

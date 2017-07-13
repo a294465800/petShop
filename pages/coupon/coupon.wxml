@@ -1,14 +1,19 @@
 <!--coupon.wxml-->
 <view class="container">
-  <view class="coupon_item" wx:for="{{coupons}}" wx:key="id">
-    <view class="coupon_item_top">
-      <view class="coupon_item_top_price">￥<text class="coupon_item_top_price_num">{{item.price}}</text></view>
-      <view class="coupon_item_top_type">
-        <view class="coupon_item_top_type_name">{{item.name}}</view>
-        <view class="coupon_item_top_type_tip">{{item.tip}}</view>
+  <block wx:if="{{coupons.length > 0}}">
+    <view class="coupon_item" wx:for="{{coupons}}" wx:key="id">
+      <view class="coupon_item_top">
+        <view class="coupon_item_top_price">￥<text class="coupon_item_top_price_num">{{item.price}}</text></view>
+        <view class="coupon_item_top_type">
+          <view class="coupon_item_top_type_name">{{item.name}}</view>
+          <view class="coupon_item_top_type_tip">{{item.tip}}</view>
+        </view>
+        <view class="coupon_item_top_circle"></view>
       </view>
-      <view class="coupon_item_top_circle"></view>
+      <view class="coupon_item_bottom">优惠券有效期：{{item.time}}</view>
     </view>
-    <view class="coupon_item_bottom">优惠券有效期：{{item.time}}</view>
-  </view>
+  </block>
+  <block wx:else>
+    <view class="coupons_bottom">——— 已展示全部动态 ———</view>
+  </block>
 </view>

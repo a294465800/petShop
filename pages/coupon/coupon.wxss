@@ -59,7 +59,6 @@
   width: 34rpx;
   height: 70rpx;
   border: 2rpx solid #ccc;
-  background-color: #eee;
   border-radius:  0 50rpx 50rpx 0;
   position: absolute;
   left: -2rpx;
@@ -74,4 +73,12 @@
   padding: 10rpx 30rpx;
   color: #999;
   font-size: 26rpx;
+}
+
+.dcoupons_bottom {
+  width: 100%;
+  font-size: 30rpx;
+  text-align: center;
+  color: #999;
+  margin-top: 20rpx;
 }

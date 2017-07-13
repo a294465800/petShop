@@ -91,6 +91,20 @@ Page({
       star_count: arr
     })
 
+    app.getSetting((userInfo) => {
+      that.setData({
+        userInfo: userInfo
+      })
+      that.requestAll()
+    })
+  },
+
+  onShow() {
+  },
+
+  //请求第一页数据函数
+  requestAll(cb){
+    const that = this
     wx.request({
       url: app.globalData.host + 'moments',
       header: app.globalData.header,
@@ -129,19 +143,23 @@ Page({
         }
       }
     })
-    app.getSetting((userInfo) => {
-      that.setData({
-        userInfo: userInfo
-      })
-    })
-  },
-
-  onShow() {
+    typeof cb == "function" && cb()
   },
 
   //下拉刷新
   onPullDownRefresh() {
-    wx.stopPullDownRefresh()
+    const that = this
+    that.requestAll(() => {
+      that.setData({
+        "tips_flag.0": false,
+        "tips_flag.1": false,
+        "tips_all.0": false,
+        "tips_all.1": false,
+        "close.0": false,
+        "close.1": false
+      })
+      wx.stopPullDownRefresh()
+    })
   },
 
   //分享
@@ -217,17 +235,50 @@ Page({
   },
 
   //点赞设置
-  good() {
+  good(e) {
     const that = this
-    if (that.data.flag.good_flag) {
-      that.setData({
-        'flag.good_flag': false
-      })
-    } else {
-      that.setData({
-        'flag.good_flag': true
-      })
-    }
+    // if (that.data.flag.good_flag) {
+    //   that.setData({
+    //     'flag.good_flag': false
+    //   })
+    // } else {
+    //   that.setData({
+    //     'flag.good_flag': true
+    //   })
+    // }
+    let id = e.currentTarget.dataset.id
+    let index = e.currentTarget.dataset.index
+    let temp = "moments[" + index + '].isLike'
+    wx.request({
+      url: app.globalData.host + 'moment/like',
+      method: 'POST',
+      header: app.globalData.header,
+      data: {
+        id: id
+      },
+      success: res=> {
+        if(200 == res.data.code) {
+          let likes = that.data.moments[index].likes
+          let like_temp = "moments[" + index + '].likes'
+          let nickName = that.data.userInfo.nickName
+
+          if (res.data.data == 0) {
+            let indexOf = likes.indexOf(nickName)
+            likes.splice(indexOf,1)
+            that.setData({
+              [like_temp]: likes,
+              [temp]: 0
+            })
+          } else {
+            likes.push(nickName)
+            that.setData({
+              [like_temp]: likes,
+              [temp]: 1
+            })
+          }
+        }
+      }
+    })
   },
 
   //评论
