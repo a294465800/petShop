@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/schedule/schedule",
     "pages/cost_comment/cost_comment",
     "pages/all_comment/all_comment",
     "pages/tel_input/tel_input",
@@ -10,9 +11,9 @@
     "pages/commodity/commodity",
     "pages/mine/mine",
     "pages/shop/shop",
-    "pages/logs/logs",
     "pages/points/points",
-    "pages/dynamic_comment/dynamic_comment"
+    "pages/dynamic_comment/dynamic_comment",
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,24 @@
+<!--schedule.wxml-->
+<view class="container">
+  <view class="been_comment">
+    <view class="been_comment_content">
+      <image src="/images/head.jpg" class="been_comment_img" mode="aspectFill"></image>
+      <view class="been_comment_word">
+        <view class="been_comment_title">teasdasd</view>
+        <view class="been_comment_shop">—sadad</view>
+        <view class="not_cost_id">
+          <view class="not_cost_id_title">预约时间</view>
+          <view class="not_cost_id_num">2017-05 03：11</view>
+        </view>
+      </view>
+    </view>
+    <view class="order_time not_cost_id_title">下单时间：2017-05 03：11</view>
+    <view class="close_order">
+      <view class="order_time not_cost_id_title">订单号：1134165421354151</view>
+      <view class="been_comment_btn close_btn" catchtap="closeOrder">核销</view>
+    </view>
+    <picker class="schedule_picker" mode="date" start="{{(today_year-1)+'-01-01'}}" end="{{(today_year+1)+'-12-31'}}" value="{{date}}" bindchange="getDate">{{'日期： ' + date}}</picker>
+    <picker mode="time" start="00:00" end="24:00" value="{{time}}" bindchange="getTime" class="schedule_picker">{{'时间： ' + time}}</picker>
+    <view class="been_comment_btn not_cost_btn" catchtap="orderSchedule">预约</view>
+  </view>
+</view>

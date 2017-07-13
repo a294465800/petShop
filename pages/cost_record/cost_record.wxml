@@ -71,12 +71,12 @@
                 <view class="been_comment_title">{{item.product_name}}</view>
                 <view class="been_comment_shop">—{{item.store_name}}</view>
                 <view class="not_cost_id">
-                  <view class="not_cost_id_title">团购码</view>
+                  <view class="not_cost_id_title">订单号</view>
                   <view class="not_cost_id_num">{{item.number}}</view>
                 </view>
               </view>
             </view>
-            <view class="been_comment_btn not_cost_btn">未消费</view>
+            <view class="been_comment_btn not_cost_btn" catchtap="goToOrder">查看</view>
           </view>
         </block>
         <block wx:else>

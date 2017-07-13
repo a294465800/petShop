@@ -85,7 +85,7 @@ Page({
       url: app.globalData.host + 'orders',
       header: app.globalData.header,
       success: res => {
-        if(200 == res.data.code){
+        if (200 == res.data.code) {
           that.setData({
             orders: res.data.data
           })
@@ -126,10 +126,17 @@ Page({
   },
 
   //评论跳转
-  goToComment(e){
+  goToComment(e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/cost_comment/cost_comment?id=' + id,
+    })
+  },
+
+  //查看订单
+  goToOrder() {
+    wx.navigateTo({
+      url: '/pages/schedule/schedule',
     })
   }
 

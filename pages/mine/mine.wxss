@@ -16,6 +16,7 @@
 
 .mine_item {
   border-bottom: 2rpx solid #eee;
+  border-radius: 0;
 }
 
 .mine_head {
