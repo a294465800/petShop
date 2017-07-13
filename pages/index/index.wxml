@@ -24,7 +24,7 @@
     <!--第一页=>商家动态-->
     <view hidden="{{!(current == 0)}}" class="page">
       <view class="dynamic_head">——— 商家最新动态 ———</view>
-      <view class="dynamic_item" wx:for="{{shops}}" wx:key="id" wx:for-item="shop">
+      <view class="dynamic_item" wx:for="{{moments}}" wx:key="id" wx:for-item="shop">
         <view class="dynamic_item_head">
           <image src="{{shop.store_cover}}" class="dynamic_item_head_img" mode="aspectFill"></image>
           <view class="dynamic_item_head_name">{{shop.store_name}}</view>
@@ -59,14 +59,16 @@
           </view>
         </view>
       </view>
-      <view class="dynamic_bottom">——— 已展示全部动态 ———</view>
+      <view class="dynamic_bottom" hidden="{{!tips_flag[0]}}">加载中</view>
+      <view class="dynamic_bottom" hidden="{{!tips_all[1]}}">——— 已展示全部动态 ———</view>
     </view>
     <!--/第一页=>商家动态-->
 
     <!--第二页=>用户评论-->
     <view hidden="{{!(current == 1)}}" class="page">
       <include src="../common/comments.wxml" />
-      <view class="dynamic_bottom">——— 已加载全部评论 ———</view>
+      <view class="dynamic_bottom" hidden="{{!tips_flag[1]}}">加载中</view>
+      <view class="dynamic_bottom" hidden="{{!tips_all[1]}}">——— 已加载全部评论 ———</view>
     </view>
     <!--/第二页=>用户评论-->
 

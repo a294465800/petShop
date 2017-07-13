@@ -42,141 +42,44 @@ Page({
       good_flag: false
     },
 
-    //模拟数据
-    //商家动态
-    shop: [
-      {
-        id: 0,
-        name: '瑞文宠物',
-        content: '五一寄养开始啦，有需要的用户联系起来~',
-        avatar: '/images/head.jpg',
-        img: [
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498243041784&di=0da5739e9ef474746938dc78ec91629b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2Fimg013%2Fv4%2F18%2Fd%2F97.jpg',
-          'http://img5.duitang.com/uploads/item/201508/30/20150830052842_dGEfi.thumb.700_0.jpeg',
-          'http://s2.buzzhand.net/uploads/d0/7/456525/14218526072156.jpg',
-          'http://imgapi.nownews.com/?w=640&q=60&src=http%3A%2F%2Fs.nownews.com%2Fa4%2F9e%2Fa49e049bc9aec44b9d7ee408d6450782.JPG'
-        ],
-        comments: [
-          {
-            id: 0,
-            name: '路人甲',
-            content: '可以，很喜欢！'
-          }
-        ]
-      },
-      {
-        id: 1,
-        name: '瑞文宠物',
-        content: '五一寄养开始啦，有需要的用户联系起来~',
-        avatar: '/images/head.jpg',
-        img: [
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498243041784&di=0da5739e9ef474746938dc78ec91629b&imgtype=0&src=http%3A%2F%2Fimg1.3lian.com%2Fimg013%2Fv4%2F18%2Fd%2F97.jpg',
-          'http://img5.duitang.com/uploads/item/201508/30/20150830052842_dGEfi.thumb.700_0.jpeg',
-          'http://s2.buzzhand.net/uploads/d0/7/456525/14218526072156.jpg',
-          'http://imgapi.nownews.com/?w=640&q=60&src=http%3A%2F%2Fs.nownews.com%2Fa4%2F9e%2Fa49e049bc9aec44b9d7ee408d6450782.JPG'
-        ],
-        comments: [
-          {
-            id: 0,
-            name: '路人甲',
-            content: '可以，很喜欢！'
-          },
-          {
-            id: 1,
-            name: '路人甲',
-            content: '很期待'
-          }
-        ]
-      }
-    ],
+    //判断当前分类
+    category: {
+      0: 'moments',
+      1: 'comments',
+      2: 'store'
+    },
+    page: {
+      0: 1,
+      1: 1,
+      2: 1
+    },
 
-    //用户评论
-    comments: [
-      {
-        id: 0,
-        userName: '小郭小郭小郭小郭小郭小郭',
-        avatar: '/images/head.jpg',
-        item: '洗澡',
-        time: '2017/05/16',
-        content: '医生人很帅，也很健谈，感觉很靠谱',
-        commentNumber: 156,
-        score: 2
-      },
+    //加载提示
+    tips_flag: {
+      0: false,
+      1: false,
+      2: true
+    },
+    tips_all: {
+      0: false,
+      1: false,
+      2: false
+    },
 
-      {
-        id: 1,
-        userName: '小白',
-        avatar: '/images/head.jpg',
-        item: '疫苗',
-        time: '2017/05/10',
-        content: '瞬间爆炸',
-        commentNumber: 22,
-        score: 4
-      },
-      {
-        id: 0,
-        userName: '小郭小郭小郭小郭小郭小郭',
-        avatar: '/images/head.jpg',
-        item: '洗澡',
-        time: '2017/05/16',
-        content: '医生人很帅，也很健谈，感觉很靠谱',
-        commentNumber: 156,
-        score: 2
-      },
-
-      {
-        id: 1,
-        userName: '小白',
-        avatar: '/images/head.jpg',
-        item: '疫苗',
-        time: '2017/05/10',
-        content: '瞬间爆炸',
-        commentNumber: 22,
-        score: 4
-      },
-      {
-        id: 0,
-        userName: '小郭小郭小郭小郭小郭小郭',
-        avatar: '/images/head.jpg',
-        item: '洗澡',
-        time: '2017/05/16',
-        content: '医生人很帅，也很健谈，感觉很靠谱',
-        commentNumber: 156,
-        score: 2
-      },
-
-      {
-        id: 1,
-        userName: '小白',
-        avatar: '/images/head.jpg',
-        item: '疫苗',
-        time: '2017/05/10',
-        content: '瞬间爆炸',
-        commentNumber: 22,
-        score: 4
-      },
-    ],
-
-    //店家信息
-    stores: {
-      id: 0,
-      name: '瑞文宠物寄养中心',
-      address: '广州市番禺区市桥街道',
-      runtime: '9:00 - 20:00 全年无休',
-      tel: '123-4567-8910',
-      description: '我們是專業的犬舍，跟普通的寵物店大有不同。我們接受無數電視台和雜誌訪問，在犬展場上獲勝無數，所出售的優秀幼犬，經獸醫檢驗，不帶有遺傳問題。有14天健康合約保障。我們是專業的犬舍，跟普通的寵物店大有不同。我們接受無數電視台和雜誌訪問，在犬展場上獲勝無數，所出售的優秀幼犬，經獸醫檢驗，不帶有遺傳問題。有14天健康合約保障。我們是專業的犬舍，跟普通的寵物店大有不同。我們接受無數電視台和雜誌訪問，在犬展場上獲勝無數，所出售的優秀幼犬，經獸醫檢驗，不帶有遺傳問題。有14天健康合約保障。我們是專業的犬舍，跟普通的寵物店大有不同。我們接受無數電視台和雜誌訪問，在犬展場上獲勝無數，所出售的優秀幼犬，經獸醫檢驗，不帶有遺傳問題。有14天健康合約保障。我們是專業的犬舍，跟普通的寵物店大有不同。我們接受無數電視台和雜誌訪問，在犬展場上獲勝無數，所出售的優秀幼犬，經獸醫檢驗，不帶有遺傳問題。有14天健康合約保障。',
-      imgs: [
-        'http://www.okaydj.com/uploads/allimg/140313/1-140313130R4.jpg',
-        'https://img.grouponcdn.com/deal/js6sX3YFGJHf3rW8fT8E/KC-700x400',
-        'http://www.teepr.com/wp-content/uploads/2016/03/11040961_453333991524522_484123248141614718_o.jpg',
-        'http://img1.100ye.com/img2/4/34/239/9051239/msgpic/35185982.jpg',
-        'http://pet.zoneonezone.com/files/shop/img/1068/Pretty_Pet_Shop_Gallery_6.jpg'
-      ]
+    //关闭触底刷新
+    close: {
+      0: false,
+      1: false,
+      2: true
     },
 
     //接口数据
+    //店铺信息
     store: null,
-    shops: null,
+    //动态
+    moments: null,
+    //评论
+    comments: null
   },
   onLoad() {
     let that = this
@@ -187,21 +90,14 @@ Page({
     that.setData({
       star_count: arr
     })
-    //调用应用实例的方法获取全局数据
-    // app.getUserInfo(function (userInfo) {
-    //   //更新数据
-    //   that.setData({
-    //     userInfo: userInfo,
-    //     star_count: arr
-    //   })
-    // })
+
     wx.request({
       url: app.globalData.host + 'moments',
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
           that.setData({
-            shops: res.data.data
+            moments: res.data.data
           })
         }
       }
@@ -212,6 +108,9 @@ Page({
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
+          that.setData({
+            comments: res.data.data
+          })
         }
       }
     })
@@ -336,6 +235,51 @@ Page({
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/dynamic_comment/dynamic_comment?id=' + id,
+    })
+  },
+
+  //触底刷新
+  onReachBottom() {
+    const that = this
+    let current = that.data.current
+    let now_close = that.data.close[current]
+    if (now_close){
+      return false
+    }
+    let category = that.data.category[current]
+    let page = "page." + current
+    let now_page = that.data.page[current] + 1
+    let tips_flag = "tips_flag." + current
+    let tips_all = "tips_all." + current
+    let close = "close." + current
+    console.log(now_page)
+    that.setData({
+      [tips_flag]: true
+    })
+    wx.request({
+      url: app.globalData.host + category,
+      header: app.globalData.header,
+      data: {
+        page: now_page
+      },
+      success: res => {
+        if( 200 == res.data.code){
+          if(res.data.data.length < 1){
+            that.setData({
+              [tips_flag]: false,
+              [tips_all]: true,
+              [close]: true
+            })
+            return false
+          }
+          let temp = [...that.data[category], ...res.data.data]
+          that.setData({
+            [category]: temp,
+            [tips_flag]: false,
+            [page]: now_page
+          })
+        }
+      }
     })
   }
 })

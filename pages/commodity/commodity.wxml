@@ -3,7 +3,7 @@
   <!--商品图片展示-->
   <swiper indicator-dots interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicator_color}}" indicator-active-color="{{indicator_active_color}}" class="commodity_img">
     <swiper-item wx:for="{{imgUrls}}" wx:key="*this">
-      <image src="{{item}}" class="roll_img" mode="aspectFill" data-img="{{item}}" data-imgs="{{imgUrls}}" bindtap="preImg"></image>
+      <image src="{{item}}" class="roll_img" mode="aspectFill" data-url="{{item}}" data-imggup="{{imgUrls}}" bindtap="preImg"></image>
     </swiper-item>
   </swiper>
   <!--/商品图片展示-->
@@ -11,10 +11,6 @@
   <!--商品名字价格-->
   <view class="commodity_info">
     <view class="commodity_name">{{commodity.title}}</view>
-    <!--<view class="commodity_price">￥
-      <text class="commodity_price_number">46</text>.0
-      <view class="commodity_price_first">实体价： ￥55</view>
-    </view>-->
     <view class="commodity_info_sell">
       <view class="commodity_info_tips">{{comodity.remark}}</view>
       <view class="commodity_info_sellnum">
@@ -55,7 +51,7 @@
     </view>
     <include src="../common/comments.wxml" />
     <view class="commodity_comment_more">
-      <view class="commodity_comment_more_num">共{{comments.length}}条评论</view>
+      <view class="commodity_comment_more_num">共{{commodity.commentNumber}}条评论</view>
       <view class="commodity_comment_more_btn" bindtap="toMoreComment">
         <view data-id="{{commodity.id}}" catchtap="goToAllComments">查看更多</view>
         <image src="/images/icon/back-icon.png" mode="aspectFill" class="commodity_comment_more_btn_img"></image>

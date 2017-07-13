@@ -7,7 +7,7 @@
           <view class="shop_comment_item_username">{{comment.nickname}}</view>
           <view class="shop_comment_item_goods">
             <image src="/images/shop/cart.png" class="shop_comment_item_goods_cart"></image>
-            <view class="shop_comment_item_goods_name">购买了({{comment.item?comment.item:commodity.title}})</view>
+            <view class="shop_comment_item_goods_name">购买了({{comment.product_name?comment.product_name:commodity.title}})</view>
           </view>
         </view>
         <view class="shop_comment_item_top_r_bottom">
