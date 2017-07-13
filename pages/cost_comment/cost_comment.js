@@ -94,7 +94,7 @@ Page({
   //文件上传递归
   imgUpload(imgs, i) {
     const that = this
-    
+
     if (imgs[i]) {
       wx.uploadFile({
         url: app.globalData.host + 'upload',
@@ -107,10 +107,10 @@ Page({
           let index = that.data.imgs.indexOf(temp)
           console.log(arr)
           console.log(index)
-          if(arr.length > 3){
+          if (arr.length > 3) {
             arr.length = 3
-          } else if (index > -1 && arr.length > 1){
-            arr.splice(index,1)
+          } else if (index > -1 && arr.length > 1) {
+            arr.splice(index, 1)
           }
           that.setData({
             imgs: arr
@@ -124,7 +124,7 @@ Page({
   },
 
   //获取评论
-  getComments(e){
+  getComments(e) {
     this.setData({
       comments: e.detail.value
     })
@@ -133,8 +133,8 @@ Page({
   commentPost() {
     const that = this
     //上传图片
-    if (!that.data.comments){
-      wx,wx.showModal({
+    if (!that.data.comments) {
+      wx, wx.showModal({
         title: '提示',
         content: '请输入评论内容',
         showCancel: true,
@@ -144,12 +144,12 @@ Page({
       })
     }
     let baseurl = ''
-    for (let i in that.data.imgs){
-      baseurl += that.data.imgs[i].replace(that.data.host,'') + ';'
+    for (let i in that.data.imgs) {
+      baseurl += that.data.imgs[i].replace(that.data.host, '') + ';'
     }
 
     wx.request({
-      url: app.globalData.host + 'comment',
+      url: app.globalData.host + 'order/comment',
       method: 'POST',
       header: app.globalData.header,
       data: {
@@ -160,10 +160,18 @@ Page({
         img: baseurl
       },
       success: res => {
-        console.log(res)
-      },
-      error: res => {
-        console.log(res)
+        if (200 == res.data.code) {
+          wx.showToast({
+            title: '评论成功',
+          })
+          wx.reLaunch({
+            url: '/pages/mine/mine',
+          })
+        } else {
+          wx.showToast({
+            title: '评论失败',
+          })
+        }
       }
     })
   }

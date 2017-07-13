@@ -53,7 +53,7 @@
       <image src="/images/commodity/comment.png" mode="aspectFit" class="commodity_icon"></image>
       <view class="commodity_comment_title">评论详情</view>
     </view>
-    <include src="../comment/comments.wxml" />
+    <include src="../common/comments.wxml" />
     <view class="commodity_comment_more">
       <view class="commodity_comment_more_num">共2000条评论</view>
       <view class="commodity_comment_more_btn" bindtap="toMoreComment">
