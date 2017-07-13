@@ -1,4 +1,5 @@
 // more_info.js
+let app = getApp()
 Page({
 
   /**
@@ -11,7 +12,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad(options) {
 
   },
 
@@ -30,7 +31,7 @@ Page({
   //二维码预览
   preQRcode(e) {
     wx.previewImage({
-      urls: ['https://github.com/a294465800/petShop/blob/master/images/mine/QRcode.png?raw=true'],
+      urls: ['https://www.sennkisystem.cn/qrcode.png'],
     })
   },
 
