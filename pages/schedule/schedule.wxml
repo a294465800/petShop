@@ -12,6 +12,9 @@
         </view>
       </view>
     </view>
+    <view class="shop_item_price">￥
+      <text class="shop_item_price_number">{{order_info.price}}</text>
+    </view>
     <view class="order_time not_cost_id_title">下单时间：{{order_info.time}}</view>
     <view class="close_order">
       <view class="order_time not_cost_id_title">订单号：{{order_info.number}}</view>

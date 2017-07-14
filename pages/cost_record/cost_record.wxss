@@ -138,6 +138,7 @@
 .not_comment_score {
   font-size: 14px;
   color: #999;
+  margin: 0;
 }
 
 .not_comment_btn {

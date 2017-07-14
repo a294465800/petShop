@@ -89,3 +89,12 @@
   margin: 0;
   background-color: #ff963d;
 }
+
+.shop_item_price {
+  margin: 24rpx 0;
+  color: #ff963d;
+}
+
+.shop_item_price_number {
+  font-size: 18px;
+}
