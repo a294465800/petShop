@@ -13,8 +13,8 @@
     <!--轮播图-->
     <view>
       <swiper indicator-dots autoplay interval="{{interval}}" class="ad_imgs" duration="{{duration}}" animation="{{animationImg}}">
-        <swiper-item wx:for="{{imgUrls}}" wx:key="*this">
-          <image src="{{item}}" class="roll_img" mode="aspectFill"></image>
+        <swiper-item wx:for="{{imgUrls}}" wx:key="id">
+          <image src="{{item.cover}}" class="roll_img" mode="aspectFill" catchtap="goToAd" data-content="{{item.content}}"></image>
         </swiper-item>
       </swiper>
     </view>

@@ -23,6 +23,7 @@
   padding: 0 30rpx 10rpx;
   border-bottom: 2rpx dashed #ccc;
   margin-bottom: 30rpx;
+  font-size: 18px;
 }
 
 /*宠物镇介绍*/
@@ -34,6 +35,7 @@
 
 .pettown_intro_text {
   text-align: justify;
+  font-size: 16px;
 }
 
 /*公众号*/
@@ -116,4 +118,8 @@
   left: 50%;
   bottom: -140rpx;
   margin-left: -40rpx;
+}
+
+.info_text {
+  font-size: 16px;
 }

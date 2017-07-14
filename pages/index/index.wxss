@@ -46,6 +46,7 @@
 .nav_item {
   flex: 1;
   text-align: center;
+  font-size: 16px;
 }
 
 .nav_shift {
@@ -98,7 +99,7 @@
 }
 
 .dynamic_item_head_name {
-  font-size: 36rpx;
+  font-size: 18px;
   margin-left: 50rpx;
 }
 
@@ -115,6 +116,7 @@
 
 .dynamic_item_message {
   margin-bottom: 30rpx;
+  font-size: 16px;
 }
 
 .dynamic_item_function {
@@ -149,7 +151,7 @@
 
 .dynamic_item_love_people_name {
   margin-left: 10rpx;
-  font-size: 28rpx;
+  font-size: 14px;
 }
 
 .dynamic_item_love_people {
@@ -181,7 +183,7 @@
 .dynamic_item_comments_item_more, .dynamic_item_comments_item_newest,
 .dynamic_item_comments_item_more_hide {
   padding: 6rpx;
-  font-size: 28rpx;
+  font-size: 14px;
 }
 
 .dynamic_item_comments_item_name {
@@ -203,7 +205,7 @@
 
 /*第二页=>用户评论*/
 
-.shop_comment_item, .shop_comment_item_love, .shop_comment_item_top,
+/* .shop_comment_item, .shop_comment_item_love, .shop_comment_item_top,
 .shop_comment_item_top_r_bottom, .shop_comment_item_goods,
 .shop_comment_item_top_r_top {
   display: flex;
@@ -251,29 +253,29 @@
   width: 90rpx;
   height: 90rpx;
   border-radius: 50%;
-}
+} */
 
-.shop_comment_item_love {
+/* .shop_comment_item_love {
   align-self: flex-start;
   min-width: 100rpx;
-}
+} */
 
-.shop_comment_item_goods_cart, .shop_comment_item_score_img {
+/* .shop_comment_item_goods_cart, .shop_comment_item_score_img {
   width: 40rpx;
   height: 40rpx;
-}
+} */
 
-.shop_comment_item_love_img {
+/* .shop_comment_item_love_img {
   width: 30rpx;
   height: 30rpx;
-}
+} */
 
-.shop_comment_item_score_img {
+/* .shop_comment_item_score_img {
   margin: 0 2rpx;
-}
+} */
 
-.shop_comment_item_bottom {
-  font-size: 28rpx;
+/* .shop_comment_item_bottom {
+  font-size: 14px;
   color: #333;
   margin-top: 16rpx;
 }
@@ -292,7 +294,7 @@
 
 .shop_comment_item_love_number, .shop_comment_item_goods_name {
   margin-left: 10rpx;
-}
+} */
 
 /*第三页=>商家信息*/
 
@@ -337,6 +339,7 @@
 .shop_info_item_intro {
   text-align: justify;
   margin-left: 24rpx;
+  font-size: 16px;
 }
 
 .shop_info_item_telgroup_item {

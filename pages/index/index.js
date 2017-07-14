@@ -5,9 +5,7 @@ let app = getApp()
 Page({
   data: {
     shop: app.globalData.shop,
-    imgUrls: [
-      '/images/ad.jpg'
-    ],
+    imgUrls: null,
     interval: 4000,
     duration: 500,
     userInfo: {},
@@ -143,7 +141,32 @@ Page({
         }
       }
     })
+
+    wx.request({
+      url: app.globalData.host + 'adverts',
+      header: app.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          that.setData({
+            imgUrls: res.data.data
+          })
+        }
+      }
+    })
     typeof cb == "function" && cb()
+  },
+
+  //广告跳转
+  goToAd(e) {
+    const that = this
+    let content = e.currentTarget.dataset.content
+    if (!content) {
+      return false
+    } else {
+      wx.navigateTo({
+        url: '/pages/ad_page/ad_page?content=' + content,
+      })
+    }
   },
 
   //下拉刷新
@@ -166,7 +189,7 @@ Page({
   onShareAppMessage() {
     return {
       title: '小主帮',
-      path: '/page/index/index'
+      path: '/pages/index/index'
     }
   },
 
@@ -267,6 +290,8 @@ Page({
               [temp]: 0
             })
           }
+        } else {
+          app.goToTelInput()
         }
       }
     })
@@ -276,9 +301,13 @@ Page({
   goToComment(e) {
     let moment_id = e.currentTarget.dataset.moment_id
     let comment_id = e.currentTarget.dataset.comment_id
-    wx.navigateTo({
-      url: '/pages/dynamic_comment/dynamic_comment?moment_id=' + moment_id + '&comment_id=' + comment_id,
-    })
+    if (!app.globalData.userInfo) {
+      app.goToTelInput()
+    } else {
+      wx.navigateTo({
+        url: '/pages/dynamic_comment/dynamic_comment?moment_id=' + moment_id + '&comment_id=' + comment_id,
+      })
+    }
   },
 
   //触底刷新
@@ -372,6 +401,8 @@ Page({
           that.setData({
             [temp]: (Number(that.data.comments[index].likes) + Number(res.data.data))
           })
+        } else {
+          app.goToTelInput()
         }
       }
     })

@@ -13,6 +13,7 @@
   border: 2rpx solid #ccc;
   border-radius: 10rpx;
   padding: 20rpx 30rpx;
+  font-size: 16px;
 }
 
 /*插入图片*/
@@ -48,6 +49,7 @@
 
 .comment_star_word, .comment_add_img_title {
   margin-right: 40rpx;
+  font-size: 16px;
 }
 
 .shop_comment_item_score_img {

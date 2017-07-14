@@ -52,8 +52,8 @@
     <include src="../common/comments.wxml" />
     <view class="commodity_comment_more">
       <view class="commodity_comment_more_num">共{{commodity.commentNumber}}条评论</view>
-      <view class="commodity_comment_more_btn" bindtap="toMoreComment">
-        <view data-id="{{commodity.id}}" catchtap="goToAllComments">查看更多</view>
+      <view class="commodity_comment_more_btn" catchtap="goToAllComments" data-id="{{commodity.id}}">
+        <view>查看更多</view>
         <image src="/images/icon/back-icon.png" mode="aspectFill" class="commodity_comment_more_btn_img"></image>
       </view>
     </view>
@@ -105,7 +105,7 @@
         </view>
         <view class="buy_interface_btns">
           <view class="buy_interface_btn" bindtap="getOrderTime">预约</view>
-          <view class="buy_interface_btn cancel" bindtap="cancelOrderTime">取消</view>
+          <view class="buy_interface_btn cancel" bindtap="cancelOrderTime">暂不预约</view>
         </view>
       </view>
     </image>

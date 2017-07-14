@@ -54,6 +54,7 @@ view {
 
 .shop_comment_item_top_r {
   margin-left: 30rpx;
+  flex: 1;
 }
 
 .shop_comment_item {
@@ -65,6 +66,7 @@ view {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex: 1;
 }
 
 .shop_comment_item_goods_name, .shop_comment_item_time,
@@ -73,7 +75,7 @@ view {
 }
 
 .shop_comment_item_time, .shop_comment_item_goods_name {
-  font-size: 26rpx;
+  font-size: 13px;
 }
 
 .shop_comment_item_goods_name {
@@ -92,6 +94,8 @@ view {
 .shop_comment_item_love {
   align-self: flex-start;
   min-width: 100rpx;
+  margin-left: 50rpx;
+  justify-content: flex-start;
 }
 
 .shop_comment_item_goods_cart, .shop_comment_item_score_img {
@@ -102,6 +106,7 @@ view {
 .shop_comment_item_love_img {
   width: 30rpx;
   height: 30rpx;
+  margin-right: 10rpx;
 }
 
 .shop_comment_item_score_img {
@@ -109,7 +114,7 @@ view {
 }
 
 .shop_comment_item_bottom {
-  font-size: 28rpx;
+  font-size: 15px!important;
   color: #333;
   margin-top: 16rpx;
 }
@@ -120,10 +125,10 @@ view {
 
 .shop_comment_item_username {
   width: 180rpx;
-  font-size: 30rpx;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  font-size: 14px!important;
 }
 
 .shop_comment_item_love_number, .shop_comment_item_goods_name {
@@ -160,5 +165,10 @@ view {
   display: block;
   color: #888;
   text-indent: 2em;
-  font-size: 28rpx;
+  font-size: 14px;
+}
+
+.shop_comment_item_goods {
+  flex: 1;
+  justify-content: flex-start;
 }

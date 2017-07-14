@@ -44,16 +44,24 @@ Page({
 
   //消费记录跳转
   goToCostRecord() {
-    wx.navigateTo({
-      url: '/pages/cost_record/cost_record',
-    })
+    if (!app.globalData.userInfo) {
+      app.goToTelInput()
+    } else {
+      wx.navigateTo({
+        url: '/pages/cost_record/cost_record',
+      })
+    }
   },
 
   //优惠券跳转
   goToCoupon() {
-    wx.navigateTo({
-      url: '/pages/coupon/coupon',
-    })
+    if (!app.globalData.userInfo) {
+      app.goToTelInput()
+    } else {
+      wx.navigateTo({
+        url: '/pages/coupon/coupon',
+      })
+    }
   },
 
   //更多信息跳转
@@ -65,8 +73,12 @@ Page({
 
   //积分跳转
   goToPoints() {
-    wx.navigateTo({
-      url: '/pages/points/points',
-    })
+    if (!app.globalData.userInfo) {
+      app.goToTelInput()
+    } else {
+      wx.navigateTo({
+        url: '/pages/points/points',
+      })
+    }
   }
 })

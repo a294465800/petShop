@@ -142,10 +142,8 @@ Page({
                     showCancel: false,
                     success: res => {
                       if (res.confirm) {
-                        app.checkLogin(() => {
-                          wx.switchTab({
-                            url: '/pages/mine/mine',
-                          })
+                        wx.reLaunch({
+                          url: '/pages/index/index',
                         })
                       }
                     }

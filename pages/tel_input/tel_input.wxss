@@ -24,7 +24,7 @@
 }
 
 .form_title {
-  font-size: 28rpx;
+  font-size: 14px;
   min-width: 150rpx;
 }
 
@@ -33,11 +33,11 @@
 }
 
 .form_part button {
-  font-size: 28rpx;
+  font-size: 14px;
 }
 
 .tel_input {
-  font: normal 28rpx "Microsoft YaHei";
+  font: normal 14px "Microsoft YaHei";
 }
 
 .captcha_btn {

@@ -46,6 +46,9 @@ Page({
       product_id: options.id,
       'commodity.title': options.title
     })
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: app.globalData.host + 'product/comments',
       header: app.globalData.header,
@@ -54,9 +57,14 @@ Page({
         product_id: options.id
       },
       success: res => {
+        wx.hideLoading()
         if (200 == res.data.code) {
           that.setData({
             comments: res.data.data
+          })
+        } else {
+          wx.showToast({
+            title: '加载失败',
           })
         }
       }
@@ -76,7 +84,7 @@ Page({
   onReachBottom() {
     const that = this
     let page = that.data.page + 1
-    if(that.data.close){
+    if (that.data.close) {
       return false
     }
     that.setData({
@@ -112,25 +120,33 @@ Page({
 
   //具体评论点赞
   commentGood(e) {
-    const that = this
-    let id = e.currentTarget.dataset.id
-    let index = e.currentTarget.dataset.index
-    let temp = "comments[" + index + '].likes'
-    wx.request({
-      url: app.globalData.host + 'product/comment/like',
-      method: 'POST',
-      header: app.globalData.header,
-      data: {
-        comment_id: id
-      },
-      success: res => {
-        if (200 == res.data.code) {
-          that.setData({
-            [temp]: (Number(that.data.comments[index].likes) + Number(res.data.data))
-          })
+    if (!app.globalData.userInfo) {
+      app.goToTelInput()
+    } else {
+      const that = this
+      let id = e.currentTarget.dataset.id
+      let index = e.currentTarget.dataset.index
+      let temp = "comments[" + index + '].likes'
+      wx.request({
+        url: app.globalData.host + 'product/comment/like',
+        method: 'POST',
+        header: app.globalData.header,
+        data: {
+          comment_id: id
+        },
+        success: res => {
+          if (200 == res.data.code) {
+            that.setData({
+              [temp]: (Number(that.data.comments[index].likes) + Number(res.data.data))
+            })
+          } else {
+            wx.showToast({
+              title: '点赞失败',
+            })
+          }
         }
-      }
-    })
+      })
+    }
   },
 
   //具体评论图片预览

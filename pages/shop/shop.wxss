@@ -28,6 +28,7 @@
   text-align: center;
   position: relative;
   z-index: 1;
+  font-size: 16px;
 }
 
 .shop_category_capsule {
@@ -78,6 +79,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  font-size: 16px;
 }
 
 .shop_item_price {
@@ -86,13 +88,13 @@
 }
 
 .shop_item_price_number {
-  font-size: 36rpx;
+  font-size: 18px;
 }
 
 .shop_item_r {
   align-self: flex-end;
   color: #999;
-  font-size: 28rpx;
+  font-size: 14px;
 }
 
 /*底部*/

@@ -14,13 +14,13 @@
 
   <!--小主帮公众号-->
   <view class="pettown_id" bindtap="showQRcode">
-    <view class="pettown_id_text">小主帮公众号</view>
+    <view class="pettown_id_text info_text">小主帮公众号</view>
     <image src="/images/icon/back-icon.png" mode="scaleToFill" class="pettown_id_img"></image>
   </view>
   <!--/小主帮公众号-->
 
   <!--小主帮其他信息-->
-  <view class="pettown_other_info">小主帮—宠物主交汇群：656665010</view>
+  <view class="pettown_other_info info_text">小主帮—宠物主交汇群：656665010</view>
   <view class="pettown_other_info pettown_other_info_tel">
     <view>客服电话：020 - 31560046 </view>
     <image src="/images/shop/call.png" mode="aspectFit" class="pettown_other_info_tel_img" bindtap="callUs" data-tel="02031560046"></image>
@@ -30,7 +30,7 @@
   <!--公众号二维码-->
   <view class="QRcode_bg {{!QRcode?'hide':''}}">
     <view class="QRcode">
-      <view class="QRcode_name">小主帮公众号</view>
+      <view class="QRcode_name info_text">小主帮公众号</view>
       <image src="/images/mine/QRcode.png" class="QRcode_img" mode="scaleToFill" data-img="/images/mine/QRcode.png" bindtap="preQRcode"></image>
       <icon type="clear" class="QRcode_close" size="40" bindtap="hideQRcode" />
     </view>

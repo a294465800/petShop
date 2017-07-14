@@ -64,7 +64,7 @@ Page({
   onShow() {
   },
 
-  onReachBottom(){
+  onReachBottom() {
     return false
   },
 
@@ -76,60 +76,57 @@ Page({
     })
   },
 
-  //查看更多评论
-  toMoreComment() {
-    wx.navigateTo({
-      url: '/pages/all_comment/all_comment',
-    })
-  },
-
   //立即下单
   buyCommodity(e) {
     const that = this
     let timestamp = new Date().getTime()
     let product_id = e.currentTarget.dataset.id
-    wx.request({
-      url: app.globalData.host + 'order/make',
-      header: app.globalData.header,
-      success: res => {
-        if (200 == res.data.code) {
-          let order_id = res.data.data
-          that.setData({
-            order_id: order_id
-          })
-          wx.request({
-            url: app.globalData.host + 'order/pay',
-            header: app.globalData.header,
-            method: 'POST',
-            data: {
-              product_id: product_id,
-              number: order_id
-            },
-            success: res => {
-              wx.requestPayment({
-                timeStamp: res.data.data.timeStamp,
-                nonceStr: res.data.data.nonceStr,
-                package: res.data.data.package,
-                signType: res.data.data.signType,
-                paySign: res.data.data.paySign,
-                success: rs => {
-                  wx.showToast({
-                    title: '下单成功',
-                  })
-                  that.setData({
-                    buy: true
-                  })
-                }
-              })
-            }
-          })
-        } else {
-          wx.showToast({
-            title: '下单失败',
-          })
+    if (!app.globalData.userInfo) {
+      app.goToTelInput()
+    } else {
+      wx.request({
+        url: app.globalData.host + 'order/make',
+        header: app.globalData.header,
+        success: res => {
+          if (200 == res.data.code) {
+            let order_id = res.data.data
+            that.setData({
+              order_id: order_id
+            })
+            wx.request({
+              url: app.globalData.host + 'order/pay',
+              header: app.globalData.header,
+              method: 'POST',
+              data: {
+                product_id: product_id,
+                number: order_id
+              },
+              success: res => {
+                wx.requestPayment({
+                  timeStamp: res.data.data.timeStamp,
+                  nonceStr: res.data.data.nonceStr,
+                  package: res.data.data.package,
+                  signType: res.data.data.signType,
+                  paySign: res.data.data.paySign,
+                  success: rs => {
+                    wx.showToast({
+                      title: '下单成功',
+                    })
+                    that.setData({
+                      buy: true
+                    })
+                  }
+                })
+              }
+            })
+          } else {
+            wx.showToast({
+              title: '下单失败',
+            })
+          }
         }
-      }
-    })
+      })
+    }
   },
 
   //获取picker
@@ -157,69 +154,98 @@ Page({
   },
 
   //预约
-  getOrderTime(){
+  getOrderTime() {
     const that = this
-    that.setData({
-      buy: false
-    })
-    wx.request({
-      url: app.globalData.host + 'schedule/add',
-      header: app.globalData.header,
-      method: 'POST',
-      data: {
-        number: that.data.order_id,
-        time: that.data.real_date + ' ' + that.data.time
-      },
-      success: res => {
-        if( 200 == res.data.code){
-          wx.showModal({
-            title: '提示',
-            content: '预约成功！有其他问题可直接联系商家',
-            showCancel: false
-          })
+    let date = that.data.real_date
+    let time = that.data.time
+    if (!date || !time) {
+      wx.showModal({
+        title: '提示',
+        content: '请输入预约时间',
+        showCancel: false
+      })
+    } else {
+      wx.request({
+        url: app.globalData.host + 'schedule/add',
+        header: app.globalData.header,
+        method: 'POST',
+        data: {
+          number: that.data.order_id,
+          time: that.data.real_date + ' ' + that.data.time
+        },
+        success: res => {
+          if (200 == res.data.code) {
+            wx.showModal({
+              title: '提示',
+              content: '预约成功！有其他问题可直接联系商家',
+              showCancel: false
+            })
+            that.setData({
+              buy: false
+            })
+          } else {
+            wx.showToast({
+              title: '预约失败',
+            })
+          }
         }
-      }
-    })
+      })
+    }
   },
 
   //取消预约
-  cancelOrderTime(){
+  cancelOrderTime() {
     this.setData({
       buy: false
     })
   },
 
   //查看所有评论
-  goToAllComments(e){
+  goToAllComments(e) {
     const that = this
-    let id = e.currentTarget.dataset.id
-    let title = that.data.commodity.title
-    wx.navigateTo({
-      url: '/pages/all_comment/all_comment?id=' + id + '&title=' + title,
-    })
+    if (that.data.comments.length < 1) {
+      wx.showToast({
+        title: '没有评论',
+      })
+    } else {
+      let id = e.currentTarget.dataset.id
+      let title = that.data.commodity.title
+      wx.navigateTo({
+        url: '/pages/all_comment/all_comment?id=' + id + '&title=' + title,
+      })
+    }
   },
 
   //具体评论点赞
   commentGood(e) {
-    const that = this
-    let id = e.currentTarget.dataset.id
-    let index = e.currentTarget.dataset.index
-    let temp = "comments[" + index + '].likes'
-    wx.request({
-      url: app.globalData.host + 'product/comment/like',
-      method: 'POST',
-      header: app.globalData.header,
-      data: {
-        comment_id: id
-      },
-      success: res => {
-        if (200 == res.data.code) {
-          that.setData({
-            [temp]: (Number(that.data.comments[index].likes) + Number(res.data.data))
-          })
+    if (!app.globalData.userInfo) {
+      app.goToTelInput()
+    } else {
+      const that = this
+      let id = e.currentTarget.dataset.id
+      let index = e.currentTarget.dataset.index
+      let temp = "comments[" + index + '].likes'
+      wx.request({
+        url: app.globalData.host + 'product/comment/like',
+        method: 'POST',
+        header: app.globalData.header,
+        data: {
+          comment_id: id
+        },
+        success: res => {
+          if (200 == res.data.code) {
+            that.setData({
+              [temp]: (Number(that.data.comments[index].likes) + Number(res.data.data))
+            })
+          } else {
+            wx.showToast({
+              title: '点赞失败',
+            })
+          }
         }
-      }
-    })
+      })
+    }
+
   },
 
   //具体评论图片预览

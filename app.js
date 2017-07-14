@@ -1,21 +1,8 @@
 //app.js
 App({
   onLaunch() {
-    const that = this
-    wx.request({
-      url: that.globalData.host + 'store',
-      header: that.globalData.header,
-      success: res => {
-        if (200 == res.data.code) {
-          that.globalData.shop = res.data.data
-        } else {
-          wx.showModal({
-            title: '提示',
-            content: '该小程序已经关闭',
-          })
-        }
-      }
-    })
+  },
+  onLoad() {
   },
 
   globalData: {
@@ -32,7 +19,18 @@ App({
   //获取用户设置
   getSetting(cb) {
     let that = this
-    if(that.globalData.userInfo){
+    wx.getSystemInfo({
+      success: res => {
+        if (res.SDKVersion.replace(/\./g, '') < 130) {
+          wx.showModal({
+            title: '提示',
+            content: '当前微信版本过低，部分功能可能无法使用，请升级到最新微信版本。',
+            showCancel: false
+          })
+        }
+      }
+    })
+    if (that.globalData.userInfo) {
       typeof cb == "function" && cb(that.globalData.userInfo)
       return false
     }
@@ -82,6 +80,8 @@ App({
                                 wx.navigateTo({
                                   url: '/pages/tel_input/tel_input',
                                 })
+                              } else {
+                                typeof cb == "function" && cb(that.globalData.userInfo)
                               }
                             }
                           })
@@ -95,13 +95,13 @@ App({
               })
             }
           })
-        } else if (setting.authSetting["scope.userInfo"] === false){
+        } else if (setting.authSetting["scope.userInfo"] === false) {
           wx.hideLoading()
           wx.showModal({
             title: '提示',
             content: '您之前拒绝了授权，现在是否开启？',
             success: res => {
-              if(res.confirm){
+              if (res.confirm) {
                 wx.openSetting({
                   success: rs => {
                     if (rs.authSetting["scope.userInfo"]) {
@@ -112,7 +112,7 @@ App({
               }
             }
           })
-        }else {
+        } else {
           wx.hideLoading()
           wx.getUserInfo({
             success: res => {
@@ -124,6 +124,7 @@ App({
     })
   },
 
+  //登录验证
   checkLogin(cb) {
     const that = this
     wx.request({
@@ -153,6 +154,21 @@ App({
         })
       }
     })
-  }
+  },
+
+  //登录跳转函数
+  goToTelInput() {
+    wx.showModal({
+      title: '提示',
+      content: '请先登录',
+      success: res => {
+        if (res.confirm) {
+          wx.navigateTo({
+            url: '/pages/tel_input/tel_input',
+          })
+        }
+      }
+    })
+  },
 
 })

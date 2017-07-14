@@ -32,6 +32,15 @@ Page({
           that.setData({
             order_info: res.data.data
           })
+        }else {
+          wx.showModal({
+            title: '提示',
+            content: '没有该订单',
+            showCancel: false,
+            success: res => {
+              wx.navigateBack({})
+            }
+          })
         }
       }
     })
@@ -65,7 +74,7 @@ Page({
     const that = this
     wx.showModal({
       title: '提示',
-      content: '核销代表您已经消费该服务，确定核销该订单吗？',
+      content: '请确定该订单已经消费。',
       success: res => {
         if (res.confirm) {
           wx.request({
@@ -78,10 +87,14 @@ Page({
             success: res => {
               if (200 == res.data.code) {
                 wx.showToast({
-                  title: '核销成功',
+                  title: '消费成功',
                   complete: () => {
                     wx.navigateBack({})
                   }
+                })
+              }else {
+                wx.showToast({
+                  title: '确认失败',
                 })
               }
             }
