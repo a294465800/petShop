@@ -6,7 +6,7 @@
   </view>
   <view class="mine_item" hover-class="push_class" hover-stay-time="150" bindtap="goToCostRecord">
     <image src="/images/mine/cost.png" mode="aspectFit" class="mine_item_img"></image>
-    <view class="mine_item_word">消费记录</view>
+    <view class="mine_item_word">订单管理</view>
   </view>
   <!-- <view class="mine_item" hover-class="push_class" hover-stay-time="150" bindtap="goToCoupon">
     <image src="/images/mine/wallet.png" mode="aspectFit" class="mine_item_img"></image>

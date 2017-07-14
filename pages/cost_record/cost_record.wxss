@@ -19,6 +19,12 @@
   padding-top: 30rpx;
 }
 
+.swiper_wrap {
+  position: relative;
+  width: 100%;
+  flex: 1;
+}
+
 /*消费记录导航*/
 
 .cost_record_nav, .been_comment, .been_comment_content {
@@ -55,9 +61,11 @@
 /*swiper*/
 
 .swiper_part {
-  flex: 1;
+  position: absolute;
   width: 100%;
-  height: 92%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
 
 .scroll {

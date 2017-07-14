@@ -158,6 +158,7 @@ view {
 .shop_comment_item_img {
   width: 150rpx;
   height: 150rpx;
+  margin-right: 20rpx;
 }
 
 .shop_comment_item_replay_text {

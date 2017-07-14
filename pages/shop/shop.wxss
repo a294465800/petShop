@@ -45,11 +45,18 @@
 }
 
 /*商品列表*/
+.swiper_wrap {
+  flex: 1;
+  position: relative;
+  width: 100%;
+}
 
 .shop_list {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
   width: 100%;
-  flex: 1;
-  height: 92%;
 }
 
 .scroll {
