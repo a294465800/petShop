@@ -124,7 +124,7 @@ Page({
       method: 'POST',
       data: {
         number: that.data.order_id,
-        time: that.data.date + ' ' + that.data.time
+        time: that.data.date + ' ' + that.data.time + ':00'
       },
       success: res => {
         if (200 == res.data.code) {

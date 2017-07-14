@@ -161,9 +161,9 @@ Page({
           if (200 == res.data.code) {
             wx.showToast({
               title: '评论成功',
-            })
-            wx.reLaunch({
-              url: '/pages/mine/mine',
+              complete: () => {
+                wx.navigateBack({})
+              }
             })
           } else {
             wx.showToast({

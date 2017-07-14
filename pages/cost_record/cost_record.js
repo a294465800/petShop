@@ -12,13 +12,18 @@ Page({
     //当前页
     current: 0,
 
+    //星星
+    star_count: [],
+    star_img: {
+      ok: '/images/shop/star_f.png',
+      no: '/images/shop/star_n.png'
+    },
 
-    //数据模拟
     //消费记录导航
     cost_records: [
       {
         id: 0,
-        name: '已评价'
+        name: '未使用'
       },
       {
         id: 1,
@@ -26,46 +31,7 @@ Page({
       },
       {
         id: 2,
-        name: '未使用'
-      },
-    ],
-
-    //已评价
-    been_comments: [
-      {
-        id: 0,
-        name: '宠物洗澡宠物洗澡宠物洗澡',
-        shop: '瑞文宠物'
-      },
-      {
-        id: 1,
-        name: '狗狗美容',
-        shop: '瑞文宠物'
-      },
-      {
-        id: 2,
-        name: '宠物洗澡宠物洗澡宠物洗澡',
-        shop: '瑞文宠物'
-      },
-      {
-        id: 3,
-        name: '狗狗染毛',
-        shop: '瑞文宠物'
-      },
-      {
-        id: 4,
-        name: '宠物洗澡宠物洗澡宠物洗澡',
-        shop: '瑞文宠物'
-      },
-      {
-        id: 5,
-        name: '狗粮',
-        shop: '瑞文宠物'
-      },
-      {
-        id: 6,
-        name: '宠物洗澡',
-        shop: '瑞文宠物'
+        name: '已评价'
       },
     ],
 
@@ -77,6 +43,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    let that = this
+
+    let arr = []
+    //评论星数数量
+    arr.length = 5
+    that.setData({
+      star_count: arr
+    })
   },
 
   onShow() {

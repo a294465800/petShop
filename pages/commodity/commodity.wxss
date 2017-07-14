@@ -124,9 +124,7 @@
 
 /*用户评论*/
 
-.shop_comment_item, .shop_comment_item_love, .shop_comment_item_top,
-.shop_comment_item_top_r_bottom, .shop_comment_item_goods,
-.shop_comment_item_top_r_top, .commodity_comment_more,
+.commodity_comment_more,
 .commodity_comment_more_btn {
   display: flex;
   flex-direction: row;
@@ -136,88 +134,6 @@
 
 .commodity_comment_more_btn view {
   font-size: 16px;
-}
-
-.shop_comment_item_top_r_top {
-  margin-bottom: 16rpx;
-}
-
-.shop_comment_item_top_r {
-  margin-left: 30rpx;
-}
-
-.shop_comment_item {
-  padding: 30rpx 30rpx 20rpx;
-  border-bottom: 2rpx dashed #ccc;
-}
-
-.shop_comment_item_content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.shop_comment_item_goods_name, .shop_comment_item_time,
-.shop_comment_item_love_number {
-  color: #999;
-}
-
-.shop_comment_item_time, .shop_comment_item_goods_name {
-  font-size: 26rpx;
-}
-
-.shop_comment_item_goods_name {
-  max-width: 200rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.shop_comment_item_top_l {
-  width: 90rpx;
-  height: 90rpx;
-  border-radius: 50%;
-}
-
-.shop_comment_item_love {
-  align-self: flex-start;
-  min-width: 100rpx;
-}
-
-.shop_comment_item_goods_cart, .shop_comment_item_score_img {
-  width: 40rpx;
-  height: 40rpx;
-}
-
-.shop_comment_item_love_img {
-  width: 30rpx;
-  height: 30rpx;
-}
-
-.shop_comment_item_score_img {
-  margin: 0 2rpx;
-}
-
-.shop_comment_item_bottom {
-  font-size: 28rpx;
-  color: #333;
-  margin-top: 16rpx;
-}
-
-.shop_comment_item_username, .shop_comment_item_time {
-  margin-right: 30rpx;
-}
-
-.shop_comment_item_username {
-  width: 180rpx;
-  font-size: 30rpx;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.shop_comment_item_love_number, .shop_comment_item_goods_name {
-  margin-left: 10rpx;
 }
 
 .commodity_comment_more {

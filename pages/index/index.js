@@ -414,8 +414,6 @@ Page({
     let img = e.currentTarget.dataset.img
     let index = e.currentTarget.dataset.index
     let imgs = that.data.comments[index].img
-    console.log(index)
-    console.log(imgs, img)
     wx.previewImage({
       urls: imgs,
       current: img

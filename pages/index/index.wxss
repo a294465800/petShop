@@ -6,7 +6,11 @@
   flex-direction: column;
   justify-content: flex-start;
   background-color: #fff;
-  padding-top: 80rpx;
+}
+
+.nav_bb {
+  min-height: 80rpx;
+  background-color: #ccc;
 }
 
 .ad_imgs {
@@ -93,14 +97,20 @@
 }
 
 .dynamic_item_head_img {
-  width: 140rpx;
-  height: 140rpx;
+  width: 120rpx;
+  height: 120rpx;
   border-radius: 50%;
 }
 
 .dynamic_item_head_name {
   font-size: 18px;
   margin-left: 50rpx;
+}
+
+.dynamic_item_time {
+  font-size: 14px;
+  margin-left: 50rpx;
+  color: #999;
 }
 
 .dynamic_item_pic_list {
@@ -152,6 +162,7 @@
 .dynamic_item_love_people_name {
   margin-left: 10rpx;
   font-size: 14px;
+  color: #666;
 }
 
 .dynamic_item_love_people {
@@ -188,6 +199,7 @@
 
 .dynamic_item_comments_item_name {
   color: #ff963d;
+  align-self: flex-start;
 }
 
 .dynamic_item_comments_item_comment_btns {

@@ -147,6 +147,7 @@ Page({
     const that = this
     let current = that.data.current
     let now_close = that.data.close[current] || false
+    console.log(now_close)
     
     if (now_close) {
       return false
@@ -177,8 +178,10 @@ Page({
             return false
           }
           let temp = [...that.data.shopItem[current], ...res.data.data]
+          let temp_item = 'shopItem[' + current + ']'
           that.setData({
-            [page]: now_page
+            [page]: now_page,
+            [temp_item]: temp
           })
         }
       }

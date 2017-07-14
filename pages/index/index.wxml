@@ -6,6 +6,7 @@
     <view class="nav_item" wx:for="{{nav}}" wx:key="id" bindtap="nextPage" data-id="{{index}}">{{item.name}}</view>
     <view class="nav_shift" animation="{{animationNav}}"></view>
   </view>
+  <view class="nav_bb"></view>
   <!--/导航条-->
 
   <!--店铺内容页-->
@@ -26,7 +27,10 @@
       <view class="dynamic_item" wx:for="{{moments}}" wx:key="id" wx:for-item="shop">
         <view class="dynamic_item_head">
           <image src="{{shop.store_cover}}" class="dynamic_item_head_img" mode="aspectFill"></image>
-          <view class="dynamic_item_head_name">{{shop.store_name}}</view>
+          <view>
+            <view class="dynamic_item_head_name">{{shop.store_name}}</view>
+            <view class="dynamic_item_time">{{shop.createtime}}</view>
+          </view>
         </view>
         <view class="dynamic_item_message">{{shop.content}}</view>
         <view class="dynamic_item_pic_list">
