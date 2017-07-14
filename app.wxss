@@ -105,7 +105,7 @@ view {
 
 .shop_comment_item_love_img {
   width: 30rpx;
-  height: 30rpx;
+  height: 28rpx;
   margin-right: 10rpx;
 }
 

@@ -2,7 +2,11 @@
 App({
   onLaunch() {
   },
-  onLoad() {
+  onShow() {
+    const that = this
+    if (that.globalData.userInfo) {
+      this.checkLogin()
+    }
   },
 
   globalData: {
@@ -21,7 +25,7 @@ App({
     let that = this
     wx.getSystemInfo({
       success: res => {
-        if (res.SDKVersion.replace(/\./g, '') < 130) {
+        if (res.SDKVersion.replace(/\./g, '') < 125) {
           wx.showModal({
             title: '提示',
             content: '当前微信版本过低，部分功能可能无法使用，请升级到最新微信版本。',

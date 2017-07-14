@@ -2,9 +2,6 @@
 let app = getApp()
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
 
     //星星图片
@@ -33,9 +30,6 @@ Page({
     comments: null
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     const that = this
     let arr = []

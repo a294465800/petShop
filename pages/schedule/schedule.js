@@ -3,9 +3,6 @@ let app = getApp()
 let date = new Date()
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     //时间选择期
     date: '请选择日期',

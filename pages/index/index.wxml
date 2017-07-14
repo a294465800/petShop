@@ -52,7 +52,7 @@
             <view class="dynamic_item_love_people_name">
               <block wx:for="{{shop.likes}}">
                 <block wx:if="{{index < 7}}">{{item}}、</block>
-                <block wx:elif="{{index == 7}}">...</block>
+                <block wx:elif="{{index == 7}}"><text class="dynamic_likes_more">...等{{shop.likes.length}}人赞</text></block>
               </block>
             </view>
           </view>

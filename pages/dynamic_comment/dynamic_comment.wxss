@@ -1,7 +1,5 @@
 /* dynamic_comment.wxss */
-.conatiner {
 
-}
 /*拉起评论*/
 .comment_part {
   width: 100%;

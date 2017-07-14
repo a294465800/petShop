@@ -4,9 +4,6 @@ let timer
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     //控制验证码按钮
     captcha: true,
@@ -24,9 +21,6 @@ Page({
     submit: true
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
 
   },

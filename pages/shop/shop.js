@@ -3,9 +3,6 @@ let app = getApp()
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
 
     //导航条效果长度
@@ -36,9 +33,6 @@ Page({
     shopItem: null
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     const that = this
     wx.request({

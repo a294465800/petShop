@@ -75,6 +75,17 @@
   height: 40rpx;
 }
 
+.us_qq {
+  position: relative;
+  top: 100rpx;
+  left: 0;
+  text-align:center;
+}
+
+.us_qq .info_text {
+  color: #ff963d;
+}
+
 /*二维码*/
 
 .QRcode_bg, .QRcode {
