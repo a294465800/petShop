@@ -81,8 +81,10 @@
     <!--第二页=>用户评论-->
     <view hidden="{{!(current == 1)}}" class="page">
       <include src="../common/comments.wxml" />
-      <view class="dynamic_bottom" hidden="{{!tips_flag[1]}}">加载中</view>
-      <view class="dynamic_bottom" hidden="{{!tips_all[1]}}">——— 已加载全部评论 ———</view>
+      <block wx:if="{{comments.length > 0}}">
+        <view class="dynamic_bottom" hidden="{{!tips_flag[1]}}">加载中</view>
+        <view class="dynamic_bottom" hidden="{{!tips_all[1]}}">——— 已加载全部评论 ———</view>
+      </block>
     </view>
     <!--/第二页=>用户评论-->
 

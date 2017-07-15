@@ -173,3 +173,11 @@ view {
   flex: 1;
   justify-content: flex-start;
 }
+
+.comments_bottom {
+  width: 100%;
+  font-size: 30rpx;
+  text-align: center;
+  color: #999;
+  margin-top: 50rpx;
+}
