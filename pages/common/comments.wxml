@@ -21,7 +21,7 @@
       </view>
       <view class="shop_comment_item_bottom">{{comment.content}}</view>
       <view class="shop_comment_item_imgs">
-        <image src="{{item}}" class="shop_comment_item_img" mode="aspectFill" wx:for="{{comment.img}}" catchtap="commentPreImg" data-img="{{item}}" data-index="{{comment_index}}"></image>
+        <image src="{{item}}" class="shop_comment_item_img" mode="aspectFill" wx:for="{{comment.img}}" wx:key="*this" catchtap="commentPreImg" data-img="{{item}}" data-index="{{comment_index}}"></image>
       </view>
       <view class="shop_comment_item_replay">
         <text class="shop_comment_item_replay_text" wx:for="{{comment.replies}}">商家回复：{{item}}</text>

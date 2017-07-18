@@ -71,7 +71,7 @@
 }
 
 .dynamic_item_head, .dynamic_item_pic_list, .nav_bar, .dynamic_item_function,
-.dynamic_item_function_p, .dynamic_item_love_people, .dynamic_item_comments_item,
+.dynamic_item_function_p, .dynamic_item_love_people,
 .dynamic_item_comments_item_comment_btns {
   display: flex;
   flex-direction: row;
@@ -188,10 +188,6 @@
   padding: 10rpx 30rpx 0;
 }
 
-.dynamic_item_comments_item {
-  justify-content: flex-start;
-}
-
 .dynamic_item_comments_item_name, .dynamic_item_comments_item_content,
 .dynamic_item_comments_item_more, .dynamic_item_comments_item_newest,
 .dynamic_item_comments_item_more_hide {
@@ -201,15 +197,13 @@
 
 .dynamic_item_comments_item_name {
   color: #ff963d;
-  align-self: flex-start;
-  max-width: 180rpx;
 }
 
 .dynamic_item_comments_item_comment_btns {
   justify-content: space-between;
 }
 
-.dynamic_item_comments_item_more,.dynamic_item_comments_item_more_hide {
+.dynamic_item_comments_item_more, .dynamic_item_comments_item_more_hide {
   color: #1d53bf;
 }
 
@@ -224,8 +218,7 @@
 }
 
 .dynamic_item_comments_item_content {
-  flex: 1;
-  align-self: flex-start;
+  color: #000;
 }
 
 /*第三页=>商家信息*/
