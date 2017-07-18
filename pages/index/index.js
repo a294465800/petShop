@@ -98,6 +98,12 @@ Page({
   },
 
   onShow() {
+    const that = this
+    if (!that.data.userInfo && app.globalData.userInfo) {
+      that.setData({
+        userInfo: app.globalData.userInfo
+      })
+    }
   },
 
   //请求第一页数据函数
@@ -187,8 +193,9 @@ Page({
 
   //分享
   onShareAppMessage() {
+    const that = this
     return {
-      title: '小主帮',
+      title: '小主帮' + that.data.store.name,
       path: '/pages/index/index'
     }
   },

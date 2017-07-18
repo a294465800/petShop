@@ -113,6 +113,8 @@ App({
                     }
                   }
                 })
+              } else {
+                typeof cb == "function" && cb(that.globalData.userInfo)
               }
             }
           })
@@ -121,6 +123,9 @@ App({
           wx.getUserInfo({
             success: res => {
               that.getSetting(cb)
+            },
+            fail: () => {
+              typeof cb == "function" && cb(that.globalData.userInfo)
             }
           })
         }
@@ -168,7 +173,7 @@ App({
       success: res => {
         if (res.confirm) {
           wx.navigateTo({
-            url: '/pages/tel_input/tel_input',
+            url: '/pages/mine/mine',
           })
         }
       }

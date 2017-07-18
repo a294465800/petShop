@@ -202,6 +202,7 @@
 .dynamic_item_comments_item_name {
   color: #ff963d;
   align-self: flex-start;
+  max-width: 180rpx;
 }
 
 .dynamic_item_comments_item_comment_btns {
@@ -220,6 +221,10 @@
 .dynamic_likes_more {
   font-size: 13px;
   color: #666;
+}
+
+.dynamic_item_comments_item_content {
+  flex: 1;
 }
 
 /*第三页=>商家信息*/

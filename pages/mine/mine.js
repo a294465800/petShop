@@ -20,7 +20,7 @@ Page({
   },
   onShow() {
     const that = this
-    if (!that.data.userInfo) {
+    if (!that.data.userInfo && app.globalData.userInfo) {
       that.setData({
         userInfo: app.globalData.userInfo
       })
