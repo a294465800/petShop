@@ -112,6 +112,10 @@ Page({
   //表单提交
   register() {
     const that = this
+    wx.showLoading({
+      title: '注册中',
+      mask: true
+    })
     wx.login({
       withCredentials: true,
       success: rs => {
@@ -130,22 +134,19 @@ Page({
               },
               success: res => {
                 if (200 == res.data.code) {
-                  wx.showModal({
-                    title: '提示',
-                    content: '注册成功',
-                    showCancel: false,
-                    success: res => {
-                      if (res.confirm) {
-                        wx.reLaunch({
-                          url: '/pages/index/index',
-                        })
-                      }
+                  wx.hideLoading()
+                  wx.showToast({
+                    title: '注册成功',
+                    complete: res => {
+                      wx.reLaunch({
+                        url: '/pages/index/index',
+                      })
                     }
                   })
                 } else {
                   wx.showModal({
                     title: '提示',
-                    content: res.data.msg,
+                    content: res.data.msg || '注册失败',
                     showCancel: false
                   })
                 }
