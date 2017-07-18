@@ -225,6 +225,7 @@
 
 .dynamic_item_comments_item_content {
   flex: 1;
+  align-self: flex-start;
 }
 
 /*第三页=>商家信息*/
