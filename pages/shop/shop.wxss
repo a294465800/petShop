@@ -18,13 +18,14 @@
 
 .shop_category {
   min-height: 80rpx;
-  width: 100%;
+  min-width: 100%;
   border-bottom: 2rpx solid #999;
   position: relative;
 }
 
 .shop_category_item {
-  flex: 1;
+  height: 100%;
+  width: 250rpx;
   text-align: center;
   position: relative;
   z-index: 1;

@@ -7,6 +7,9 @@ Page({
 
     //导航条效果长度
     width: 0,
+    max_width: 0,
+    scroll_left: 0,
+    current_choose: true,
     //动画效果
     animationBar: {},
 
@@ -42,7 +45,8 @@ Page({
         if (200 == res.data.code) {
           that.setData({
             shopCategorys: res.data.data,
-            width: Math.floor(100 / res.data.data.length),
+            width: (100 / res.data.data.length),
+            max_width: res.data.data.length * 250,
             category_id: res.data.data[0].id
           })
           wx.showLoading({
@@ -112,7 +116,8 @@ Page({
     that.setData({
       current: index,
       category_id: id,
-      animationBar: that.animationBar(index).export()
+      animationBar: that.animationBar(index).export(),
+      current_choose: false
     })
     that.getShopItem(id, index)
   },
@@ -120,10 +125,16 @@ Page({
     const that = this
     let index = e.detail.current
     let id = that.data.shopCategorys[index].id
+    if(that.data.current_choose){
+      that.setData({
+        scroll_left: (that.data.max_width * that.data.width / 200) * index 
+      })
+    }
     that.setData({
       current: index,
       category_id: id,
-      animationBar: that.animationBar(index).export()
+      animationBar: that.animationBar(index).export(),
+      current_choose: true
     })
     that.getShopItem(id, index)
   },

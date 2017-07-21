@@ -1,10 +1,16 @@
 <!--shop.wxml-->
 <view class="container">
   <!--商品导航-->
-  <view class="shop_category">
+  <!-- <view class="shop_category">
     <view class="shop_category_item {{current == index ?'white': ''}}" wx:for="{{shopCategorys}}" wx:key="id" data-index="{{index}}" data-id="{{item.id}}" bindtap="shiftPage">{{item.title}}</view>
     <view class="shop_category_capsule" style="width: {{width}}%;" animation="{{animationBar}}"></view>
-  </view>
+  </view> -->
+  <scroll-view scroll-x scroll-left="{{scroll_left}}">
+    <view class="shop_category" style="width:{{max_width + 'rpx'}};">
+      <view class="shop_category_item {{current == index ?'white': ''}}" wx:for="{{shopCategorys}}" wx:key="id" data-index="{{index}}" data-id="{{item.id}}" bindtap="shiftPage">{{item.title}}</view>
+      <view class="shop_category_capsule" style="width: {{width}}%;" animation="{{animationBar}}"></view>
+    </view>
+  </scroll-view>
   <!--/商品导航-->
 
 

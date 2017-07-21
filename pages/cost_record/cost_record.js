@@ -2,9 +2,6 @@
 let app = getApp()
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     //导航动画
     animationNav: {},
@@ -39,9 +36,6 @@ Page({
     orders: null
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     let that = this
 
