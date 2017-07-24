@@ -140,8 +140,7 @@
 }
 
 .dynamic_item_function_p_icon_r {
-  align-self: flex-start;
-  margin-top: 4rpx;
+  margin-right: 10rpx;
 }
 
 .dynamic_item_function_p {

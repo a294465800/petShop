@@ -48,8 +48,8 @@
         </view>
         <view class="dynamic_item_comments {{shop.comments.length > 0?'':'no_padding'}}">
           <view class="dynamic_item_love_people" wx:if="{{shop.likes.length > 0}}">
-            <image src="/images/shop/like.png" mode="aspectFit" class="dynamic_item_function_p_icon dynamic_item_function_p_icon_r"></image>
             <view class="dynamic_item_love_people_name">
+              <image src="/images/shop/like.png" mode="aspectFit" class="dynamic_item_function_p_icon dynamic_item_function_p_icon_r"></image>
               <block wx:for="{{shop.likes}}" wx:key="*this">
                 <block wx:if="{{index < 7}}">{{item}}、</block>
                 <block wx:elif="{{index == 7}}"><text class="dynamic_likes_more">...等{{shop.likes.length}}人赞</text></block>
