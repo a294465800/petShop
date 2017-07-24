@@ -5,14 +5,6 @@ Page({
 
   data: {
 
-    //导航条效果长度
-    width: 0,
-    max_width: 0,
-    scroll_left: 0,
-    current_choose: true,
-    //动画效果
-    animationBar: {},
-
     //当前目录
     current: 0,
 
@@ -45,8 +37,6 @@ Page({
         if (200 == res.data.code) {
           that.setData({
             shopCategorys: res.data.data,
-            width: (100 / res.data.data.length),
-            max_width: res.data.data.length * 250,
             category_id: res.data.data[0].id
           })
           wx.showLoading({
@@ -95,18 +85,6 @@ Page({
     })
   },
 
-  //动画封装
-  animationBar(id) {
-    const that = this
-    let animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease-out'
-    })
-    let left = (that.data.width * id) + '%'
-    return animation.left(left).step()
-
-  },
-
   //商品目录切换
   shiftPage(e) {
     const that = this
@@ -116,25 +94,6 @@ Page({
     that.setData({
       current: index,
       category_id: id,
-      animationBar: that.animationBar(index).export(),
-      current_choose: false
-    })
-    that.getShopItem(id, index)
-  },
-  nextPage(e) {
-    const that = this
-    let index = e.detail.current
-    let id = that.data.shopCategorys[index].id
-    if(that.data.current_choose){
-      that.setData({
-        scroll_left: (that.data.max_width * that.data.width / 200) * index 
-      })
-    }
-    that.setData({
-      current: index,
-      category_id: id,
-      animationBar: that.animationBar(index).export(),
-      current_choose: true
     })
     that.getShopItem(id, index)
   },
@@ -152,7 +111,7 @@ Page({
     const that = this
     let current = that.data.current
     let now_close = that.data.close[current] || false
-    console.log(now_close)
+    console.log(1)
     
     if (now_close) {
       return false

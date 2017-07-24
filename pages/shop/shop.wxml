@@ -1,41 +1,30 @@
 <!--shop.wxml-->
 <view class="container">
-  <!--商品导航-->
-  <!-- <view class="shop_category">
-    <view class="shop_category_item {{current == index ?'white': ''}}" wx:for="{{shopCategorys}}" wx:key="id" data-index="{{index}}" data-id="{{item.id}}" bindtap="shiftPage">{{item.title}}</view>
-    <view class="shop_category_capsule" style="width: {{width}}%;" animation="{{animationBar}}"></view>
-  </view> -->
-  <scroll-view scroll-x scroll-left="{{scroll_left}}">
-    <view class="shop_category" style="width:{{max_width + 'rpx'}};">
-      <view class="shop_category_item {{current == index ?'white': ''}}" wx:for="{{shopCategorys}}" wx:key="id" data-index="{{index}}" data-id="{{item.id}}" bindtap="shiftPage">{{item.title}}</view>
-      <view class="shop_category_capsule" style="width: {{width}}%;" animation="{{animationBar}}"></view>
-    </view>
-  </scroll-view>
-  <!--/商品导航-->
-
 
   <!--商品列表-->
-  <view class="swiper_wrap">
-    <swiper class="shop_list" current="{{current}}" bindchange="nextPage">
-      <swiper-item wx:for="{{shopCategorys}}" wx:key="id">
-        <scroll-view scroll-y class="scroll" bindscrolltolower="toBottom">
-          <view class="shop_item" wx:for="{{shopItem[index]}}" wx:key="id" bindtap="goToGood" hover-class="push_class" hover-stay-time="150" data-id="{{item.id}}">
-            <view class="shop_item_l">
-              <image src="{{item.img}}" class="shop_item_img" mode="aspectFill"></image>
-              <view class="shop_item_content">
-                <view class="shop_item_name">{{item.title}}</view>
-                <view class="shop_item_price">￥
-                  <text class="shop_item_price_number">{{item.price}}</text>
-                </view>
-              </view>
+  <view class="shop-content-item">
+    <!--左边导航  -->
+    <scroll-view class="shop-content-nav" scroll-y>
+      <view class="shop-content-nav-item {{category_id == item.id? 'active': ''}}" wx:for="{{shopCategorys}}" data-id="{{item.id}}" data-index="{{index}}" wx:key="id" catchtap="shiftPage">{{item.title}}</view>
+    </scroll-view>
+    <scroll-view scroll-y class="shop-content-commodities" bindscrolltolower="toBottom">
+      <view class="shop_item" wx:for="{{shopItem[current]}}" wx:key="id" bindtap="goToGood" hover-class="push_class" hover-stay-time="150" data-id="{{item.id}}">
+        <view class="shop_item_l">
+          <image src="{{item.img}}" class="shop_item_img" mode="aspectFill"></image>
+          <view class="shop_item_content">
+            <view class="shop_item_name">{{item.title}}</view>
+            <view class="shop_item_price">￥
+              <text class="shop_item_price_number">{{item.price}}</text>
             </view>
-            <view class="shop_item_r">已售{{item.sell}}份</view>
           </view>
-          <view class="shop_bottom" hidden="{{!tips_all[index]}}">——— 已展示全部商品 ———</view>
-        </scroll-view>
-      </swiper-item>
-    </swiper>
+        </view>
+        <view class="shop_item_r">已售{{item.sell}}份</view>
+      </view>
+      <view class="shop_bottom" hidden="{{!tips_all[current]}}">——— 已展示全部商品 ———</view>
+    </scroll-view>
   </view>
+  <!--/左边导航  -->
+
   <!--/商品列表-->
 
 </view>
