@@ -53,6 +53,17 @@ Page({
     }
   },
 
+  //我的拼团跳转
+  goToMygroup() {
+    if (!app.globalData.userInfo) {
+      app.goToTelInput()
+    } else {
+      wx.navigateTo({
+        url: '/pages/my_group/my_group',
+      })
+    }
+  },
+
   //优惠券跳转
   goToCoupon() {
     if (!app.globalData.userInfo) {

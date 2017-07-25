@@ -8,10 +8,18 @@
     <image src="/images/mine/cost.png" mode="aspectFit" class="mine_item_img"></image>
     <view class="mine_item_word">订单管理</view>
   </view>
-  <!-- <view class="mine_item" hover-class="push_class" hover-stay-time="150" bindtap="goToCoupon">
+  <view class="mine_item" hover-class="push_class" hover-stay-time="150" bindtap="goToMygroup">
+    <image src="/images/mine/wallet.png" mode="aspectFit" class="mine_item_img"></image>
+    <view class="mine_item_word">我的拼团</view>
+  </view>
+  <view class="mine_item" hover-class="push_class" hover-stay-time="150" bindtap="goToCoupon">
+    <image src="/images/mine/wallet.png" mode="aspectFit" class="mine_item_img"></image>
+    <view class="mine_item_word">我的次数卡</view>
+  </view>
+  <view class="mine_item" hover-class="push_class" hover-stay-time="150" bindtap="goToCoupon">
     <image src="/images/mine/wallet.png" mode="aspectFit" class="mine_item_img"></image>
     <view class="mine_item_word">优惠券</view>
-  </view> -->
+  </view>
   <view class="mine_item" hover-class="push_class" hover-stay-time="150" bindtap="goToPoints">
     <image src="/images/mine/points.png" mode="aspectFit" class="mine_item_img"></image>
     <view class="mine_item_word">我的积分</view>

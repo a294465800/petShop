@@ -192,11 +192,15 @@ Page({
   },
 
   //分享
-  onShareAppMessage() {
+  onShareAppMessage(option) {
     const that = this
+    // console.log(option, 'option')
     return {
       title: '小主帮' + that.data.store.name,
-      path: '/pages/index/index'
+      path: '/pages/index/index',
+      // success: (res) => {
+      //   console.log(res, 'success')
+      // }
     }
   },
 

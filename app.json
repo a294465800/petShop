@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/my_group/my_group",
+    "pages/ad_page/ad_page",
     "pages/dynamic_comment/dynamic_comment",
     "pages/tel_input/tel_input",
     "pages/schedule/schedule",
@@ -12,8 +14,7 @@
     "pages/commodity/commodity",
     "pages/mine/mine",
     "pages/shop/shop",
-    "pages/points/points",
-    "pages/ad_page/ad_page"
+    "pages/points/points"
   ],
   "window": {
     "backgroundTextStyle": "light",
