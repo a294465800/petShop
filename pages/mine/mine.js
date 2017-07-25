@@ -64,6 +64,17 @@ Page({
     }
   },
 
+  //商品次数
+  goToCards() {
+    if (!app.globalData.userInfo) {
+      app.goToTelInput()
+    } else {
+      wx.navigateTo({
+        url: '/pages/commodity_cards/commodity_cards',
+      })
+    }
+  },
+
   //优惠券跳转
   goToCoupon() {
     if (!app.globalData.userInfo) {

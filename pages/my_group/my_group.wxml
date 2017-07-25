@@ -30,6 +30,7 @@
                 <icon type="waiting" size="16" color="#ff963d" /> 剩余 {{left_time[index]}}
               </view>
               <view class="grouping-item-invite">
+                <image src="/images/icon/share.png" mode="widthFix"></image>
                 <button open-type="share" class="grouping-item-button">邀请好友</button>
               </view>
             </view>
@@ -58,7 +59,8 @@
                 <icon type="success" size="16" /> 拼团成功
               </view>
               <view class="grouping-item-invite">
-                <button open-type="share" class="grouping-item-button">查看详情</button>
+                <image src="/images/icon/more.png" mode="widthFix"></image>
+                <button class="grouping-item-button">查看详情</button>
               </view>
             </view>
           </view>

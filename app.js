@@ -14,7 +14,7 @@ App({
     host: 'https://www.sennkisystem.cn/api/',
     header: {
       'content-type': 'application/x-www-form-urlencoded',
-      'AppVersion': '4.0',
+      'AppVersion': '1.0',
       'storeNumber': '1400344af3767f15f957ff6c4d7c3f2c'
     },
     shop: null
