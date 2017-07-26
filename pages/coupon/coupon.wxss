@@ -3,7 +3,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  background-color: #eee;
+  background-color: #f5f5f9;
 }
 
 /*导航  */
@@ -70,7 +70,6 @@
 .swiper-scroll {
   height: 100%;
   width: 100%;
-  padding-top: 30rpx;
 }
 
 /*优惠券*/
@@ -83,6 +82,10 @@
   margin-bottom: 40rpx;
   margin-left: auto;
   margin-right: auto;
+}
+
+.coupon_item:first-child {
+  margin-top: 30rpx;
 }
 
 .coupon_item_top {
@@ -135,7 +138,7 @@
   left: -2rpx;
   bottom: 0;
   border-left: none;
-  background-color: #eee;
+  background-color: #f5f5f9;
 }
 
 .coupon_item_bottom {

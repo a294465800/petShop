@@ -3,7 +3,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  background-color: #eee;
+  background-color: #f5f5f9;
 }
 
 /*导航  */
@@ -79,8 +79,12 @@
 .grouping-item {
   width: 100%;
   border-bottom: 2rpx solid #eee;
-  margin-bottom: 20rpx;
+  margin-bottom: 30rpx;
   background-color: #fff;
+}
+
+.grouping-item:first-child {
+  margin-top: 30rpx;
 }
 
 .grouping-item:last-child {
@@ -160,7 +164,7 @@
   align-items: center;
   justify-content: space-between;
   border-radius: 6rpx;
-  padding: 20rpx;
+  padding:14rpx 20rpx;
 }
 
 .grouping-item-invite image {
@@ -169,11 +173,14 @@
 
 .grouping-item-button {
   color: #fff;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1;
   background-color: transparent;
   padding-left: 10rpx;
   padding-right: 0;
+  border-radius: 0;
+  padding-top: 4rpx;
+  padding-bottom: 4rpx;
 }
 
 
