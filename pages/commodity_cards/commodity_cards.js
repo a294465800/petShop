@@ -73,7 +73,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    wx.request({
+      url: app.globalData.host + 'V1/my/card',
+      header: app.globalData.header,
+      success: res => {
+        console.log(res)
+      }
+    })
   },
 
   //导航动画封装

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/group_buy/group_buy",
     "pages/index/index",
     "pages/single_buy/single_buy",
     "pages/coupon/coupon",
