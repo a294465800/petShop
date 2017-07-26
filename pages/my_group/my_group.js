@@ -205,5 +205,11 @@ Page({
     })
   },
 
-
+  //查看拼团详情
+  goToOrder(e){
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/schedule/schedule?id=' + id,
+    })
+  }
 })
