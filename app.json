@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/commodity_cards_use/commodity_cards_use",
+    "pages/commodity_cards/commodity_cards",
     "pages/my_group/my_group",
     "pages/ad_page/ad_page",
     "pages/dynamic_comment/dynamic_comment",
@@ -14,8 +16,7 @@
     "pages/commodity/commodity",
     "pages/mine/mine",
     "pages/shop/shop",
-    "pages/points/points",
-    "pages/commodity_cards/commodity_cards"
+    "pages/points/points"
   ],
   "window": {
     "backgroundTextStyle": "light",

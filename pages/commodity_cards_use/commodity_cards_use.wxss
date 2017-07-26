@@ -1,4 +1,4 @@
-/* schedule.wxss */
+/* commodity_cards_use.wxss */
 
 .been_comment {
   justify-content: space-between;
@@ -25,9 +25,9 @@
 }
 
 .been_comment_title {
-  word-wrap: break-word;
-  word-break: break-all;
   font-size: 16px;
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .been_comment_shop {
@@ -42,12 +42,8 @@
   margin-top: 10rpx;
 }
 
-.not_cost_id_title, .not_cost_id_num {
+.not_cost_id_title {
   font-size: 14px;
-}
-
-.not_cost_id_num {
-  color: #ff963d;
 }
 
 .been_comment_btn {
@@ -71,12 +67,6 @@
   margin: 20rpx 0;
 }
 
-.schedule_picker {
-  background-color: #eee;
-  margin: 10rpx 0;
-  padding: 20rpx;
-}
-
 .close_order {
   display: flex;
   flex-direction: row;
@@ -84,16 +74,30 @@
   align-items: center;
 }
 
-.close_btn {
-  margin: 0;
-  background-color: #ff963d;
-}
-
 .shop_item_price {
   margin: 24rpx 0;
-  color: #ff963d;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.cards-price {
+  color: #ff6464;
 }
 
 .shop_item_price_number {
   font-size: 18px;
+  margin-right: 20rpx;
+}
+
+.shop_item_pre_price {
+  font-size: 15px;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.card-left {
+  color: #ff6464;
+  font-size: 14px;
 }

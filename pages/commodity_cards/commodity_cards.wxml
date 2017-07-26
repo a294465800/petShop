@@ -1,2 +1,55 @@
 <!--commodity_cards.wxml-->
-<text>commodity_cards.wxml</text>
+<view class="container">
+
+  <!--次数卡导航  -->
+  <view class="shop-nav">
+    <view class="shop-nav-item {{current == index ? 'active': ''}}" wx:for="{{cards_nav}}" wx:key="id" data-index="{{index}}" catchtap="shiftPage">{{item.name}}</view>
+    <view class="shop-nav-item-border" animation="{{animationNav}}"></view>
+  </view>
+  <!--/次数卡导航  -->
+
+  <!--内容  -->
+  <view class="swiper-wrap">
+    <swiper current="{{current}}" bindchange="nextPage">
+      <!--使用中  -->
+      <swiper-item>
+        <scroll-view scroll-y class="swiper-scroll">
+          <view class="cards-item" wx:for="{{cards}}" wx:key="id" wx:for-item="card_use" catchtap="goToCard" hover-class="push_class" hover-stay-time="150">
+            <image src="{{card_use.img}}" mode="aspectFill" class="cards-item-img"></image>
+            <view class="cards-item-content">
+              <view class="cards-item-name">{{card_use.name}}</view>
+              <view class="cards-item-shop">—{{card_use.shop}}</view>
+              <view class="cards-item-info">
+                <view class="cards-item-price">￥<text class="cards-item-now-price">{{card_use.price}}</text><text class="cards-item-pre-price">市场价：￥{{card_use.pre_price}}</text></view>
+                <view class="cards-item-time">剩余{{card_use.left}}次</view>
+              </view>
+            </view>
+          </view>
+          <view wx:if="{{cards.length == 0}}" class="tips">—— 暂无次数卡 ——</view>
+        </scroll-view>
+      </swiper-item>
+      <!--/使用中  -->
+
+      <!--拼团成功  -->
+      <swiper-item>
+        <scroll-view scroll-y class="swiper-scroll">
+          <view class="cards-item" wx:for="{{cards}}" wx:key="id" wx:for-item="card_use">
+            <image src="{{card_use.img}}" mode="aspectFill" class="cards-item-img"></image>
+            <view class="cards-item-content">
+              <view class="cards-item-name">{{card_use.name}}</view>
+              <view class="cards-item-shop">—{{card_use.shop}}</view>
+              <view class="cards-item-info">
+                <view class="cards-item-price">￥<text class="cards-item-now-price">{{card_use.price}}</text><text class="cards-item-pre-price">市场价：￥{{card_use.pre_price}}</text></view>
+                <view class="cards-item-out-time">已失效</view>
+              </view>
+            </view>
+          </view>
+          <view wx:if="{{cards.length == 0}}" class="tips">—— 暂无次数卡 ——</view>
+        </scroll-view>
+      </swiper-item>
+      <!--/拼团成功  -->
+
+    </swiper>
+  </view>
+  <!--/内容  -->
+</view>
