@@ -371,7 +371,7 @@ Page({
     const that = this
     let index = e.currentTarget.dataset.index
     let temp = 'moments[' + index + '].limit'
-    let limit = that.data.moments[index].limit + 5
+    let limit = that.data.moments[index].limit
     let length = that.data.moments[index].comments.length
     if (limit > length) {
       wx.showToast({
@@ -380,7 +380,7 @@ Page({
       return false
     }
     that.setData({
-      [temp]: limit
+      [temp]: limit + 5
     })
   },
 
