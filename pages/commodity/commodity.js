@@ -188,6 +188,9 @@ Page({
     if (!app.globalData.userInfo) {
       app.goToTelInput()
     } else {
+      wx.showLoading({
+        title: '支付中',
+      })
       wx.request({
         url: app.globalData.host + 'order/make',
         header: app.globalData.header,
@@ -220,6 +223,7 @@ Page({
                       number: order_id
                     },
                     success: res => {
+                      wx.hideLoading()
                       if (200 == res.data.code) {
                         wx.requestPayment({
                           timeStamp: res.data.data.timeStamp,

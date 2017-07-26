@@ -98,7 +98,7 @@
       <view>直接购买</view>
     </view>
     <block wx:if="{{commodity.canGroup}}">
-      <view class="commodity_buy_btn buy_together" catchtap=" buyCommodity" data-id="{{commodity.id}}">
+      <view class="commodity_buy_btn buy_together" catchtap="buyCommodity" data-id="{{commodity.id}}">
         <view>￥<text class="buy_bt_price ">{{commodity.groupPrice}}</text></view>
         <view>立即开团</view>
       </view>

@@ -49,12 +49,13 @@
                 <view class="coupon_item_top_circle"></view>
               </view>
               <view class="coupon_item_bottom">优惠券有效期：{{coupon.time}}</view>
+              <image src="/images/icon/lost.png" mode="aspectFill" class="coupon_item_lost"></image>
             </view>
           </block>
           <block wx:else>
             <view class="coupons_bottom">——— 暂无优惠券 ———</view>
           </block>
-          <view wx:if="{{cards.length == 0}}" class="tips">—— 暂无次数卡 ——</view>
+          <view wx:if="{{cards.length == 0}}" class="tips">—— 暂无优惠券 ——</view>
         </scroll-view>
       </swiper-item>
       <!--/拼团成功  -->

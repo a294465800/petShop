@@ -40,9 +40,10 @@
               <view class="cards-item-shop">—{{card_use.shop}}</view>
               <view class="cards-item-info">
                 <view class="cards-item-price">￥<text class="cards-item-now-price">{{card_use.price}}</text><text class="cards-item-pre-price">市场价：￥{{card_use.pre_price}}</text></view>
-                <view class="cards-item-out-time">已失效</view>
+                <!-- <view class="cards-item-out-time">已失效</view> -->
               </view>
             </view>
+            <image src="/images/icon/lost.png" mode="aspectFill" class="coupon_item_lost"></image>
           </view>
           <view wx:if="{{cards.length == 0}}" class="tips">—— 暂无次数卡 ——</view>
         </scroll-view>
