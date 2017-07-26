@@ -25,6 +25,7 @@ view {
   color: #999;
   text-align: center;
   padding-top: 20rpx;
+  padding-bottom: 20rpx;
 }
 
 /*隐藏、显示*/

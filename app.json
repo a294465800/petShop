@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/single_buy/single_buy",
     "pages/coupon/coupon",
     "pages/commodity_cards_use/commodity_cards_use",
     "pages/commodity_cards/commodity_cards",
