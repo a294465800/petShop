@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/coupon/coupon",
     "pages/commodity_cards_use/commodity_cards_use",
     "pages/commodity_cards/commodity_cards",
     "pages/my_group/my_group",
@@ -11,7 +12,6 @@
     "pages/cost_comment/cost_comment",
     "pages/all_comment/all_comment",
     "pages/more_info/more_info",
-    "pages/coupon/coupon",
     "pages/cost_record/cost_record",
     "pages/commodity/commodity",
     "pages/mine/mine",

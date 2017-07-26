@@ -111,7 +111,6 @@ Page({
     const that = this
     let current = that.data.current
     let now_close = that.data.close[current] || false
-    console.log(1)
     
     if (now_close) {
       return false
@@ -151,6 +150,5 @@ Page({
       }
     })
   },
-
 
 })
