@@ -240,7 +240,7 @@ Page({
                             })
                           }
                         })
-                      }else {
+                      } else {
                         wx.showModal({
                           title: '提示',
                           content: res.data.msg,
@@ -327,6 +327,15 @@ Page({
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/single_buy/single_buy?id=' + id,
+    })
+  },
+
+  //参团
+  joinGroup(e) {
+    const that = this
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/group_buy/group_buy?id=' + id,
     })
   }
 })

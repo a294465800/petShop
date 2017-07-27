@@ -38,7 +38,7 @@
           </view>
           <view class="commodity_group_info_time">还差{{group.people}}人，剩余 {{left_time[index]}}</view>
         </view>
-        <view class="commodity_group_btn">立即参团</view>
+        <view class="commodity_group_btn" catchtap="joinGroup">立即参团</view>
       </view>
     </view>
     <view class="commodity_description_info">
@@ -105,7 +105,6 @@
     </block>
     <block wx:else>
       <view class="commodity_buy_btn buy_together disabled">
-         <!-- <view>￥<text class="buy_bt_price ">{{commodity.groupPrice}}</text></view>  -->
          <view class="buy_bt_price">暂无拼团</view>
         <view>敬请等待···</view>
       </view>

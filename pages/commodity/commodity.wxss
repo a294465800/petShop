@@ -162,15 +162,11 @@
 .commodity_buy {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   align-items: center;
   position: fixed;
-  /* padding: 20rpx 30rpx; */
   width: 100%;
   left: 0;
   bottom: 0;
-  /* background-color: #fff; */
-  /* border-top: 2rpx solid #ccc; */
 }
 
 .commodity_buy_btn {

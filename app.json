@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/group_buy/group_buy",
     "pages/index/index",
+    "pages/group_buy/group_buy",
     "pages/single_buy/single_buy",
     "pages/coupon/coupon",
     "pages/commodity_cards_use/commodity_cards_use",
