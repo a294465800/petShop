@@ -2,7 +2,7 @@
 let app = getApp()
 //倒计时
 let clock = new Array()
-let colck_time = new Array()
+let clock_time = new Array()
 let timer
 
 Page({
@@ -10,14 +10,14 @@ Page({
   data: {
     //商品
     commodity_id: 0,
-    commodity: {},
     imgUrls: [],
     interval: 4000,
     duration: 500,
     indicator_color: '#666',
     indicator_active_color: '#ff963d',
 
-
+    //拼团头像设置
+    group_imgs: [],
 
     //下单操作
     group_id: null,
@@ -71,17 +71,21 @@ Page({
     ],
 
     //接口数据
-    comments: null
+    comments: null,
+    commodity: null,
   },
 
   onLoad(options) {
     const that = this
-    let arr = []
+    let arr = [], arr2 = []
     //评论星数数量
     arr.length = 5
+    arr2.length = 15
+    //拼团头像数量
     that.setData({
       commodity_id: options.commodity_id,
-      star_count: arr
+      star_count: arr,
+      group_imgs: arr2
     })
     wx.request({
       url: app.globalData.host + 'product/' + options.commodity_id,
@@ -114,21 +118,37 @@ Page({
   //压入时间
   getIntervalTime() {
     const that = this
-    console.log(1)
-    let length = that.data.groups.length
+    let length = that.data.commodity.groupList.length
     for (let i = 0; i < length; i++) {
-      let current_time = that.data.groups[i].time
-      let tmp = current_time.split(':')
-      clock.push(current_time)
-      colck_time.push(tmp[0] * 3600 + tmp[1] * 60 + tmp[2] * 1)
+      let current_time = that.data.commodity.groupList[i].lave
+      // let tmp = current_time.split(':')
+      clock.push(that.formatTime(current_time))
+      clock_time.push(current_time)
     }
     that.setGroupInterval()
+  },
+
+  //格式化时间
+  formatTime(time) {
+    let h = parseInt(time / 3600)
+    let m = parseInt((time - h * 3600) / 60)
+    let s = (time - h * 3600) % 60
+    if (h < 10) {
+      h = "0" + h
+    }
+    if (m < 10) {
+      m = "0" + m
+    }
+    if (s < 10) {
+      s = "0" + s
+    }
+    return (h + ":" + m + ":" + s)
   },
 
   //设置倒计时
   setGroupInterval() {
     const that = this
-    let length = colck_time.length
+    let length = clock_time.length
 
     for (let i = 0; i < length; i++) {
 
@@ -136,20 +156,21 @@ Page({
       setInterval(
         () => {
           ((index) => {
-            colck_time[index] = colck_time[index] - 1
-            let h = parseInt(colck_time[index] / 3600)
-            let m = parseInt((colck_time[index] - h * 3600) / 60)
-            let s = (colck_time[index] - h * 3600) % 60
-            if (h < 10) {
-              h = "0" + h
-            }
-            if (m < 10) {
-              m = "0" + m
-            }
-            if (s < 10) {
-              s = "0" + s
-            }
-            clock[index] = h + ":" + m + ":" + s
+            // clock_time[index] = clock_time[index] - 1
+            // let h = parseInt(clock_time[index] / 3600)
+            // let m = parseInt((clock_time[index] - h * 3600) / 60)
+            // let s = (clock_time[index] - h * 3600) % 60
+            // if (h < 10) {
+            //   h = "0" + h
+            // }
+            // if (m < 10) {
+            //   m = "0" + m
+            // }
+            // if (s < 10) {
+            //   s = "0" + s
+            // }
+            // clock[index] = h + ":" + m + ":" + s
+            clock[index] = that.formatTime(clock_time[index]--)
           })(i)
         }, 1000)
     }

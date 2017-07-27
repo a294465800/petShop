@@ -18,10 +18,10 @@
             <view class="grouping-item-top">
               <image src="{{grouping.img}}" mode="aspectFill" class="grouping-item-img"></image>
               <view class="grouping-item-content">
-                <view class="grouping-item-name">{{grouping.name}}</view>
-                <view class="grouping-item-shop">—{{grouping.shop}}</view>
+                <view class="grouping-item-name">{{grouping.product}}</view>
+                <view class="grouping-item-shop">—{{grouping.store}}</view>
                 <view class="grouping-item-price">￥<text class="grouping-item-now-price">{{grouping.price}}</text>
-                  <text class="grouping-item-pre-price">原价：￥{{grouping.pre_price}}</text>
+                  <text class="grouping-item-pre-price">原价：￥{{grouping.origin_price}}</text>
                 </view>
               </view>
             </view>
@@ -31,7 +31,7 @@
               </view>
               <view class="grouping-item-invite">
                 <image src="/images/icon/share.png" mode="widthFix"></image>
-                <button open-type="share" class="grouping-item-button">邀请好友</button>
+                <button open-type="share" class="grouping-item-button" data-id="{{grouping.id}}">邀请好友</button>
               </view>
             </view>
           </view>

@@ -161,6 +161,11 @@ Page({
                             that.setData({
                               buy: true
                             })
+                          },
+                          fail: fail => {
+                            wx.showToast({
+                              title: '取消支付',
+                            })
                           }
                         })
                       } else {

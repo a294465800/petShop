@@ -43,7 +43,7 @@
   <view class="commodity_buy">
     <view class="commodity_buy_btn buy_together" catchtap="buyCommodity" data-id="{{commodity.id}}">
       <view>￥<text class="buy_bt_price ">{{commodity.groupPrice}}35</text></view>
-      <view>一键开团</view>
+      <view>一键拼团</view>
     </view>
   </view>
 

@@ -19,35 +19,53 @@
       </view>
     </view>
     <block wx:if="{{commodity.canGroup}}">
-      <view class="current_group_info">已团121人 ● {{commodity.canGroup}}人团</view>
+      <view class="current_group_info">已团{{commodity.groupCount}}次 ● {{commodity.group}}人团</view>
     </block>
   </view>
   <!--/商品名字价格-->
 
   <!--拼团信息  -->
-  <view class="commodity_group">
-    <view class="commodity_group_logo">
-      <image src="/images/commodity/group.png" mode="aspectFit" class="commodity_icon"></image>
-      <view class="commodity_description_title">正在拼团</view>
-    </view>
-    <view class="commodity_group_list">
-      <view class="commodity_group_item" wx:for="{{groups}}" wx:key="id" wx:for-item="group">
-        <view class="commodity_group_info">
-          <view class="commodity_group_info_imgs">
-            <image src="{{item?item : '/images/commodity/query.png'}}" mode="aspectFill" class="commodity_group_info_img" wx:for="{{group.imgs}}"></image>
+  <block wx:if="{{commodity.canGroup}}">
+    <view class="commodity_group">
+      <view class="commodity_group_logo">
+        <image src="/images/commodity/group.png" mode="aspectFit" class="commodity_icon"></image>
+        <view class="commodity_description_title">正在拼团</view>
+      </view>
+      <view class="commodity_group_list">
+        <block wx:if="{{commodity.groupList.length > 0}}">
+          <view class="commodity_group_item" wx:for="{{commodity.groupList}}" wx:key="id" wx:for-item="group">
+            <view class="commodity_group_info">
+              <view class="commodity_group_info_imgs">
+                <block wx:for="{{group_imgs}}" wx:for-index="group_img">
+                  <block wx:if="{{group_img < commodity.group && group_img < 3}}">
+                    <block wx:if="{{group.userImg[group_img]}}">
+                      <image src="{{group.userImg[group_img]}}" mode="aspectFill" class="commodity_group_info_img"></image>
+                    </block>
+                    <block wx:else>
+                      <image src="/images/commodity/query.png" mode="aspectFill" class="commodity_group_info_img"></image>
+                    </block>
+                  </block>
+                </block>
+              </view>
+              <view class="commodity_group_info_time">还差{{group.limit}}人，剩余 {{left_time[index]}}</view>
+            </view>
+            <view class="commodity_group_btn" catchtap="joinGroup" data-id="{{group.id}}">立即参团</view>
           </view>
-          <view class="commodity_group_info_time">还差{{group.people}}人，剩余 {{left_time[index]}}</view>
+        </block>
+        <block wx:else>
+          <view class="tips">—— 暂时没有拼团信息 ——</view>
+        </block>
+      </view>
+      <block wx:if="{{commodity.groupList.length > 0}}">
+        <view class="commodity_description_info">
+          <view class="commodity_group_more_btn" catchtap="goToAllComments" data-id="{{commodity.id}}">
+            <text>查看更多</text>
+            <image src="/images/icon/back-icon.png" mode="aspectFill" class="commodity_comment_more_btn_img"></image>
+          </view>
         </view>
-        <view class="commodity_group_btn" catchtap="joinGroup">立即参团</view>
-      </view>
+      </block>
     </view>
-    <view class="commodity_description_info">
-      <view class="commodity_group_more_btn" catchtap="goToAllComments" data-id="{{commodity.id}}">
-        <text>查看更多</text>
-        <image src="/images/icon/back-icon.png" mode="aspectFill" class="commodity_comment_more_btn_img"></image>
-      </view>
-    </view>
-  </view>
+  </block>
   <!--/拼团信息  -->
 
   <!--产品说明-->
@@ -105,7 +123,7 @@
     </block>
     <block wx:else>
       <view class="commodity_buy_btn buy_together disabled">
-         <view class="buy_bt_price">暂无拼团</view>
+        <view class="buy_bt_price">暂无拼团</view>
         <view>敬请等待···</view>
       </view>
     </block>
