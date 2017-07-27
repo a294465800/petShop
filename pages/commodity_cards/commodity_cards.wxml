@@ -14,14 +14,14 @@
       <!--使用中  -->
       <swiper-item>
         <scroll-view scroll-y class="swiper-scroll">
-          <view class="cards-item" wx:for="{{cards}}" wx:key="id" wx:for-item="card_use" catchtap="goToCard" hover-class="push_class" hover-stay-time="150">
+          <view class="cards-item" wx:for="{{cards}}" wx:key="id" wx:for-item="card_use" catchtap="goToCard" hover-class="push_class" hover-stay-time="150" data-id="{{card_use.id}}">
             <image src="{{card_use.img}}" mode="aspectFill" class="cards-item-img"></image>
             <view class="cards-item-content">
-              <view class="cards-item-name">{{card_use.name}}</view>
-              <view class="cards-item-shop">—{{card_use.shop}}</view>
+              <view class="cards-item-name">{{card_use.product}}</view>
+              <view class="cards-item-shop">—{{card_use.store}}</view>
               <view class="cards-item-info">
-                <view class="cards-item-price">￥<text class="cards-item-now-price">{{card_use.price}}</text><text class="cards-item-pre-price">市场价：￥{{card_use.pre_price}}</text></view>
-                <view class="cards-item-time">剩余{{card_use.left}}次</view>
+                <view class="cards-item-price">￥<text class="cards-item-now-price">{{card_use.price}}</text><text class="cards-item-pre-price">原价：￥{{card_use.origin_price}}</text></view>
+                <view class="cards-item-time">剩余{{card_use.times}}次</view>
               </view>
             </view>
           </view>
@@ -33,13 +33,13 @@
       <!--拼团成功  -->
       <swiper-item>
         <scroll-view scroll-y class="swiper-scroll">
-          <view class="cards-item" wx:for="{{cards}}" wx:key="id" wx:for-item="card_use">
-            <image src="{{card_use.img}}" mode="aspectFill" class="cards-item-img"></image>
+          <view class="cards-item" wx:for="{{cards_lost}}" wx:key="id" wx:for-item="card_lost">
+            <image src="{{card_lost.img}}" mode="aspectFill" class="cards-item-img"></image>
             <view class="cards-item-content">
-              <view class="cards-item-name">{{card_use.name}}</view>
-              <view class="cards-item-shop">—{{card_use.shop}}</view>
+              <view class="cards-item-name">{{card_lost.product}}</view>
+              <view class="cards-item-shop">—{{card_lost.store}}</view>
               <view class="cards-item-info">
-                <view class="cards-item-price">￥<text class="cards-item-now-price">{{card_use.price}}</text><text class="cards-item-pre-price">市场价：￥{{card_use.pre_price}}</text></view>
+                <view class="cards-item-price">￥<text class="cards-item-now-price">{{card_lost.price}}</text><text class="cards-item-pre-price">原价：￥{{card_lost.origin_price}}</text></view>
                 <!-- <view class="cards-item-out-time">已失效</view> -->
               </view>
             </view>

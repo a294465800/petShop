@@ -13,7 +13,7 @@
     <view class="commodity_name">{{commodity.title}}</view>
     <view class="commodity_info_sell">
       <!-- <view class="commodity_info_tips">{{comodity.remark}}</view> -->
-      <view class="commodity_price_first">市场价： ￥{{commodity.entity_price}}</view>
+      <view class="commodity_price_first">原价： ￥{{commodity.entity_price}}</view>
       <view class="commodity_info_sellnum">
         <icon type="success" size="13" class="sell_icon" />已售{{commodity.sell}}
       </view>

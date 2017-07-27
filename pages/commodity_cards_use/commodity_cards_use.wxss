@@ -101,3 +101,7 @@
   color: #ff6464;
   font-size: 14px;
 }
+
+.new {
+  color: #ff6464;
+}

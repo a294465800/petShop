@@ -1,50 +1,84 @@
 // commodity_cards_use.js
+let app = getApp()
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
 
-    //模拟数据
-    card_info: {
-      id: 1,
-      img: 'http://img.article.onlylady.com/00/05/90/39/247.jpg',
-      product_name: '美容10次卡',
-      store_name: '萌萌哒宠物店',
-      price: 550,
-      time: '2017-06-08 22:10',
-      number: 1215641542151,
-      left: 9
-    }
+    card_id: 0,
+
+    //接口数据
+    card_info: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    const that = this
+    let id = options.id
+    that.setData({
+      card_id: id
+    })
+    wx.request({
+      url: app.globalData.host + 'V1/my/card/' + id,
+      header: app.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          that.setData({
+            card_info: res.data.data
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '该次数卡不存在。',
+            showCancel: false,
+            success: res => {
+              if (res.confirm) {
+                wx.navigateBack({})
+              }
+            }
+          })
+        }
+      }
+    })
   },
 
   //消耗次数卡
-  cardUse() {
+  cardUse(e) {
     const that = this
+    let id = e.currentTarget.dataset.id
     wx.showModal({
       title: '提示',
       content: '确认消耗一次该次数卡吗？',
       success: res => {
         if (res.confirm) {
-          let tmp = that.data.card_info.left - 1
-          that.setData({
-            'card_info.left': tmp
-          })
-          wx.showToast({
-            title: '消耗成功',
-            mask: true,
-            complete: () => {
-              wx.navigateTo({
-                url: '/pages/commodity_cards/commodity_cards',
-              })
+          wx.request({
+            url: app.globalData.host + 'V1/my/card/use/' + id,
+            header: app.globalData.header,
+            success: res => {
+              if (200 == res.data.code) {
+                let tmp = that.data.card_info.left - 1
+                let date = new Date()
+                that.setData({
+                  'card_info.left': tmp
+                })
+                wx.showModal({
+                  title: '提示',
+                  content: '您已确认使用一次该次数卡，使用时间为：' + date.toLocaleString(),
+                  showCancel: false,
+                  success: res => {
+                    if(res.confirm){
+                      wx.navigateBack({})
+                    }
+                  }
+                })
+              } else {
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.msg,
+                })
+              }
             }
           })
         }

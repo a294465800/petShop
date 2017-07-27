@@ -20,64 +20,45 @@ Page({
     animationNav: {},
     current: 0,
 
-    //模拟数据
-    cards: [
-      {
-        id: 0,
-        name: '美容次数卡',
-        shop: '萌萌哒宠物店',
-        price: 450,
-        pre_price: 555,
-        left: 8,
-        img: 'http://img.article.onlylady.com/00/05/90/39/247.jpg'
-      },
-      {
-        id: 1,
-        name: '洗澡次数卡',
-        shop: '萌萌哒宠物店',
-        price: 4050,
-        pre_price: 5085,
-        left: 2,
-        img: 'http://img.article.onlylady.com/00/05/90/39/247.jpg'
-      },
-      {
-        id: 2,
-        name: '美容次数卡美容次数卡美容次数卡',
-        shop: '萌萌哒宠物店',
-        price: 666,
-        pre_price: 690,
-        left: 10,
-        img: 'http://img.article.onlylady.com/00/05/90/39/247.jpg'
-      },
-      {
-        id: 3,
-        name: '美容次数卡',
-        shop: '萌萌哒宠物店',
-        price: 450,
-        pre_price: 555,
-        left: 8,
-        img: 'http://img.article.onlylady.com/00/05/90/39/247.jpg'
-      },
-      {
-        id: 4,
-        name: '美容次数卡',
-        shop: '萌萌哒宠物店萌萌哒宠物店萌萌哒宠物店',
-        price: 40,
-        pre_price: 55,
-        left: 8,
-        img: 'http://img.article.onlylady.com/00/05/90/39/247.jpg'
-      }]
+    //接口数据
+    cards: null,
+    cards_lost: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+  },
+  onShow() {
+    const that = this
+    that.firstRequest()
+  },
+
+  //初次请求封装
+  firstRequest() {
+    const that = this
     wx.request({
       url: app.globalData.host + 'V1/my/card',
       header: app.globalData.header,
       success: res => {
-        console.log(res)
+        if (200 == res.data.code) {
+          that.setData({
+            cards: res.data.data
+          })
+        }
+      }
+    })
+
+    wx.request({
+      url: app.globalData.host + 'V1/my/card/?state=2',
+      header: app.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          that.setData({
+            cards_lost: res.data.data
+          })
+        }
       }
     })
   },
@@ -114,12 +95,13 @@ Page({
   },
 
   //次数卡跳转
-  goToCard(){
+  goToCard(e) {
+    let id = e.currentTarget.dataset.id
     if (!app.globalData.userInfo) {
       app.goToTelInput()
     } else {
       wx.navigateTo({
-        url: '/pages/commodity_cards_use/commodity_cards_use',
+        url: '/pages/commodity_cards_use/commodity_cards_use?id=' + id,
       })
     }
   }

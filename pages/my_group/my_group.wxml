@@ -21,7 +21,7 @@
                 <view class="grouping-item-name">{{grouping.name}}</view>
                 <view class="grouping-item-shop">—{{grouping.shop}}</view>
                 <view class="grouping-item-price">￥<text class="grouping-item-now-price">{{grouping.price}}</text>
-                  <text class="grouping-item-pre-price">市场价：￥{{grouping.pre_price}}</text>
+                  <text class="grouping-item-pre-price">原价：￥{{grouping.pre_price}}</text>
                 </view>
               </view>
             </view>
@@ -50,7 +50,7 @@
                 <view class="grouping-item-name">{{grouping.name}}</view>
                 <view class="grouping-item-shop">—{{grouping.shop}}</view>
                 <view class="grouping-item-price">￥<text class="grouping-item-now-price">{{grouping.price}}</text>
-                  <text class="grouping-item-pre-price">市场价：￥{{grouping.pre_price}}</text>
+                  <text class="grouping-item-pre-price">原价：￥{{grouping.pre_price}}</text>
                 </view>
               </view>
             </view>

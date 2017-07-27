@@ -8,7 +8,7 @@
       <view class="commodity-item-shop">—{{commodity.shop}}</view>
       <view class="commodity-item-price">
         <view>￥<text class="commodity-item-now-price">{{commodity.price}}</text>
-          <text class="commodity-item-pre-price">市场价：￥{{commodity.pre_price}}</text>
+          <text class="commodity-item-pre-price">原价：￥{{commodity.pre_price}}</text>
         </view>
         <view class="commodity-item-number">{{commodity.number}}人团</view>
       </view>

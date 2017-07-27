@@ -6,7 +6,7 @@
     <view class="commodity-item-content">
       <view class="commodity-item-name">{{commodity.name}}</view>
       <view class="commodity-item-price">￥<text class="commodity-item-now-price">{{commodity.price}}</text>
-        <text class="commodity-item-pre-price">市场价：￥{{commodity.pre_price}}</text>
+        <text class="commodity-item-pre-price">原价：￥{{commodity.pre_price}}</text>
       </view>
     </view>
   </view>
@@ -39,7 +39,7 @@
 
   <view class="commodity-buy">
     <view class="commodity-item-price">￥<text class="commodity-item-now-price">{{commodity.price}}</text>
-      <text class="commodity-item-pre-price">市场价：￥{{commodity.pre_price}}</text>
+      <text class="commodity-item-pre-price">原价：￥{{commodity.pre_price}}</text>
     </view>
     <view class="commodity-buy-btn" catchtap="buyCommodity" data-id="{{commodity_id}}">立即下单</view>
   </view>
