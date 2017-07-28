@@ -89,21 +89,9 @@ Page({
       star_count: arr
     })
 
-    app.getSetting((userInfo) => {
-      that.setData({
-        userInfo: userInfo
-      })
+    app.nowLogin(() => {
       that.requestAll()
     })
-  },
-
-  onShow() {
-    const that = this
-    if (!that.data.userInfo && app.globalData.userInfo) {
-      that.setData({
-        userInfo: app.globalData.userInfo
-      })
-    }
   },
 
   //请求第一页数据函数
@@ -194,13 +182,9 @@ Page({
   //分享
   onShareAppMessage(option) {
     const that = this
-    // console.log(option, 'option')
     return {
       title: '小主帮' + that.data.store.name,
       path: '/pages/index/index',
-      // success: (res) => {
-      //   console.log(res, 'success')
-      // }
     }
   },
 
@@ -285,7 +269,7 @@ Page({
         if (200 == res.data.code) {
           let likes = that.data.moments[index].likes
           let like_temp = "moments[" + index + '].likes'
-          let nickName = that.data.userInfo.nickName
+          let nickName = app.globalData.userInfo.nickName
 
           if (res.data.data == 1) {
             likes.unshift(nickName)
