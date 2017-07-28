@@ -85,10 +85,6 @@
   position: relative;
 }
 
-.coupon_item:first-child {
-  margin-top: 30rpx;
-}
-
 .coupon_item_top {
   display: flex;
   flex-direction: row;

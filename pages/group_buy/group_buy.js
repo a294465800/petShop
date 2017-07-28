@@ -10,24 +10,10 @@ Page({
   data: {
 
     //倒计时
-    // left_time: [],
+    left_time: null,
+    //接口数据
+    commodity: null,
 
-    commodity: {
-      id: 1,
-      name: '宠物洗澡',
-      shop: '萌萌哒宠物店',
-      time: '20:11:31',
-      left: 1,
-      number: 3,
-      imgs: [
-        'https://media.cool3c.com/files/styles/rs-medium-500/public/flickr/4/3381/3612331019_e619b60349_o.jpg',
-        'https://media.cool3c.com/files/styles/rs-medium-500/public/flickr/4/3381/3612331019_e619b60349_o.jpg',
-        'https://media.cool3c.com/files/styles/rs-medium-500/public/flickr/4/3381/3612331019_e619b60349_o.jpg'
-      ],
-      price: 55,
-      pre_price: 60,
-      img: 'https://media.cool3c.com/files/styles/rs-medium-500/public/flickr/4/3381/3612331019_e619b60349_o.jpg'
-    },
   },
 
   /**
@@ -35,7 +21,19 @@ Page({
    */
   onLoad(options) {
     const that = this
-    that.getIntervalTime()
+    let id = options.id
+    wx.request({
+      url: app.globalData.host + 'V1/group/' + id,
+      header: app.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          that.setData({
+            commodity: res.data.data
+          })
+          that.getIntervalTime()
+        }
+      }
+    })
   },
 
   onHide() {
@@ -43,8 +41,9 @@ Page({
     clearInterval(timer)
   },
 
-  onShow() {
+  onShow(o) {
     const that = this
+    console.log(o, 'show')
     that.resetTimeData()
   },
 
@@ -55,11 +54,27 @@ Page({
   //压入时间
   getIntervalTime() {
     const that = this
-    let current_time = that.data.commodity.time
-    let tmp = current_time.split(':')
-    clock = current_time
-    clock_time = tmp[0] * 3600 + tmp[1] * 60 + tmp[2] * 1
+    let current_time = that.data.commodity.lave
+    clock = that.formatTime(current_time)
+    clock_time = current_time
     that.setGroupInterval()
+  },
+
+  //格式化时间
+  formatTime(time) {
+    let h = parseInt(time / 3600)
+    let m = parseInt((time - h * 3600) / 60)
+    let s = (time - h * 3600) % 60
+    if (h < 10) {
+      h = "0" + h
+    }
+    if (m < 10) {
+      m = "0" + m
+    }
+    if (s < 10) {
+      s = "0" + s
+    }
+    return (h + ":" + m + ":" + s)
   },
 
   //设置倒计时
@@ -67,25 +82,12 @@ Page({
     const that = this
 
     //计算时间，保存到全局变量clock和clock_time中
-    setInterval(() => {
-      clock_time = clock_time - 1
-      let h = parseInt(clock_time / 3600)
-      let m = parseInt((clock_time - h * 3600) / 60)
-      let s = (clock_time - h * 3600) % 60
-      if (h < 10) {
-        h = "0" + h
-      }
-      if (m < 10) {
-        m = "0" + m
-      }
-      if (s < 10) {
-        s = "0" + s
-      }
-      clock = h + ":" + m + ":" + s
-    }, 1000)
-
+    setInterval(
+      () => {
+        clock = that.formatTime(clock_time--)
+      }, 1000)
     that.setData({
-      'commodity.time': clock
+      left_time: clock
     })
   },
 
@@ -94,11 +96,11 @@ Page({
     const that = this
     //每秒只重设一次data
     that.setData({
-      'commodity.time': clock
+      left_time: clock
     })
     timer = setInterval(() => {
       that.setData({
-        'commodity.time': clock
+        left_time: clock
       })
     }, 1000)
   },
@@ -158,9 +160,6 @@ Page({
                             wx.showToast({
                               title: '参团成功',
                             })
-                            that.setData({
-                              buy: true
-                            })
                           },
                           fail: fail => {
                             wx.showToast({
@@ -178,8 +177,9 @@ Page({
                     }
                   })
                 } else {
-                  wx.showToast({
-                    title: '参团失败',
+                  wx.showModal({
+                    title: '提示',
+                    content: res.data.msg,
                   })
                 }
               }

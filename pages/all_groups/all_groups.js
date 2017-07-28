@@ -41,6 +41,11 @@ Page({
     })
   },
 
+  onShow(){
+    const that = this
+    that.resetTimeData()
+  },
+
   //压入时间
   getIntervalTime() {
     const that = this
@@ -88,9 +93,18 @@ Page({
     that.setData({
       left_time: clock
     })
+  },
+
+  //重设data计时器
+  resetTimeData() {
+    const that = this
+    //每秒只重设一次data
+    that.setData({
+      'commodity.time': clock
+    })
     timer = setInterval(() => {
       that.setData({
-        left_time: clock
+        'commodity.time': clock
       })
     }, 1000)
   },

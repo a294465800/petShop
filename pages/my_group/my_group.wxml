@@ -43,14 +43,14 @@
       <!--拼团成功  -->
       <swiper-item>
         <scroll-view scroll-y class="swiper-scroll">
-          <view class="grouping-item" wx:for="{{grouping}}" wx:for-item="grouping" wx:key="id">
+          <view class="grouping-item" wx:for="{{group_success}}" wx:for-item="grouping" wx:key="id">
             <view class="grouping-item-top">
               <image src="{{grouping.img}}" mode="aspectFill" class="grouping-item-img"></image>
               <view class="grouping-item-content">
-                <view class="grouping-item-name">{{grouping.name}}</view>
-                <view class="grouping-item-shop">—{{grouping.shop}}</view>
+                <view class="grouping-item-name">{{grouping.product}}</view>
+                <view class="grouping-item-shop">—{{grouping.store}}</view>
                 <view class="grouping-item-price">￥<text class="grouping-item-now-price">{{grouping.price}}</text>
-                  <text class="grouping-item-pre-price">原价：￥{{grouping.pre_price}}</text>
+                  <text class="grouping-item-pre-price">原价：￥{{grouping.origin_price}}</text>
                 </view>
               </view>
             </view>

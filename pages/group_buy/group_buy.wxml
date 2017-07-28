@@ -2,13 +2,13 @@
 <view class="container">
   <!--商品  -->
   <view class="commodity-item">
-    <image src="{{commodity.img}}" mode="aspectFill" class="commodity-item-img"></image>
+    <image src="{{commodity.product_img}}" mode="aspectFill" class="commodity-item-img"></image>
     <view class="commodity-item-content">
-      <view class="commodity-item-name">{{commodity.name}}</view>
-      <view class="commodity-item-shop">—{{commodity.shop}}</view>
+      <view class="commodity-item-name">{{commodity.product}}</view>
+      <view class="commodity-item-shop">—{{commodity.store}}</view>
       <view class="commodity-item-price">
         <view>￥<text class="commodity-item-now-price">{{commodity.price}}</text>
-          <text class="commodity-item-pre-price">原价：￥{{commodity.pre_price}}</text>
+          <text class="commodity-item-pre-price">原价：￥{{commodity.origin_price}}</text>
         </view>
         <view class="commodity-item-number">{{commodity.number}}人团</view>
       </view>
@@ -18,9 +18,9 @@
 
   <!--参团人员  -->
   <view class="commodity-group-people">
-    <view class="commodity-group-title">· · · · 还差{{commodity.left}}人，仅剩 {{commodity.time}} · · · ·</view>
+    <view class="commodity-group-title">· · · · 还差{{commodity.limit}}人，仅剩 {{left_time}} · · · ·</view>
     <view class="commodity-group-imgs">
-      <image src="{{item}}" class="commodity-group-img" mode="aspectFill" wx:for="{{commodity.imgs}}" wx:key="*this"></image>
+      <image src="{{item}}" class="commodity-group-img" mode="aspectFill" wx:for="{{commodity.userImg}}" wx:key="*this"></image>
     </view>
   </view>
   <!--/参团人员  -->
@@ -42,7 +42,7 @@
 
   <view class="commodity_buy">
     <view class="commodity_buy_btn buy_together" catchtap="buyCommodity" data-id="{{commodity.id}}">
-      <view>￥<text class="buy_bt_price ">{{commodity.groupPrice}}35</text></view>
+      <view>￥<text class="buy_bt_price ">{{commodity.price}}</text></view>
       <view>一键拼团</view>
     </view>
   </view>
