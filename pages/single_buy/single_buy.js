@@ -4,9 +4,6 @@ let date = new Date()
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     commodity_id: 0,
 
@@ -23,32 +20,6 @@ Page({
     //接口数据
     commodity: null,
 
-    //模拟数据
-    // commodity: {
-    //   id: 1,
-    //   name: '宠物洗澡',
-    //   price: 55,
-    //   pre_price: 60,
-    //   img: 'https://media.cool3c.com/files/styles/rs-medium-500/public/flickr/4/3381/3612331019_e619b60349_o.jpg'
-    // },
-
-    // coupons: [
-    //   {
-    //     id: 1,
-    //     name: '商家优惠券：萌萌哒宠物店',
-    //     price: 5
-    //   },
-    //   {
-    //     id: 2,
-    //     name: '洗澡优惠券',
-    //     price: 2
-    //   },
-    //   {
-    //     id: 3,
-    //     name: '商家优惠券：萌萌哒宠物店',
-    //     price: 8
-    //   },
-    // ]
   },
 
   /**

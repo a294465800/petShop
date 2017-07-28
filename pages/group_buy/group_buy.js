@@ -109,13 +109,15 @@ Page({
   buyCommodity(e) {
     const that = this
     let timestamp = new Date().getTime()
-    let product_id = e.currentTarget.dataset.id
+    let group_id = e.currentTarget.dataset.id
+    let product_id = that.data.commodity.product_id
     if (!app.globalData.userInfo) {
       app.goToTelInput()
     } else {
       wx.showLoading({
         title: '支付中',
       })
+
       wx.request({
         url: app.globalData.host + 'order/make',
         header: app.globalData.header,
@@ -126,64 +128,43 @@ Page({
               order_id: order_id
             })
             wx.request({
-              url: app.globalData.host + 'V1/make/group',
+              url: app.globalData.host + 'order/pay',
               header: app.globalData.header,
+              method: 'POST',
               data: {
-                product_id: product_id
+                product_id: product_id,
+                group_id: group_id,
+                type: 2,
+                number: order_id
               },
               success: res => {
+                wx.hideLoading()
                 if (200 == res.data.code) {
-                  let group_id = res.data.data
-                  that.setData({
-                    group_id: group_id
-                  })
-                  wx.request({
-                    url: app.globalData.host + 'order/pay',
-                    header: app.globalData.header,
-                    method: 'POST',
-                    data: {
-                      product_id: product_id,
-                      group_id: group_id,
-                      type: 2,
-                      number: order_id
-                    },
-                    success: res => {
-                      wx.hideLoading()
-                      if (200 == res.data.code) {
-                        wx.requestPayment({
-                          timeStamp: res.data.data.timeStamp,
-                          nonceStr: res.data.data.nonceStr,
-                          package: res.data.data.package,
-                          signType: res.data.data.signType,
-                          paySign: res.data.data.paySign,
-                          success: rs => {
-                            wx.showToast({
-                              title: '参团成功',
-                            })
-                          },
-                          fail: fail => {
-                            wx.showToast({
-                              title: '取消支付',
-                            })
-                          }
-                        })
-                      } else {
-                        wx.showModal({
-                          title: '提示',
-                          content: res.data.msg,
-                          showCancel: false
-                        })
-                      }
+                  wx.requestPayment({
+                    timeStamp: res.data.data.timeStamp,
+                    nonceStr: res.data.data.nonceStr,
+                    package: res.data.data.package,
+                    signType: res.data.data.signType,
+                    paySign: res.data.data.paySign,
+                    success: rs => {
+                      wx.showToast({
+                        title: '开团成功',
+                      })
+                      that.setData({
+                        buy: true
+                      })
                     }
                   })
                 } else {
                   wx.showModal({
                     title: '提示',
                     content: res.data.msg,
+                    showCancel: false
                   })
                 }
               }
             })
+
           }
         }
       })
