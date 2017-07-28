@@ -33,43 +33,6 @@ Page({
     //倒计时
     left_time: [],
 
-    //模拟数据
-    groups: [
-      {
-        id: 1,
-        number: 3,
-        people: 1,
-        time: '20:16:13',
-        imgs: [
-          'http://punchline.asia/wp-content/uploads/2016/07/%E5%8D%9A%E7%BE%8E-1024x485.jpg',
-          'http://punchline.asia/wp-content/uploads/2016/07/%E5%8D%9A%E7%BE%8E-1024x485.jpg',
-          ''
-        ],
-      },
-      {
-        id: 2,
-        number: 3,
-        people: 2,
-        time: '10:16:13',
-        imgs: [
-          'http://punchline.asia/wp-content/uploads/2016/07/%E5%8D%9A%E7%BE%8E-1024x485.jpg',
-          'http://punchline.asia/wp-content/uploads/2016/07/%E5%8D%9A%E7%BE%8E-1024x485.jpg',
-          ''
-        ],
-      },
-      {
-        id: 3,
-        number: 3,
-        people: 1,
-        time: '22:11:13',
-        imgs: [
-          'http://punchline.asia/wp-content/uploads/2016/07/%E5%8D%9A%E7%BE%8E-1024x485.jpg',
-          'http://punchline.asia/wp-content/uploads/2016/07/%E5%8D%9A%E7%BE%8E-1024x485.jpg',
-          ''
-        ],
-      }
-    ],
-
     //接口数据
     comments: null,
     commodity: null,
@@ -121,7 +84,6 @@ Page({
     let length = that.data.commodity.groupList.length
     for (let i = 0; i < length; i++) {
       let current_time = that.data.commodity.groupList[i].lave
-      // let tmp = current_time.split(':')
       clock.push(that.formatTime(current_time))
       clock_time.push(current_time)
     }
@@ -343,6 +305,16 @@ Page({
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/group_buy/group_buy?id=' + id,
+    })
+  },
+
+  //查看所有拼团
+  goToAllGroups(e) {
+    const that = this
+    let id = e.currentTarget.dataset.id
+    let limit = e.currentTarget.dataset.limit
+    wx.navigateTo({
+      url: '/pages/all_groups/all_groups?id=' + id + '&limit=' + limit,
     })
   }
 })

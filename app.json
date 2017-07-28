@@ -18,7 +18,8 @@
     "pages/commodity/commodity",
     "pages/mine/mine",
     "pages/shop/shop",
-    "pages/points/points"
+    "pages/points/points",
+    "pages/all_groups/all_groups"
   ],
   "window": {
     "backgroundTextStyle": "light",

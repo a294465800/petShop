@@ -58,7 +58,7 @@
       </view>
       <block wx:if="{{commodity.groupList.length > 0}}">
         <view class="commodity_description_info">
-          <view class="commodity_group_more_btn" catchtap="goToAllComments" data-id="{{commodity.id}}">
+          <view class="commodity_group_more_btn" catchtap="goToAllGroups" data-id="{{commodity.id}}" data-limit="{{commodity.group}}">
             <text>查看更多</text>
             <image src="/images/icon/back-icon.png" mode="aspectFill" class="commodity_comment_more_btn_img"></image>
           </view>
