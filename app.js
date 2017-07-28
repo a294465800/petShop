@@ -45,7 +45,6 @@ App({
           wx.showLoading({
             title: '登录中',
           })
-          console.log('yes')
           //调用登录接口
           wx.login({
             withCredentials: true,
@@ -170,6 +169,10 @@ App({
   //如果已授权，直接登录，否则，不做操作
   nowLogin(cb){
     const that = this
+    wx.showLoading({
+      title: '登录中',
+      mask: true
+    })
     wx.login({
       withCredentials: true,
       success: rs => {

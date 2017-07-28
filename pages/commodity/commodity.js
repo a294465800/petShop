@@ -156,20 +156,6 @@ Page({
       setInterval(
         () => {
           ((index) => {
-            // clock_time[index] = clock_time[index] - 1
-            // let h = parseInt(clock_time[index] / 3600)
-            // let m = parseInt((clock_time[index] - h * 3600) / 60)
-            // let s = (clock_time[index] - h * 3600) % 60
-            // if (h < 10) {
-            //   h = "0" + h
-            // }
-            // if (m < 10) {
-            //   m = "0" + m
-            // }
-            // if (s < 10) {
-            //   s = "0" + s
-            // }
-            // clock[index] = h + ":" + m + ":" + s
             clock[index] = that.formatTime(clock_time[index]--)
           })(i)
         }, 1000)

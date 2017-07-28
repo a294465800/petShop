@@ -83,10 +83,6 @@
   background-color: #fff;
 }
 
-.grouping-item:first-child {
-  margin-top: 30rpx;
-}
-
 .grouping-item:last-child {
   margin-bottom: 100rpx;
 }

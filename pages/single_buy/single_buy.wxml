@@ -6,7 +6,7 @@
     <view class="commodity-item-content">
       <view class="commodity-item-name">{{commodity.name}}</view>
       <view class="commodity-item-price">￥<text class="commodity-item-now-price">{{commodity.price}}</text>
-        <text class="commodity-item-pre-price">原价：￥{{commodity.pre_price}}</text>
+        <text class="commodity-item-pre-price">原价：￥{{commodity.origin_price}}</text>
       </view>
     </view>
   </view>
@@ -16,14 +16,14 @@
   <view class="commodity-coupon">
     <view class="commodity-coupon-titile">可用优惠券</view>
     <view class="commodity-coupon-list">
-      <block wx:if="{{coupons.length > 0}}">
+      <block wx:if="{{commodity.coupons.length > 0}}">
         <radio-group bindchange="radioChange">
-          <label wx:for="{{coupons}}" wx:for-item="coupon">
+          <label wx:for="{{commodity.coupons}}" wx:for-item="coupon">
           <view class="commodity-coupon-item">
             <view class="commodity-coupon-item-content">
               <radio value="{{coupon.id}}" color="#ff6464"/>{{coupon.name}}
             </view>
-            <view class="commodity-coupon-item-price">-￥5</view>
+            <view class="commodity-coupon-item-price">{{coupon.price}}</view>
           </view> 
         </label>
         </radio-group>
@@ -39,7 +39,7 @@
 
   <view class="commodity-buy">
     <view class="commodity-item-price">￥<text class="commodity-item-now-price">{{commodity.price}}</text>
-      <text class="commodity-item-pre-price">原价：￥{{commodity.pre_price}}</text>
+      <text class="commodity-item-pre-price">原价：￥{{commodity.origin_price}}</text>
     </view>
     <view class="commodity-buy-btn" catchtap="buyCommodity" data-id="{{commodity_id}}">立即下单</view>
   </view>
