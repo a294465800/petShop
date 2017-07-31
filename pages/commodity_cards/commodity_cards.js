@@ -169,5 +169,6 @@ Page({
     this.setData({
       close: {}
     })
+    wx.stopPullDownRefresh()
   }
 })

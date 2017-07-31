@@ -22,6 +22,9 @@ Page({
     //关闭触底刷新
     close: {},
 
+    //避免重复触发
+    flag: false,
+
     current: 0,
     animationNav: {},
 
@@ -109,6 +112,9 @@ Page({
   //优惠券的触底刷新
   toBottomUse(e) {
     const that = this
+    if (that.data.flag) {
+      return false
+    }
     const state = e.currentTarget.dataset.state
     let close = that.data.close[state] || false
     if (!state || close) {
@@ -126,6 +132,9 @@ Page({
           let data = res.data.data
           const coupons = that.data.coupons[state]
           wx.hideLoading()
+          that.setData({
+            flag: false
+          })
           if (0 === data.length) {
             let tmp = 'close.' + state
             that.setData({
@@ -137,11 +146,18 @@ Page({
         }
       }
     })
+
+    that.setData({
+      flag: true
+    })
   },
 
   //下拉刷新
   onPullDownRefresh() {
     this.getCoupons()
+    this.setData({
+      close: {}
+    })
     wx.stopPullDownRefresh()
   }
 
