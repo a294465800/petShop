@@ -61,7 +61,7 @@
                 </view>
                 <view class="grouping-item-invite">
                   <image src="/images/icon/more.png" mode="widthFix"></image>
-                  <button class="grouping-item-button" catchtap="goToOrder" data-id="{{grouping.id}}">查看详情</button>
+                  <button class="grouping-item-button" catchtap="goToOrder" data-id="{{grouping.number}}">查看详情</button>
                 </view>
               </view>
             </view>

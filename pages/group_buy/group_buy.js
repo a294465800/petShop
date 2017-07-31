@@ -16,9 +16,6 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     const that = this
     let id = options.id
@@ -43,9 +40,6 @@ Page({
 
   onShow() {
     const that = this
-    for(let i in timer){
-      clearInterval(timer[i])
-    }
     that.setGroupInterval()
     that.resetTimeData()
   },
@@ -60,7 +54,6 @@ Page({
     let current_time = that.data.commodity.lave
     clock = that.formatTime(current_time)
     clock_time = current_time
-    that.setGroupInterval()
   },
 
   //格式化时间
@@ -83,6 +76,10 @@ Page({
   //设置倒计时
   setGroupInterval() {
     const that = this
+
+    for (let i in timer) {
+      clearInterval(timer[i])
+    }
 
     //计算时间，保存到全局变量clock和clock_time中
     timer['count'] = setInterval(

@@ -79,9 +79,6 @@ Page({
 
   onShow() {
     const that = this
-    for (let i in timer) {
-      clearInterval(timer[i])
-    }
     that.setGroupInterval()
     that.resetTimeData()
   },
@@ -92,6 +89,7 @@ Page({
 
   //压入时间
   getIntervalTime() {
+    console.log(1)
     const that = this
     let length = that.data.commodity.groupList.length
     for (let i = 0; i < length; i++) {
@@ -105,7 +103,6 @@ Page({
       clock.push(that.formatTime(current_time))
       clock_time.push(current_time)
     }
-    that.setGroupInterval()
   },
 
   //格式化时间
@@ -129,6 +126,11 @@ Page({
   setGroupInterval() {
     const that = this
     let length = clock_time.length
+
+    console.log(timer, length)
+    for (let i in timer) {
+      clearInterval(timer[i])
+    }
 
     for (let i = 0; i < length; i++) {
 
