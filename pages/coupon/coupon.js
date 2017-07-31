@@ -16,30 +16,18 @@ Page({
       }
     ],
 
+    //刷新页数
+    page: {},
+
+    //关闭触底刷新
+    close: {},
+
     current: 0,
     animationNav: {},
 
     //接口数据
     coupons_lost: null,
     coupons: null,
-
-    //模拟数据
-    // coupons: [
-    //   {
-    //     id: 0,
-    //     name: '宠物洗澡通用券',
-    //     tip: '在线支付专享',
-    //     price: 10,
-    //     time: '2017.06.24-2017.07.15'
-    //   },
-    //   {
-    //     id: 1,
-    //     name: '宠物洗澡通用券宠物洗澡通用券宠物洗澡通用券',
-    //     tip: '在线支付专享',
-    //     price: 15,
-    //     time: '2017.06.24-2017.07.15'
-    //   }
-    // ]
   },
 
   onLoad(options) {
@@ -58,9 +46,7 @@ Page({
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          that.setData({
-            coupons: res.data.data
-          })
+          that.saveCoupons([], 1, res)
         }
       }
     })
@@ -69,11 +55,21 @@ Page({
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          that.setData({
-            coupons_lost: res.data.data
-          })
+          that.saveCoupons([], 1, res)
         }
       }
+    })
+  },
+
+  //优惠券保存函数
+  saveCoupons(res, page, newRes) {
+    const that = this
+    const state = newRes.data.data[0].state
+    let tmp = 'page.' + state
+    let tmp2 = 'coupons.' + state
+    that.setData({
+      [tmp2]: [...res, ...newRes.data.data],
+      [tmp]: page
     })
   },
 
@@ -107,5 +103,35 @@ Page({
       current: current
     })
   },
+
+  //可用优惠券的触底刷新
+  toBottomUse(e) {
+    const that = this
+    const state = e.currentTarget.dataset.state
+    let close = that.data.close[state] || false
+    console.log(close)
+    if (!state || close) {
+      return false
+    }
+    let page = that.data.page[state] + 1
+    wx.request({
+      url: app.globalData.host + 'V1/my/coupons?state=' + state + '&page=' + page,
+      header: app.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          let data = res.data.data
+          const coupons = that.data.coupons[state]
+          if (0 === data.length) {
+            let tmp = 'close.' + state
+            that.setData({
+              [tmp]: true
+            })
+            return false
+          }
+          that.saveCoupons(coupons, page, data)
+        }
+      }
+    })
+  }
 
 })

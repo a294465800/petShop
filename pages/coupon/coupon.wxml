@@ -13,9 +13,9 @@
     <swiper current="{{current}}" bindchange="nextPage">
       <!--优惠券列表  -->
       <swiper-item>
-        <scroll-view scroll-y class="swiper-scroll">
-          <block wx:if="{{coupons.length > 0}}">
-            <view class="coupon_item" wx:for="{{coupons}}" wx:key="id" wx:for-item="coupon">
+        <scroll-view scroll-y class="swiper-scroll" bindscrolltolower="toBottomUse" data-state="{{coupons[1][0].state}}">
+          <block wx:if="{{coupons[1].length > 0}}">
+            <view class="coupon_item" wx:for="{{coupons[1]}}" wx:key="id" wx:for-item="coupon">
               <view class="coupon_item_top">
                 <view class="coupon_item_top_price">￥<text class="coupon_item_top_price_num">{{coupon.price}}</text></view>
                 <view class="coupon_item_top_type">
@@ -28,18 +28,18 @@
             </view>
           </block>
           <block wx:else>
-            <view class="coupons_bottom">——— 已加载全部优惠券 ———</view>
+            <view class="tips">—— 暂无优惠券 ——</view>
           </block>
-           <view wx:if="{{coupons.length == 0}}" class="tips">—— 暂无优惠券 ——</view> 
+          <view class="coupons_bottom" hidden="{{!close[1]}}">——— 已加载全部优惠券 ———</view>
         </scroll-view>
       </swiper-item>
       <!--/优惠券列表  -->
 
       <!--拼团成功  -->
       <swiper-item>
-        <scroll-view scroll-y class="swiper-scroll">
-          <block wx:if="{{coupons_lost.length > 0}}">
-            <view class="coupon_item" wx:for="{{coupons_lost}}" wx:key="id" wx:for-item="coupon">
+        <scroll-view scroll-y class="swiper-scroll" bindscrolltolower="toBottomUse" data-state="{{coupons[2][0].state}}">
+          <block wx:if="{{coupons[2].length > 0}}">
+            <view class="coupon_item" wx:for="{{coupons[2]}}" wx:key="id" wx:for-item="coupon">
               <view class="coupon_item_top">
                 <view class="coupon_item_top_price">￥<text class="coupon_item_top_price_num">{{coupon.price}}</text></view>
                 <view class="coupon_item_top_type">
@@ -53,9 +53,9 @@
             </view>
           </block>
           <block wx:else>
-            <view class="coupons_bottom">——— 已加载全部优惠券 ———</view>
+            <view class="tips">—— 暂无优惠券 ——</view>
           </block>
-          <view wx:if="{{coupons_lost.length == 0}}" class="tips">—— 暂无优惠券 ——</view>
+          <view class="coupons_bottom" hidden="{{!close[2]}}">——— 已加载全部优惠券 ———</view>
         </scroll-view>
       </swiper-item>
       <!--/拼团成功  -->
