@@ -11,6 +11,7 @@ Page({
     groups: null,
     group_imgs: [],
     limit: 3,
+    group_id: 0,
     //倒计时
     left_time: [],
   },
@@ -33,7 +34,8 @@ Page({
           that.setData({
             group_imgs: arr2,
             groups: res.data.data,
-            limit: limit
+            limit: limit,
+            group_id: id
           })
           that.getIntervalTime()
         }
@@ -86,6 +88,11 @@ Page({
       setInterval(
         () => {
           ((index) => {
+            if (0 >= clock[index]){
+              wx.redirectTo({
+                url: '/pages/all_groups/all_groups?id=' + that.data.group_id + '&limit=' + that.data.limit,
+              })
+            }
             clock[index] = that.formatTime(clock_time[index]--)
           })(i)
         }, 1000)

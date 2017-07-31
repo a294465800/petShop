@@ -155,6 +155,13 @@ Page({
             return false
           }
           that.saveCards(cards, data, page + 1, state)
+        }else {
+          wx.hideLoading()
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false
+          })
         }
       }
     })

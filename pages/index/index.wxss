@@ -136,7 +136,6 @@
 
 .dynamic_item_function_p_icon {
   width: 30rpx;
-  height: 28rpx;
 }
 
 .dynamic_item_function_p_icon_r {

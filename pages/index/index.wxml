@@ -23,57 +23,62 @@
 
     <!--第一页=>商家动态-->
     <view hidden="{{!(current == 0)}}" class="page">
-      <view class="dynamic_head">——— 商家最新动态 ———</view>
-      <view class="dynamic_item" wx:for="{{moments}}" wx:key="id" wx:for-item="shop">
-        <view class="dynamic_item_head">
-          <image src="{{shop.store_cover}}" class="dynamic_item_head_img" mode="aspectFill"></image>
-          <view>
-            <view class="dynamic_item_head_name">{{shop.store_name}}</view>
-            <view class="dynamic_item_time">{{shop.createtime}}</view>
-          </view>
-        </view>
-        <view class="dynamic_item_message">{{shop.content}}</view>
-        <view class="dynamic_item_pic_list">
-          <image src="{{item}}" mode="aspectFill" class="dynamic_item_pic" wx:for="{{shop.img}}" wx:key="*this" bindtap="preImg" data-imggup="{{shop.img}}" data-url="{{item}}"></image>
-        </view>
-        <view class="dynamic_item_function">
-          <view class="dynamic_item_function_p" catchtap="good" data-id="{{shop.id}}" data-index="{{index}}">
-            <image src="{{shop.isLike == 1?'/images/shop/like_gf.png':'/images/shop/like_g.png'}}" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
-            <view>点赞</view>
-          </view>
-          <view class="dynamic_item_function_p" catchtap="goToComment" data-moment_id="{{shop.id}}" data-comment_id="0">
-            <image src="/images/shop/comment_g.png" mode="aspectFit" class="dynamic_item_function_p_icon"></image>
-            <view>评论</view>
-          </view>
-        </view>
-        <view class="dynamic_item_comments {{shop.comments.length > 0?'':'no_padding'}}">
-          <view class="dynamic_item_love_people" wx:if="{{shop.likes.length > 0}}">
-            <view class="dynamic_item_love_people_name">
-              <image src="/images/shop/like.png" mode="aspectFit" class="dynamic_item_function_p_icon dynamic_item_function_p_icon_r"></image>
-              <block wx:for="{{shop.likes}}" wx:key="*this">
-                <block wx:if="{{index < 7}}">{{item}}、</block>
-                <block wx:elif="{{index == 7}}"><text class="dynamic_likes_more">...等{{shop.likes.length}}人赞</text></block>
-              </block>
+      <block wx:if="{{moments.length}}">
+        <view class="dynamic_head">——— 商家最新动态 ———</view>
+        <view class="dynamic_item" wx:for="{{moments}}" wx:key="id" wx:for-item="shop">
+          <view class="dynamic_item_head">
+            <image src="{{shop.store_cover}}" class="dynamic_item_head_img" mode="aspectFill"></image>
+            <view>
+              <view class="dynamic_item_head_name">{{shop.store_name}}</view>
+              <view class="dynamic_item_time">{{shop.createtime}}</view>
             </view>
           </view>
-          <view class="dynamic_item_comments_list" wx:if="{{shop.comments.length > 0}}">
-            <view class="dynamic_item_comments_item_newest" wx:if="{{shop.comments.length > 0}}">最新热评</view>
-            <view class="dynamic_item_comments_item" wx:for="{{shop.comments}}" hover-class="push_class" hover-stay-time="150" wx:key="*this" data-moment_id="{{shop.id}}" data-comment_id="{{item.id}}" catchtap="{{userInfo.nickName == item.name? '': 'goToComment'}}">
-              <block wx:if="{{index < shop.limit}}">
-                <view class="dynamic_item_comments_item_name">{{item.name}}：<text class="dynamic_item_comments_item_content">{{item.content}}</text></view>
-              </block>
+          <view class="dynamic_item_message">{{shop.content}}</view>
+          <view class="dynamic_item_pic_list">
+            <image src="{{item}}" mode="aspectFill" class="dynamic_item_pic" wx:for="{{shop.img}}" wx:key="*this" bindtap="preImg" data-imggup="{{shop.img}}" data-url="{{item}}"></image>
+          </view>
+          <view class="dynamic_item_function">
+            <view class="dynamic_item_function_p" catchtap="good" data-id="{{shop.id}}" data-index="{{index}}">
+              <image src="{{shop.isLike == 1?'/images/shop/like_gf.png':'/images/shop/like_g.png'}}" mode="widthFix" class="dynamic_item_function_p_icon"></image>
+              <view>点赞</view>
             </view>
-            <block wx:if="{{shop.comments.length > 5}}">
-              <view class="dynamic_item_comments_item_comment_btns">
-                <view class="dynamic_item_comments_item_more" catchtap="getMoreComment" data-index="{{index}}">查看更多</view>
-                <view class="dynamic_item_comments_item_more_hide" wx:if="{{shop.limit > 5}}" catchtap="hideMoreComment" data-index="{{index}}">收起</view>
+            <view class="dynamic_item_function_p" catchtap="goToComment" data-moment_id="{{shop.id}}" data-comment_id="0">
+              <image src="/images/shop/comment_g.png" mode="widthFix" class="dynamic_item_function_p_icon"></image>
+              <view>评论</view>
+            </view>
+          </view>
+          <view class="dynamic_item_comments {{shop.comments.length > 0?'':'no_padding'}}">
+            <view class="dynamic_item_love_people" wx:if="{{shop.likes.length > 0}}">
+              <view class="dynamic_item_love_people_name">
+                <image src="/images/shop/like.png" mode="widthFix" class="dynamic_item_function_p_icon dynamic_item_function_p_icon_r"></image>
+                <block wx:for="{{shop.likes}}" wx:key="*this">
+                  <block wx:if="{{index < 7}}">{{item}}、</block>
+                  <block wx:elif="{{index == 7}}"><text class="dynamic_likes_more">...等{{shop.likes.length}}人赞</text></block>
+                </block>
               </view>
-            </block>
+            </view>
+            <view class="dynamic_item_comments_list" wx:if="{{shop.comments.length > 0}}">
+              <view class="dynamic_item_comments_item_newest" wx:if="{{shop.comments.length > 0}}">最新热评</view>
+              <view class="dynamic_item_comments_item" wx:for="{{shop.comments}}" hover-class="push_class" hover-stay-time="150" wx:key="*this" data-moment_id="{{shop.id}}" data-comment_id="{{item.id}}" catchtap="{{userInfo.nickName == item.name? '': 'goToComment'}}">
+                <block wx:if="{{index < shop.limit}}">
+                  <view class="dynamic_item_comments_item_name">{{item.name}}：<text class="dynamic_item_comments_item_content">{{item.content}}</text></view>
+                </block>
+              </view>
+              <block wx:if="{{shop.comments.length > 5}}">
+                <view class="dynamic_item_comments_item_comment_btns">
+                  <view class="dynamic_item_comments_item_more" catchtap="getMoreComment" data-index="{{index}}">查看更多</view>
+                  <view class="dynamic_item_comments_item_more_hide" wx:if="{{shop.limit > 5}}" catchtap="hideMoreComment" data-index="{{index}}">收起</view>
+                </view>
+              </block>
+            </view>
           </view>
         </view>
-      </view>
-      <view class="dynamic_bottom" hidden="{{!tips_flag[0]}}">加载中</view>
-      <view class="dynamic_bottom" hidden="{{!tips_all[0]}}">——— 已展示全部动态 ———</view>
+        <view class="dynamic_bottom" hidden="{{!tips_flag[0]}}">加载中</view>
+        <view class="dynamic_bottom" hidden="{{!tips_all[0]}}">——— 已展示全部动态 ———</view>
+      </block>
+      <block wx:else>
+        <view class="dynamic_bottom">———— 暂无动态 ————</view>
+      </block>
     </view>
     <!--/第一页=>商家动态-->
 

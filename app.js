@@ -155,6 +155,11 @@ App({
         } else {
           wx.showToast({
             title: '登录失败',
+            complete: rs => {
+              wx.reLaunch({
+                url: '/pages/index/index',
+              })
+            }
           })
         }
       },
