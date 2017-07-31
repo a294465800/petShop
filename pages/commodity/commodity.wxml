@@ -124,7 +124,7 @@
     <block wx:else>
       <view class="commodity_buy_btn buy_together disabled">
         <view class="buy_bt_price">暂无拼团</view>
-        <view>敬请等待···</view>
+        <view>敬请期待···</view>
       </view>
     </block>
   </view>

@@ -41,9 +41,8 @@ Page({
     clearInterval(timer)
   },
 
-  onShow(o) {
+  onShow() {
     const that = this
-    console.log(o, 'show')
     that.resetTimeData()
   },
 
@@ -84,6 +83,24 @@ Page({
     //计算时间，保存到全局变量clock和clock_time中
     setInterval(
       () => {
+        if (0 >= clock) {
+          wx.showModal({
+            title: '提示',
+            content: '该团已关闭',
+            showCancel: false,
+            success: res => {
+              if (res.confirm) {
+                if (wx.navigateBack()) {
+                  wx.navigateBack()
+                } else {
+                  wx.reLaunch({
+                    url: '/pages/index/index'
+                  })
+                }
+              }
+            }
+          })
+        }
         clock = that.formatTime(clock_time--)
       }, 1000)
     that.setData({

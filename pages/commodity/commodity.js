@@ -50,8 +50,14 @@ Page({
       star_count: arr,
       group_imgs: arr2
     })
+    that.firstRequest()
+  },
+
+  //封装初次请求
+  firstRequest() {
+    const that = this
     wx.request({
-      url: app.globalData.host + 'product/' + options.commodity_id,
+      url: app.globalData.host + 'product/' + that.data.commodity_id,
       header: app.globalData.header,
       success: res => {
         that.setData({
@@ -59,7 +65,9 @@ Page({
           imgUrls: res.data.data.img,
           comments: res.data.data.comments
         })
-        that.getIntervalTime()
+        if (res.data.data.groupList) {
+          that.getIntervalTime()
+        }
       }
     })
   },
@@ -83,7 +91,13 @@ Page({
     const that = this
     let length = that.data.commodity.groupList.length
     for (let i = 0; i < length; i++) {
-      let current_time = that.data.commodity.groupList[i].lave
+      let tmp = that.data.commodity.groupList[i].lave
+      if (0 >= tmp) {
+        wx.redirectTo({
+          url: '/pages/all_groups/all_groups?commodity_id=' + that.data.commodity_id,
+        })
+      }
+      let current_time = tmp
       clock.push(that.formatTime(current_time))
       clock_time.push(current_time)
     }
@@ -118,6 +132,11 @@ Page({
       setInterval(
         () => {
           ((index) => {
+            if (0 >= clock[index]) {
+              wx.redirectTo({
+                url: '/pages/all_groups/all_groups?commodity_id=' + that.data.commodity_id,
+              })
+            }
             clock[index] = that.formatTime(clock_time[index]--)
           })(i)
         }, 1000)

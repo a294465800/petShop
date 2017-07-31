@@ -43,7 +43,7 @@ Page({
   },
 
   //封装初次请求
-  firstRequest(){
+  firstRequest() {
     const that = this
     wx.request({
       url: app.globalData.host + 'V1/my/groups',
@@ -85,7 +85,13 @@ Page({
     const that = this
     let length = that.data.grouping.length
     for (let i = 0; i < length; i++) {
-      let current_time = that.data.grouping[i].lave
+      let tmp = that.data.grouping[i].lave
+      if (0 >= tmp) {
+        wx.redirectTo({
+          url: '/pages/my_group/my_group',
+        })
+      }
+      let current_time = tmp
       clock.push(that.formatTime(current_time))
       clock_time.push(current_time)
     }
@@ -93,7 +99,7 @@ Page({
   },
 
   //拼接时间格式
-  formatTime(time){
+  formatTime(time) {
     let h = parseInt(time / 3600)
     let m = parseInt((time - h * 3600) / 60)
     let s = (time - h * 3600) % 60
@@ -115,11 +121,15 @@ Page({
     let length = clock_time.length
 
     for (let i = 0; i < length; i++) {
-
       //计算时间，保存到全局变量clock和clock_time中
       setInterval(
         () => {
           ((index) => {
+            if (0 >= clock[index]) {
+              wx.redirectTo({
+                url: '/pages/my_group/my_group',
+              })
+            }
             clock[index] = that.formatTime(clock_time[index]--)
           })(i)
         }, 1000)
@@ -130,7 +140,7 @@ Page({
   },
 
   //重设data计时器
-  resetTimeData(){
+  resetTimeData() {
     const that = this
     //每秒只重设一次data
     that.setData({
@@ -184,7 +194,7 @@ Page({
   },
 
   //查看拼团详情
-  goToOrder(e){
+  goToOrder(e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/schedule/schedule?id=' + id,
