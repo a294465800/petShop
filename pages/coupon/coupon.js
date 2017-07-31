@@ -48,7 +48,7 @@ Page({
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          that.saveCoupons([], 1, res)
+          that.saveCoupons([], res.data.data, 1, 1)
           wx.hideLoading()
         }
       }
@@ -58,20 +58,19 @@ Page({
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          that.saveCoupons([], 1, res)
+          that.saveCoupons([], res.data.data, 1, 2)
         }
       }
     })
   },
 
   //优惠券保存函数
-  saveCoupons(res, page, newRes) {
+  saveCoupons(old, newRes, page, state) {
     const that = this
-    const state = newRes.data.data[0].state
     let tmp = 'page.' + state
     let tmp2 = 'coupons.' + state
     that.setData({
-      [tmp2]: [...res, ...newRes.data.data],
+      [tmp2]: [...old, ...newRes],
       [tmp]: page
     })
   },
@@ -112,10 +111,12 @@ Page({
     const that = this
     const state = e.currentTarget.dataset.state
     let close = that.data.close[state] || false
-    console.log(close)
     if (!state || close) {
       return false
     }
+    wx.showLoading({
+      title: '加载中',
+    })
     let page = that.data.page[state] + 1
     wx.request({
       url: app.globalData.host + 'V1/my/coupons?state=' + state + '&page=' + page,
@@ -124,6 +125,7 @@ Page({
         if (200 == res.data.code) {
           let data = res.data.data
           const coupons = that.data.coupons[state]
+          wx.hideLoading()
           if (0 === data.length) {
             let tmp = 'close.' + state
             that.setData({
@@ -131,14 +133,14 @@ Page({
             })
             return false
           }
-          that.saveCoupons(coupons, page, data)
+          that.saveCoupons(coupons, data, page, state)
         }
       }
     })
   },
 
   //下拉刷新
-  onPullDownRefresh(){
+  onPullDownRefresh() {
     this.getCoupons()
     wx.stopPullDownRefresh()
   }

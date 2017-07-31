@@ -20,48 +20,62 @@ Page({
     animationNav: {},
     current: 0,
 
+    //请求控制
+    page: {},
+    close: {},
+    //避免重复触发
+    flag: false,
+
     //接口数据
     cards: null,
     cards_lost: null
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
+    this.firstRequest()
   },
   onShow() {
-    const that = this
-    that.firstRequest()
   },
 
   //初次请求封装
   firstRequest() {
     const that = this
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: app.globalData.host + 'V1/my/card',
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          that.setData({
-            cards: res.data.data
-          })
+          wx.hideLoading()
+          that.saveCards([], res.data.data, 1, 1)
         }
       }
     })
 
     wx.request({
-      url: app.globalData.host + 'V1/my/card/?state=2',
+      url: app.globalData.host + 'V1/my/card?state=2',
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          that.setData({
-            cards_lost: res.data.data
-          })
+          that.saveCards([], res.data.data, 1, 2)
         }
       }
     })
   },
+
+  //数据保存函数
+  saveCards(old, newRes, page, state) {
+    const that = this
+    let tmp = 'page.' + state
+    let tmp2 = 'cards.' + state
+    that.setData({
+      [tmp2]: [...old, ...newRes],
+      [tmp]: page
+    })
+  },
+
 
   //导航动画封装
   navAnimation(index) {
@@ -104,5 +118,56 @@ Page({
         url: '/pages/commodity_cards_use/commodity_cards_use?id=' + id,
       })
     }
+  },
+
+  //次数卡的触底刷新
+  toBottomCards(e) {
+    const that = this
+    if (that.data.flag) {
+      return false
+    }
+    const state = e.currentTarget.dataset.state
+    let close = that.data.close[state] || false
+
+    if (close) {
+      return false
+    }
+    let page = that.data.page[state]
+    wx.showLoading({
+      title: '加载中',
+    })
+    wx.request({
+      url: app.globalData.host + 'V1/my/card?state=' + state + '&page=' + (page + 1),
+      header: app.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          let data = res.data.data
+          const cards = that.data.cards[state]
+          wx.hideLoading()
+          that.setData({
+            flag: false
+          })
+          if (0 === data.length) {
+            let tmp = 'close.' + state
+            that.setData({
+              [tmp]: true
+            })
+            return false
+          }
+          that.saveCards(cards, data, page + 1, state)
+        }
+      }
+    })
+    that.setData({
+      flag: true
+    })
+  },
+
+  //下拉刷新
+  onPullDownRefresh() {
+    this.firstRequest()
+    this.setData({
+      close: {}
+    })
   }
 })

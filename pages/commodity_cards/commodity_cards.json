@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "次数卡"
+  "navigationBarTitleText": "次数卡",
+  "backgroundColor": "#eee",
+  "enablePullDownRefresh": true
 }
