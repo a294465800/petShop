@@ -6,8 +6,16 @@ Page({
     points: 0
   },
 
-  onLoad(options) {
+  onLoad() {
+    this.firstRequset()
+  },
+
+  //请求封装
+  firstRequset(){
     const that = this
+    wx.showToast({
+      title: '加载中',
+    })
     wx.request({
       url: app.globalData.host + 'member/point',
       header: app.globalData.header,
@@ -16,9 +24,16 @@ Page({
           that.setData({
             points: res.data.data
           })
+          wx.hideLoading()
         }
       }
     })
   },
+
+  //下拉刷新
+  onPullDownRefresh() {
+    this.firstRequset()
+    wx.stopPullDownRefresh()
+  }
 
 })

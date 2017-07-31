@@ -31,22 +31,25 @@ Page({
   },
 
   onLoad(options) {
+    this.getCoupons()
   },
 
   onShow() {
-    const that = this
-    that.getCoupons()
   },
 
   //优惠券请求封装
   getCoupons() {
     const that = this
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: app.globalData.host + 'V1/my/coupons',
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
           that.saveCoupons([], 1, res)
+          wx.hideLoading()
         }
       }
     })
@@ -104,7 +107,7 @@ Page({
     })
   },
 
-  //可用优惠券的触底刷新
+  //优惠券的触底刷新
   toBottomUse(e) {
     const that = this
     const state = e.currentTarget.dataset.state
@@ -132,6 +135,12 @@ Page({
         }
       }
     })
+  },
+
+  //下拉刷新
+  onPullDownRefresh(){
+    this.getCoupons()
+    wx.stopPullDownRefresh()
   }
 
 })
