@@ -6,6 +6,7 @@ Page({
 
   data: {
     commodity_id: 0,
+    coupon_id: 0,
 
     //时间选择期
     date: '日期',
@@ -13,6 +14,7 @@ Page({
     today_year: date.getFullYear(),
     real_date: null,
     buy: false,
+    end_price: null,
 
     //下单操作
     order_id: null,
@@ -22,9 +24,6 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     const that = this
     const id = options.id
@@ -32,13 +31,37 @@ Page({
       url: app.globalData.host + 'V1/prepay/' + id,
       header: app.globalData.header,
       success: res => {
-        if(200 == res.data.code){
+        if (200 == res.data.code) {
           that.setData({
             commodity: res.data.data,
             commodity_id: id
           })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false,
+            success: res => {
+              if (res.confirm) {
+                wx.navigateBack()
+              }
+            }
+          })
         }
       }
+    })
+  },
+
+  //获取优惠券
+  getCoupon(e) {
+    const that = this
+    const index = e.detail.value
+    const id = that.data.commodity.coupons[index].id
+    const price = that.data.commodity.coupons[index].price
+    let newPrice = that.data.commodity.price - price
+    that.setData({
+      end_price: newPrice >= 0 ? newPrice : 0,
+      coupon_id: id
     })
   },
 
@@ -65,7 +88,8 @@ Page({
               method: 'POST',
               data: {
                 product_id: product_id,
-                number: order_id
+                number: order_id,
+                coupon: that.data.coupon_id
               },
               success: res => {
                 wx.requestPayment({

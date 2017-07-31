@@ -43,28 +43,32 @@
       <!--拼团成功  -->
       <swiper-item>
         <scroll-view scroll-y class="swiper-scroll">
-          <view class="grouping-item" wx:for="{{group_success}}" wx:for-item="grouping" wx:key="id">
-            <view class="grouping-item-top">
-              <image src="{{grouping.img}}" mode="aspectFill" class="grouping-item-img"></image>
-              <view class="grouping-item-content">
-                <view class="grouping-item-name">{{grouping.product}}</view>
-                <view class="grouping-item-shop">—{{grouping.store}}</view>
-                <view class="grouping-item-price">￥<text class="grouping-item-now-price">{{grouping.price}}</text>
-                  <text class="grouping-item-pre-price">原价：￥{{grouping.origin_price}}</text>
+          <block wx:if="{{group_success}}">
+            <view class="grouping-item" wx:for="{{group_success}}" wx:for-item="grouping" wx:key="id">
+              <view class="grouping-item-top">
+                <image src="{{grouping.img}}" mode="aspectFill" class="grouping-item-img"></image>
+                <view class="grouping-item-content">
+                  <view class="grouping-item-name">{{grouping.product}}</view>
+                  <view class="grouping-item-shop">—{{grouping.store}}</view>
+                  <view class="grouping-item-price">￥<text class="grouping-item-now-price">{{grouping.price}}</text>
+                    <text class="grouping-item-pre-price">原价：￥{{grouping.origin_price}}</text>
+                  </view>
+                </view>
+              </view>
+              <view class="grouping-item-bottom">
+                <view class="grouping-item-time success">
+                  <icon type="success" size="16" /> 拼团成功
+                </view>
+                <view class="grouping-item-invite">
+                  <image src="/images/icon/more.png" mode="widthFix"></image>
+                  <button class="grouping-item-button" catchtap="goToOrder" data-id="{{grouping.id}}">查看详情</button>
                 </view>
               </view>
             </view>
-            <view class="grouping-item-bottom">
-              <view class="grouping-item-time success">
-                <icon type="success" size="16" /> 拼团成功
-              </view>
-              <view class="grouping-item-invite">
-                <image src="/images/icon/more.png" mode="widthFix"></image>
-                <button class="grouping-item-button" catchtap="goToOrder" data-id="{{grouping.id}}">查看详情</button>
-              </view>
-            </view>
-          </view>
-          <view wx:if="{{grouping.length == 0}}" class="tips">—— 暂无拼团 ——</view>
+          </block>
+          <block wx:else>
+            <view class="tips">—— 暂无拼团 ——</view>
+          </block>
         </scroll-view>
       </swiper-item>
       <!--/拼团成功  -->

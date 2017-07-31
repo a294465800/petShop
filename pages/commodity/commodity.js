@@ -3,7 +3,7 @@ let app = getApp()
 //倒计时
 let clock = new Array()
 let clock_time = new Array()
-let timer
+let timer = {}
 
 Page({
 
@@ -74,11 +74,15 @@ Page({
 
   onHide() {
     //清除计时器
-    clearInterval(timer)
+    clearInterval(timer['main'])
   },
 
   onShow() {
     const that = this
+    for (let i in timer) {
+      clearInterval(timer[i])
+    }
+    that.setGroupInterval()
     that.resetTimeData()
   },
 
@@ -129,7 +133,7 @@ Page({
     for (let i = 0; i < length; i++) {
 
       //计算时间，保存到全局变量clock和clock_time中
-      setInterval(
+      timer[i] = setInterval(
         () => {
           ((index) => {
             if (0 >= clock[index]) {
@@ -153,7 +157,7 @@ Page({
     that.setData({
       left_time: clock
     })
-    timer = setInterval(() => {
+    timer['main'] = setInterval(() => {
       that.setData({
         left_time: clock
       })

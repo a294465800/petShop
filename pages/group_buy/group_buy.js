@@ -1,7 +1,7 @@
 // group_buy.js
 let app = getApp()
 //倒计时
-let clock, clock_time, timer
+let clock, clock_time, timer = {}
 Page({
 
   /**
@@ -38,11 +38,15 @@ Page({
 
   onHide() {
     //清除计时器
-    clearInterval(timer)
+    clearInterval(timer['main'])
   },
 
   onShow() {
     const that = this
+    for(let i in timer){
+      clearInterval(timer[i])
+    }
+    that.setGroupInterval()
     that.resetTimeData()
   },
 
@@ -81,7 +85,7 @@ Page({
     const that = this
 
     //计算时间，保存到全局变量clock和clock_time中
-    setInterval(
+    timer['count'] = setInterval(
       () => {
         if (0 >= clock) {
           wx.showModal({
@@ -115,7 +119,7 @@ Page({
     that.setData({
       left_time: clock
     })
-    timer = setInterval(() => {
+    timer['main'] = setInterval(() => {
       that.setData({
         left_time: clock
       })
@@ -166,9 +170,17 @@ Page({
                     success: rs => {
                       wx.showToast({
                         title: '开团成功',
+                        complete: () => {
+                          wx.redirectTo({
+                            url: '/pages/group_buy/group_buy',
+                          })
+                        }
                       })
-                      that.setData({
-                        buy: true
+                    },
+                    fail: fail => {
+                      wx.request({
+                        url: app.globalData.host + 'V1/group/cancel/' + group_id,
+                        header: app.globalData.header
                       })
                     }
                   })

@@ -173,6 +173,8 @@ view {
   color: #888;
   text-indent: 2em;
   font-size: 14px;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .shop_comment_item_goods {

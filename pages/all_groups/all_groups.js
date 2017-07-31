@@ -107,11 +107,11 @@ Page({
     const that = this
     //每秒只重设一次data
     that.setData({
-      'commodity.time': clock
+      left_time: clock
     })
     timer = setInterval(() => {
       that.setData({
-        'commodity.time': clock
+        left_time: clock
       })
     }, 1000)
   },

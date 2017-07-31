@@ -17,11 +17,11 @@
     <view class="commodity-coupon-titile">可用优惠券</view>
     <view class="commodity-coupon-list">
       <block wx:if="{{commodity.coupons.length > 0}}">
-        <radio-group bindchange="radioChange">
+        <radio-group bindchange="getCoupon">
           <label wx:for="{{commodity.coupons}}" wx:for-item="coupon">
           <view class="commodity-coupon-item">
             <view class="commodity-coupon-item-content">
-              <radio value="{{coupon.id}}" color="#ff6464"/>{{coupon.name}}
+              <radio value="{{index}}" color="#ff6464" name="coupon"/>{{coupon.title}}
             </view>
             <view class="commodity-coupon-item-price">{{coupon.price}}</view>
           </view> 
@@ -38,7 +38,7 @@
   <!--购买  -->
 
   <view class="commodity-buy">
-    <view class="commodity-item-price">￥<text class="commodity-item-now-price">{{commodity.price}}</text>
+    <view class="commodity-item-price">￥<text class="commodity-item-now-price">{{end_price ? end_price : commodity.price}}</text>
       <text class="commodity-item-pre-price">原价：￥{{commodity.origin_price}}</text>
     </view>
     <view class="commodity-buy-btn" catchtap="buyCommodity" data-id="{{commodity_id}}">立即下单</view>
@@ -46,7 +46,7 @@
 
   <!--/购买  -->
 
-  
+
   <!--下单成功-->
   <view class="buy_interface" hidden="{{!buy}}">
     <image src="/images/commodity/buy_bg.png" class="buy_interface_img" mode="widthFix">

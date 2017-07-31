@@ -96,6 +96,10 @@
   justify-content: flex-start;
 }
 
+.dynamic_item_head view {
+  flex: 1;
+}
+
 .dynamic_item_head_img {
   width: 120rpx;
   height: 120rpx;
@@ -104,12 +108,14 @@
 
 .dynamic_item_head_name {
   font-size: 18px;
-  margin: 10rpx 0 10rpx 50rpx;
+  margin: 10rpx 0 10rpx 30rpx;
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .dynamic_item_time {
   font-size: 14px;
-  margin-left: 50rpx;
+  margin-left: 30rpx;
   color: #999;
 }
 
@@ -127,6 +133,9 @@
 .dynamic_item_message {
   margin-bottom: 30rpx;
   font-size: 16px;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-indent: 2em;
 }
 
 .dynamic_item_function {
@@ -135,7 +144,7 @@
 }
 
 .dynamic_item_function_p_icon {
-  width: 30rpx;
+  width: 15px;
 }
 
 .dynamic_item_function_p_icon_r {
@@ -144,12 +153,13 @@
 
 .dynamic_item_function_p {
   justify-content: space-between;
-  min-width: 110rpx;
+  min-width: 100rpx;
   margin-left: 30rpx;
 }
 
 .dynamic_item_function_p view {
   color: #999;
+  font-size: 14px;
 }
 
 .dynamic_item_comments {
@@ -219,12 +229,19 @@
   color: #000;
 }
 
+.dynamic_item_comments_item_name, .dynamic_item_comments_item_content {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
 /*第三页=>商家信息*/
 
 .shop_info_item {
   width: 100%;
   border-bottom: 2rpx dashed #ccc;
   padding: 20rpx 30rpx 20rpx 20rpx;
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .shop_info_item_last {
@@ -242,13 +259,16 @@
   align-items: center;
 }
 
+.shop_info_item_icon_intro shop_address {
+  flex: 1;
+}
+
 .shop_info_item_icon_intro {
   justify-content: flex-start;
 }
 
 .shop_info_item_icon {
-  width: 40rpx;
-  height: 40rpx;
+  width: 20px;
 }
 
 .shop_info_item_telgroup {
@@ -263,6 +283,7 @@
   text-align: justify;
   margin-left: 24rpx;
   font-size: 16px;
+  flex: 1;
 }
 
 .shop_info_item_telgroup_item {
