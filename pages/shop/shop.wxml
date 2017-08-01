@@ -10,7 +10,11 @@
     <scroll-view scroll-y class="shop-content-commodities" bindscrolltolower="toBottom">
       <view class="shop_item" wx:for="{{shopItem[current]}}" wx:key="id" bindtap="goToGood" hover-class="push_class" hover-stay-time="150" data-id="{{item.id}}">
         <view class="shop_item_l">
-          <image src="{{item.img}}" class="shop_item_img" mode="aspectFill"></image>
+          <image src="{{item.img}}" class="shop_item_img" mode="aspectFill">
+            <block wx:if="{{item.canGroup}}">
+              <image src="/images/commodity/pin.png" mode="widthFix" class="shop_item_pin"></image>
+            </block>
+          </image>
           <view class="shop_item_content">
             <view class="shop_item_name">{{item.title}}</view>
             <view class="shop_item_price">￥
