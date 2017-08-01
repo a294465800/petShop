@@ -17,8 +17,7 @@ App({
       'content-type': 'application/x-www-form-urlencoded',
       'AppVersion': '1.0',
       'storeNumber': '1400344af3767f15f957ff6c4d7c3f2c'
-    },
-    shop: null
+    }
   },
 
   //获取用户设置

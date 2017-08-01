@@ -145,6 +145,7 @@
 
 .dynamic_item_function_p_icon {
   width: 15px;
+  height: 15px;
 }
 
 .dynamic_item_function_p_icon_r {

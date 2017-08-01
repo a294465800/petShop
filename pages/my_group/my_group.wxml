@@ -31,7 +31,7 @@
                   <icon type="waiting" size="16" color="#ff963d" /> 剩余 {{left_time[index]}}
                 </view>
                 <view class="grouping-item-invite">
-                  <image src="/images/icon/share.png" mode="widthFix"></image>
+                  <image src="/images/icon/share.png" mode="aspectFit"></image>
                   <button open-type="share" class="grouping-item-button" data-id="{{grouping.id}}">邀请好友</button>
                 </view>
               </view>

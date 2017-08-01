@@ -5,6 +5,7 @@ let clock, clock_time, timer = {}
 Page({
 
   data: {
+    id: 0,
 
     //倒计时
     left_time: null,
@@ -17,17 +18,30 @@ Page({
   onLoad(options) {
     const that = this
     let id = options.id
+    if (options.login) {
+      app.getSetting()
+    }
     wx.request({
       url: app.globalData.host + 'V1/group/' + id,
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
           that.setData({
-            commodity: res.data.data
+            commodity: res.data.data,
+            id: id,
+            flag_time: true
           })
           that.getIntervalTime()
-          that.setData({
-            flag_time: true
+        }else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false,
+            success: (res) => {
+              if(res.confirm){
+                wx.navigateBack()
+              }
+            }
           })
         }
       }
@@ -94,12 +108,11 @@ Page({
             showCancel: false,
             success: res => {
               if (res.confirm) {
-                if (wx.navigateBack()) {
-                  wx.redirectTo({
-                    url: '/pages/commodity/commodity?commodity_id=' + that.data.commodity.product_id,
-                  })
+                let position = getCurrentPages()
+                if (position.length > 1) {
+                  wx.navigateBack()
                 } else {
-                  wx.reLaunch({
+                  wx.switchTab({
                     url: '/pages/index/index'
                   })
                 }
@@ -172,7 +185,7 @@ Page({
                         title: '开团成功',
                         complete: () => {
                           wx.redirectTo({
-                            url: '/pages/group_buy/group_buy',
+                            url: '/pages/group_buy/group_buy?id=' + that.data.id,
                           })
                         }
                       })

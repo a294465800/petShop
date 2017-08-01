@@ -18,7 +18,12 @@
 
   <!--参团人员  -->
   <view class="commodity-group-people">
-    <view class="commodity-group-title">· · · · 还差{{commodity.limit}}人，仅剩 {{left_time}} · · · ·</view>
+    <block wx:if="{{commodity.limit}}">
+      <view class="commodity-group-title">· · · · 还差{{commodity.limit}}人，仅剩 {{left_time}} · · · ·</view>
+    </block>
+    <block wx:else>
+      <view class="commodity-group-title">· · · · 开团成功！ · · · ·</view>
+    </block>
     <view class="commodity-group-imgs">
       <image src="{{item}}" class="commodity-group-img" mode="aspectFill" wx:for="{{commodity.userImg}}" wx:key="*this"></image>
     </view>
@@ -39,14 +44,24 @@
   <!--/产品说明-->
 
   <!--购买  -->
-
-  <view class="commodity_buy">
-    <view class="commodity_buy_btn buy_together" catchtap="buyCommodity" data-id="{{commodity.id}}">
-      <view>￥<text class="buy_bt_price ">{{commodity.price}}</text></view>
-      <view>一键拼团</view>
+  <block wx:if="{{commodity.limit}}">
+    <view class="commodity_buy">
+      <view class="commodity_buy_btn buy_together" catchtap="buyCommodity" data-id="{{commodity.id}}">
+        <view>￥<text class="buy_bt_price ">{{commodity.price}}</text></view>
+        <view>一键拼团</view>
+      </view>
     </view>
-  </view>
+  </block>
 
+
+  <block wx:else>
+    <view class="commodity_buy">
+      <view class="commodity_buy_btn buy_together disabled">
+        <view>已满员</view>
+        <view>拼团成功</view>
+      </view>
+    </view>
+  </block>
   <!--/购买  -->
 
 </view>

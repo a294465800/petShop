@@ -165,6 +165,7 @@
 
 .grouping-item-invite image {
   width: 30rpx;
+  height: 30rpx;
 }
 
 .grouping-item-button {

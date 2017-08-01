@@ -14,7 +14,12 @@ Page({
     group_id: 0,
     //倒计时
     left_time: [],
-    flag_time: false
+    flag_time: false,
+    close: false,
+    page: 1,
+
+    //防止重复触发
+    flag: false
   },
 
   onLoad(options) {
@@ -33,13 +38,11 @@ Page({
         if (200 == res.data.code) {
           that.setData({
             group_imgs: arr2,
-            groups: res.data.data,
             limit: limit,
-            group_id: id
-          })
-          that.setData({
+            group_id: id,
             flag_time: true
           })
+          that.saveMyGroups([], res.data.data, 1)
           that.getIntervalTime()
         }
       }
@@ -103,9 +106,10 @@ Page({
         () => {
           ((index) => {
             if (0 >= clock_time[index]) {
-              wx.redirectTo({
-                url: '/pages/all_groups/all_groups?id=' + that.data.group_id + '&limit=' + that.data.limit,
-              })
+              // wx.redirectTo({
+              //   url: '/pages/all_groups/all_groups?id=' + that.data.group_id + '&limit=' + that.data.limit,
+              // })
+              clock[index] = '已结束'
             }
             clock[index] = that.formatTime(clock_time[index]--)
           })(i)
@@ -136,5 +140,61 @@ Page({
       url: '/pages/group_buy/group_buy?id=' + id,
     })
   },
+
+  //我的拼团数据保存
+  saveMyGroups(old, newRes, page) {
+    const that = this
+    that.setData({
+      groups: [...old, ...newRes],
+      page: page
+    })
+  },
+
+  
+  //触底刷新
+  onReachBottom() {
+    const that = this
+
+    // 阻止重复触发
+    if (that.data.flag) {
+      return false
+    }
+    let close = that.data.close
+    //主动关闭触底刷新
+    if (close) {
+      return false
+    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    let page = that.data.page + 1
+    wx.request({
+      url: app.globalData.host + 'V1/product/group/' + that.data.group_id + '?page=' + page,
+      header: app.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          let data = res.data.data
+          const groups = that.data.groups
+          wx.hideLoading()
+          that.setData({
+            flag: false
+          })
+          if (0 === data.length) {
+            that.setData({
+              close: true
+            })
+            return false
+          }
+          that.saveMyGroups(groups, data, page)
+          that.getIntervalTime()
+        }
+      }
+    })
+
+    that.setData({
+      flag: true
+    })
+    
+    }
 
 })

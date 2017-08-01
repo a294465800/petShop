@@ -4,7 +4,6 @@ let app = getApp()
 
 Page({
   data: {
-    shop: app.globalData.shop,
     imgUrls: null,
     interval: 4000,
     duration: 500,
@@ -82,6 +81,8 @@ Page({
   onLoad() {
     let that = this
 
+    let a = getCurrentPages()
+    console.log(a)
     let arr = []
     //评论星数数量
     arr.length = 5
@@ -222,6 +223,7 @@ Page({
 
   //打开商家地图
   openLocation() {
+    const that = this
     wx.showLoading({
       title: '地图加载中',
     })
@@ -231,8 +233,8 @@ Page({
       latitude: latitude,
       longitude: longitude,
       scale: 28,
-      name: '森乾科技',
-      address: '广东省广州市番禺区永恒大街6号花城创意园2号楼122',
+      name: that.data.store.name,
+      address: that.data.store.location,
       success: res => {
         wx.hideLoading()
       }

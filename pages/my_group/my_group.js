@@ -121,6 +121,9 @@ Page({
             return false
           }
           that.saveMyGroups(groups, data, page, state)
+          if (state == 1) {
+            that.getTime()
+          }
         }
       }
     })
@@ -141,10 +144,6 @@ Page({
 
     //每次显示定时器都先关闭上次定时器
     if (that.data.time_flag) {
-      // for (let i in timer) {
-      //   clearInterval(timer[i])
-      // }
-      // that.setGroupInterval()
       that.resetTimeData()
     }
   },
@@ -152,8 +151,8 @@ Page({
   //压入时间
   getTime() {
     const that = this
-    let length = that.data.groups[1].length
     clock = [], clock_time = []
+    let length = that.data.groups[1].length
     for (let i = 0; i < length; i++) {
       let tmp = that.data.groups[1][i].lave
       if (0 >= tmp) {
@@ -189,7 +188,7 @@ Page({
   setGroupInterval() {
     const that = this
     let length = clock_time.length
-    
+
     for (let i in timer) {
       clearInterval(timer[i])
     }
@@ -229,7 +228,7 @@ Page({
     let id = e.target.dataset.id
     return {
       title: '快来参加我的拼团啦~~',
-      path: '/pages/group_buy/group_buy?id=' + id,
+      path: '/pages/group_buy/group_buy?id=' + id + '&login=1',
     }
   },
 

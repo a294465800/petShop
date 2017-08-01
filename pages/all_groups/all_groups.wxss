@@ -31,6 +31,7 @@
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
+  margin: 0 6rpx;
 }
 
 .commodity_group_info_time {
@@ -54,4 +55,8 @@
   padding: 20rpx 30rpx;
   border-radius: 6rpx;
   display: inline-block;
+}
+
+.commodity_group_btn.disabled {
+  background-color: #f99795;
 }

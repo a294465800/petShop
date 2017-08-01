@@ -18,15 +18,28 @@
             </block>
           </view>
         </view>
-        <view class="commodity_group_info_time">还差{{group.limit}}人，剩余 {{left_time[index]}}</view>
+        <block wx:if="{{group.limit}}">
+          <view class="commodity_group_info_time">还差{{group.limit}}人，剩余 {{left_time[index]}}</view>
+          <view class="btn">
+            <view class="commodity_group_btn" catchtap="joinGroup" data-id="{{group.id}}">立即参团</view>
+          </view>
+        </block>
+        <block wx:else>
+          <!-- <view class="commodity_group_info_time">已结束！</view> -->
         <view class="btn">
-          <view class="commodity_group_btn" catchtap="joinGroup" data-id="{{group.id}}">立即参团</view>
+          <view class="commodity_group_btn disabled">已经结束</view>
         </view>
+        </block>
+        <!-- <view class="commodity_group_info_time">还差{{group.limit}}人，剩余 {{left_time[index]}}</view> -->
       </view>
     </block>
     <block wx:else>
       <view class="tips">—— 暂时没有拼团信息 ——</view>
     </block>
   </view>
+
+  <block wx:if="{{close}}">
+    <view class="tips">—— 已加载全部拼团信息 ——</view>
+  </block>
   <!--/拼团信息  -->
 </view>
