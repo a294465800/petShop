@@ -193,3 +193,7 @@
 .success {
   color: #4ec84e;
 }
+
+.grouping-item-invite.disabled {
+  background-color: #f99795;
+}

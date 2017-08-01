@@ -64,10 +64,18 @@
                 <view class="grouping-item-time success">
                   <icon type="success" size="16" /> 拼团成功
                 </view>
-                <view class="grouping-item-invite">
-                  <image src="/images/icon/more.png" mode="widthFix"></image>
-                  <button class="grouping-item-button" catchtap="goToOrder" data-id="{{grouping.number}}">查看详情</button>
-                </view>
+                <block wx:if="{{grouping.finish}}">
+                  <view class="grouping-item-invite disabled">
+                    <!-- <image src="/images/icon/more.png" mode="widthFix"></image> -->
+                    <button class="grouping-item-button" data-id="{{grouping.number}}">已消费</button>
+                  </view>
+                </block>
+                <block wx:else>
+                  <view class="grouping-item-invite">
+                    <image src="/images/icon/more.png" mode="widthFix"></image>
+                    <button class="grouping-item-button" catchtap="goToOrder" data-id="{{grouping.number}}">查看详情</button>
+                  </view>
+                </block>
               </view>
             </view>
             <view class="tips" hidden="{{!close[2]}}">—— 已加载全部拼团信息 ——</view>
