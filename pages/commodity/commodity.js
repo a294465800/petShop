@@ -228,9 +228,11 @@ Page({
                           success: rs => {
                             wx.showToast({
                               title: '开团成功',
-                            })
-                            that.setData({
-                              buy: true
+                              complete: () => {
+                                wx.redirectTo({
+                                  url: '/pages/commodity/commodity?commodity_id=' + that.data.commodity_id,
+                                })
+                              }
                             })
                           }
                         })

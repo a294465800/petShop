@@ -25,18 +25,20 @@ Page({
       }
     ],
 
-    //倒计时
+    //定时器
     left_time: [],
+    time_flag: false,
+
+    //开关
+    close: {},
+    page: {},
+    flag: false,
 
     //接口数据
-    grouping: null,
-    group_success: null,
+    groups: null,
 
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     const that = this
     that.firstRequest()
@@ -50,10 +52,13 @@ Page({
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          that.setData({
-            grouping: res.data.data
-          })
+          that.saveMyGroups([], res.data.data, 1, 1)
           that.getTime()
+
+          //使onShow开始生效
+          that.setData({
+            time_flag: true
+          })
         }
       }
     })
@@ -62,16 +67,67 @@ Page({
       header: app.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          that.setData({
-            group_success: res.data.data
-          })
+          that.saveMyGroups([], res.data.data, 1, 2)
         }
       }
     })
   },
 
   //我的拼团数据保存
-  saveMyGroups(old, newRes, page, state){
+  saveMyGroups(old, newRes, page, state) {
+    const that = this
+    let tmp = 'page.' + state
+    let tmp2 = 'groups.' + state
+    that.setData({
+      [tmp2]: [...old, ...newRes],
+      [tmp]: page
+    })
+  },
+
+  //触底刷新
+  toBottomGroup(e) {
+    const that = this
+
+    // 阻止重复触发
+    if (that.data.flag) {
+      return false
+    }
+    const state = e.currentTarget.dataset.state
+    let close = that.data.close[state] || false
+    //主动关闭触底刷新
+    if (close) {
+      return false
+    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    let page = that.data.page[state] + 1
+    wx.request({
+      url: app.globalData.host + 'V1/my/groups?state=' + state + '&page=' + page,
+      header: app.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          let data = res.data.data
+          const groups = that.data.groups[state]
+          wx.hideLoading()
+          that.setData({
+            flag: false
+          })
+          if (0 === data.length) {
+            let tmp = 'close.' + state
+            that.setData({
+              [tmp]: true
+            })
+            return false
+          }
+          that.saveMyGroups(groups, data, page, state)
+        }
+      }
+    })
+
+    that.setData({
+      flag: true
+    })
 
   },
 
@@ -82,19 +138,24 @@ Page({
 
   onShow() {
     const that = this
-    for(let i in timer){
-      clearInterval(timer[i])
+
+    //每次显示定时器都先关闭上次定时器
+    if (that.data.time_flag) {
+      // for (let i in timer) {
+      //   clearInterval(timer[i])
+      // }
+      // that.setGroupInterval()
+      that.resetTimeData()
     }
-    that.setGroupInterval()
-    that.resetTimeData()
   },
 
   //压入时间
   getTime() {
     const that = this
-    let length = that.data.grouping.length
+    let length = that.data.groups[1].length
+    clock = [], clock_time = []
     for (let i = 0; i < length; i++) {
-      let tmp = that.data.grouping[i].lave
+      let tmp = that.data.groups[1][i].lave
       if (0 >= tmp) {
         wx.redirectTo({
           url: '/pages/my_group/my_group',
@@ -128,13 +189,16 @@ Page({
   setGroupInterval() {
     const that = this
     let length = clock_time.length
-
+    
+    for (let i in timer) {
+      clearInterval(timer[i])
+    }
     for (let i = 0; i < length; i++) {
       //计算时间，保存到全局变量clock和clock_time中
       timer[i] = setInterval(
         () => {
           ((index) => {
-            if (0 >= clock[index]) {
+            if (0 >= clock_time[index]) {
               wx.redirectTo({
                 url: '/pages/my_group/my_group',
               })
@@ -143,9 +207,7 @@ Page({
           })(i)
         }, 1000)
     }
-    that.setData({
-      left_time: clock
-    })
+    that.resetTimeData()
   },
 
   //重设data计时器
@@ -155,7 +217,7 @@ Page({
     that.setData({
       left_time: clock
     })
-    timer = setInterval(() => {
+    timer['main'] = setInterval(() => {
       that.setData({
         left_time: clock
       })
