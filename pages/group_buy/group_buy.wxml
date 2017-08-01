@@ -37,8 +37,9 @@
       <view class="commodity_description_title">拼团说明</view>
     </view>
     <view class="commodity_description_info">
-      <text>1. 支付后即可开团成功。
-      2. 24小时后开团不成功自动退款。</text>
+      <text>1. 达到拼团人数后即拼团成功。
+      2. 24小时后开团不成功自动退款。
+      3. 参与过的拼团可在我的拼团中查看</text>
     </view>
   </view>
   <!--/产品说明-->

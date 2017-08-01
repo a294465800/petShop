@@ -171,9 +171,14 @@
 }
 
 .commodity_description_info {
-  padding: 20rpx 30rpx;
+  padding: 30rpx;
 }
 
 .buy_together.disabled {
   background-color: #f99795;
+}
+
+.commodity_description_info text {
+  color: #666;
+  font-size: 14px;
 }
