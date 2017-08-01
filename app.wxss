@@ -28,6 +28,12 @@ view {
   padding-bottom: 20rpx;
 }
 
+.container_bg {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
 /*隐藏、显示*/
 
 .hide {

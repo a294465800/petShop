@@ -3,7 +3,7 @@ const app = getApp()
 //倒计时
 let clock = new Array()
 let clock_time = new Array()
-let timer
+let timer = {}
 
 Page({
 
@@ -14,14 +14,14 @@ Page({
     group_id: 0,
     //倒计时
     left_time: [],
+    flag_time: false
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     const that = this
     let id = options.id
+
+    //limit用于控制头像显示数量
     let limit = options.limit
     //拼团头像数量
     let arr2 = []
@@ -37,21 +37,31 @@ Page({
             limit: limit,
             group_id: id
           })
+          that.setData({
+            flag_time: true
+          })
           that.getIntervalTime()
         }
       }
     })
   },
 
-  onShow(){
+  onHide() {
+    clearInterval(timer['main'])
+  },
+
+  onShow() {
     const that = this
-    that.resetTimeData()
+    if (that.data.flag_time) {
+      that.resetTimeData()
+    }
   },
 
   //压入时间
   getIntervalTime() {
     const that = this
     let length = that.data.groups.length
+    clock = [], clock_time = []
     for (let i = 0; i < length; i++) {
       let current_time = that.data.groups[i].lave
       clock.push(that.formatTime(current_time))
@@ -82,13 +92,17 @@ Page({
     const that = this
     let length = clock_time.length
 
+    for (let i in timer) {
+      clearInterval(timer[i])
+    }
+
     for (let i = 0; i < length; i++) {
 
       //计算时间，保存到全局变量clock和clock_time中
-      setInterval(
+      timer[i] = setInterval(
         () => {
           ((index) => {
-            if (0 >= clock[index]){
+            if (0 >= clock_time[index]) {
               wx.redirectTo({
                 url: '/pages/all_groups/all_groups?id=' + that.data.group_id + '&limit=' + that.data.limit,
               })
@@ -97,9 +111,7 @@ Page({
           })(i)
         }, 1000)
     }
-    that.setData({
-      left_time: clock
-    })
+    that.resetTimeData()
   },
 
   //重设data计时器
@@ -109,7 +121,7 @@ Page({
     that.setData({
       left_time: clock
     })
-    timer = setInterval(() => {
+    timer['main'] = setInterval(() => {
       that.setData({
         left_time: clock
       })

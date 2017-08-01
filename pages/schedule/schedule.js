@@ -32,7 +32,7 @@ Page({
         }else {
           wx.showModal({
             title: '提示',
-            content: '没有该订单',
+            content: res.data.msg,
             showCancel: false,
             success: res => {
               wx.navigateBack({})

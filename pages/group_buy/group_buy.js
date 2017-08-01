@@ -4,13 +4,11 @@ let app = getApp()
 let clock, clock_time, timer = {}
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
 
     //倒计时
     left_time: null,
+    flag_time: false,
     //接口数据
     commodity: null,
 
@@ -28,6 +26,9 @@ Page({
             commodity: res.data.data
           })
           that.getIntervalTime()
+          that.setData({
+            flag_time: true
+          })
         }
       }
     })
@@ -40,8 +41,9 @@ Page({
 
   onShow() {
     const that = this
-    that.setGroupInterval()
-    that.resetTimeData()
+    if (that.data.flag_time) {
+      that.resetTimeData()
+    }
   },
 
   onReachBottom() {
@@ -54,6 +56,7 @@ Page({
     let current_time = that.data.commodity.lave
     clock = that.formatTime(current_time)
     clock_time = current_time
+    that.setGroupInterval()
   },
 
   //格式化时间
@@ -84,7 +87,7 @@ Page({
     //计算时间，保存到全局变量clock和clock_time中
     timer['count'] = setInterval(
       () => {
-        if (0 >= clock) {
+        if (0 >= clock_time) {
           wx.showModal({
             title: '提示',
             content: '该团已关闭',
@@ -92,7 +95,9 @@ Page({
             success: res => {
               if (res.confirm) {
                 if (wx.navigateBack()) {
-                  wx.navigateBack()
+                  wx.redirectTo({
+                    url: '/pages/commodity/commodity?commodity_id=' + that.data.commodity.product_id,
+                  })
                 } else {
                   wx.reLaunch({
                     url: '/pages/index/index'
@@ -104,9 +109,7 @@ Page({
         }
         clock = that.formatTime(clock_time--)
       }, 1000)
-    that.setData({
-      left_time: clock
-    })
+    that.resetTimeData()
   },
 
   //重设data计时器

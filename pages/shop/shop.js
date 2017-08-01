@@ -22,6 +22,7 @@ Page({
 
     //关闭触底刷新
     close: {},
+    flag_bottom: false,
 
     //接口数据
     shopCategorys: null,
@@ -46,7 +47,7 @@ Page({
             url: app.globalData.host + 'products/' + that.data.category_id,
             header: app.globalData.header,
             success: rs => {
-              if(200 == rs.data.code){
+              if (200 == rs.data.code) {
                 let temp = 'shopItem[' + that.data.current + ']'
                 that.setData({
                   [temp]: rs.data.data
@@ -66,7 +67,7 @@ Page({
   //请求商品封装
   getShopItem(id, index) {
     const that = this
-    if (that.data.shopItem[index]){
+    if (that.data.shopItem[index]) {
       return
     }
     wx.showLoading({
@@ -109,9 +110,14 @@ Page({
   //触底刷新
   toBottom() {
     const that = this
+    //防止重复触发
+    if (that.data.flag_bottom) {
+      return false
+    }
     let current = that.data.current
     let now_close = that.data.close[current] || false
-    
+
+    //主动关闭
     if (now_close) {
       return false
     }
@@ -131,12 +137,13 @@ Page({
         page: now_page
       },
       success: res => {
+        wx.hideLoading()
         if (200 == res.data.code) {
-          wx.hideLoading()
           if (res.data.data.length < 1) {
             that.setData({
               [tips_all]: true,
-              [close]: true
+              [close]: true,
+              flag_bottom: false
             })
             return false
           }
@@ -144,10 +151,15 @@ Page({
           let temp_item = 'shopItem[' + current + ']'
           that.setData({
             [page]: now_page,
-            [temp_item]: temp
+            [temp_item]: temp,
+            flag_bottom: false
           })
         }
       }
+    })
+
+    that.setData({
+      flag_bottom: true
     })
   },
 

@@ -32,6 +32,7 @@ Page({
 
     //倒计时
     left_time: [],
+    flag_time: false,
 
     //接口数据
     comments: null,
@@ -48,7 +49,8 @@ Page({
     that.setData({
       commodity_id: options.commodity_id,
       star_count: arr,
-      group_imgs: arr2
+      group_imgs: arr2,
+      flag_time: true
     })
     that.firstRequest()
   },
@@ -56,10 +58,14 @@ Page({
   //封装初次请求
   firstRequest() {
     const that = this
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: app.globalData.host + 'product/' + that.data.commodity_id,
       header: app.globalData.header,
       success: res => {
+        wx.hideLoading()
         that.setData({
           commodity: res.data.data,
           imgUrls: res.data.data.img,
@@ -79,8 +85,9 @@ Page({
 
   onShow() {
     const that = this
-    that.setGroupInterval()
-    that.resetTimeData()
+    if (that.data.flag_time) {
+      that.resetTimeData()
+    }
   },
 
   onReachBottom() {
@@ -89,9 +96,9 @@ Page({
 
   //压入时间
   getIntervalTime() {
-    console.log(1)
     const that = this
     let length = that.data.commodity.groupList.length
+    clock = [], clock_time = []
     for (let i = 0; i < length; i++) {
       let tmp = that.data.commodity.groupList[i].lave
       if (0 >= tmp) {
@@ -102,6 +109,7 @@ Page({
       let current_time = tmp
       clock.push(that.formatTime(current_time))
       clock_time.push(current_time)
+      that.setGroupInterval()
     }
   },
 
@@ -127,7 +135,6 @@ Page({
     const that = this
     let length = clock_time.length
 
-    console.log(timer, length)
     for (let i in timer) {
       clearInterval(timer[i])
     }
@@ -138,7 +145,7 @@ Page({
       timer[i] = setInterval(
         () => {
           ((index) => {
-            if (0 >= clock[index]) {
+            if (0 >= clock_time[index]) {
               wx.redirectTo({
                 url: '/pages/all_groups/all_groups?commodity_id=' + that.data.commodity_id,
               })
@@ -147,9 +154,7 @@ Page({
           })(i)
         }, 1000)
     }
-    that.setData({
-      left_time: clock
-    })
+    that.resetTimeData()
   },
 
   //重设data计时器
