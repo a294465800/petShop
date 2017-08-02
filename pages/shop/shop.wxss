@@ -100,6 +100,7 @@
 .shop-content-commodities {
   flex: 1;
   background-color: #fff;
+  height: 100%;
 }
 
 .shop_item, .shop_item_l {

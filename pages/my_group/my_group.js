@@ -62,15 +62,6 @@ Page({
         }
       }
     })
-    wx.request({
-      url: app.globalData.host + 'V1/my/groups?state=2',
-      header: app.globalData.header,
-      success: res => {
-        if (200 == res.data.code) {
-          that.saveMyGroups([], res.data.data, 1, 2)
-        }
-      }
-    })
   },
 
   //我的拼团数据保存
@@ -141,6 +132,16 @@ Page({
 
   onShow() {
     const that = this
+
+    wx.request({
+      url: app.globalData.host + 'V1/my/groups?state=2',
+      header: app.globalData.header,
+      success: res => {
+        if (200 == res.data.code) {
+          that.saveMyGroups([], res.data.data, 1, 2)
+        }
+      }
+    })
 
     //每次显示定时器都先关闭上次定时器
     if (that.data.time_flag) {

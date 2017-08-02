@@ -32,9 +32,9 @@ Page({
   },
 
   onLoad(options) {
-    this.firstRequest()
   },
   onShow() {
+    this.firstRequest()
   },
 
   //初次请求封装

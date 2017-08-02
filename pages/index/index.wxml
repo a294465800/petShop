@@ -103,7 +103,7 @@
       <view class="shop_info_item">
         <view class="shop_info_item_icon_intro shop_address">
           <image src="/images/shop/address.png" mode="widthFix" class="shop_info_item_icon"></image>
-          <view class="shop_info_item_intro shop_address">{{store.location}}</view>
+          <view class="shop_info_item_intro shop_address">{{store.address}}</view>
         </view>
         <image src="/images/shop/located.png" mode="widthFix" class="shop_info_item_icon" bindtap="openLocation"></image>
       </view>

@@ -48,7 +48,7 @@
       <!--拼团成功  -->
       <swiper-item>
         <scroll-view scroll-y class="swiper-scroll" bindscrolltolower="toBottomGroup" data-state="2">
-          <block wx:if="{{groups[2]}}">
+          <block wx:if="{{groups[2].length}}">
             <view class="grouping-item" wx:for="{{groups[2]}}" wx:for-item="grouping" wx:key="id">
               <view class="grouping-item-top">
                 <image src="{{grouping.img}}" mode="aspectFill" class="grouping-item-img"></image>

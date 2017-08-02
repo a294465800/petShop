@@ -227,14 +227,15 @@ Page({
     wx.showLoading({
       title: '地图加载中',
     })
-    let latitude = 23.138595
-    let longitude = 113.328032
+    let location = that.data.store.location.split(',')
+    let latitude = location[0]
+    let longitude = location[1]
     wx.openLocation({
       latitude: latitude,
       longitude: longitude,
       scale: 28,
       name: that.data.store.name,
-      address: that.data.store.location,
+      address: that.data.store.address,
       success: res => {
         wx.hideLoading()
       }
