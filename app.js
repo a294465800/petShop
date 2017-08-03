@@ -11,8 +11,7 @@ App({
 
   globalData: {
     userInfo: null,
-    // host: 'https://www.sennkisystem.cn/api/',
-    host: 'http://119.23.202.220/api/',
+    host: 'https://www.sennkisystem.cn/api/',
     header: {
       'content-type': 'application/x-www-form-urlencoded',
       'AppVersion': '1.0',
