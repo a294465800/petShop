@@ -12,7 +12,7 @@
         <view class="shop_item_l">
           <image src="{{item.img}}" class="shop_item_img" mode="aspectFill">
             <block wx:if="{{item.canGroup}}">
-              <image src="/images/commodity/pin.png" mode="widthFix" class="shop_item_pin"></image>
+              <image src="/images/commodity/pin.png" mode="aspectFit" class="shop_item_pin"></image>
             </block>
           </image>
           <view class="shop_item_content">

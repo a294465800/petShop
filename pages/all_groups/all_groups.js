@@ -106,9 +106,6 @@ Page({
         () => {
           ((index) => {
             if (0 >= clock_time[index]) {
-              // wx.redirectTo({
-              //   url: '/pages/all_groups/all_groups?id=' + that.data.group_id + '&limit=' + that.data.limit,
-              // })
               clock[index] = '已结束'
             }
             clock[index] = that.formatTime(clock_time[index]--)

@@ -80,9 +80,6 @@ Page({
   },
   onLoad() {
     let that = this
-
-    let a = getCurrentPages()
-    console.log(a)
     let arr = []
     //评论星数数量
     arr.length = 5
@@ -90,13 +87,9 @@ Page({
       star_count: arr
     })
 
-    if (app.globalData.userInfo) {
+    app.nowLogin(() => {
       that.requestAll()
-    } else {
-      app.nowLogin(() => {
-        that.requestAll()
-      })
-    }
+    })
   },
 
   //请求第一页数据函数

@@ -270,5 +270,13 @@ Page({
     wx.navigateTo({
       url: '/pages/schedule/schedule?id=' + id,
     })
+  },
+
+  //查看当前团购
+  goToCommodity(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/group_buy/group_buy?id=' + id,
+    })
   }
 })

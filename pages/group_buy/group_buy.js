@@ -102,6 +102,8 @@ Page({
     timer['count'] = setInterval(
       () => {
         if (0 >= clock_time) {
+          clearInterval(timer['count'])
+          clearInterval(timer['main'])
           wx.showModal({
             title: '提示',
             content: '该团已关闭',

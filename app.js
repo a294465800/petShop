@@ -140,16 +140,11 @@ App({
       header: that.globalData.header,
       success: res => {
         if (200 == res.data.code) {
-          if (that.globalData.userInfo) {
-            typeof cb == "function" && cb(that.globalData.userInfo)
-          }
-          else {
-            that.globalData.userInfo = res.data.data
-            wx.showToast({
-              title: '登录成功',
-            })
-            typeof cb == "function" && cb(res.data.data)
-          }
+          that.globalData.userInfo = res.data.data
+          wx.showToast({
+            title: '登录成功',
+          })
+          typeof cb == "function" && cb(res.data.data)
         } else {
           wx.showToast({
             title: '登录失败',
@@ -170,64 +165,72 @@ App({
   },
 
   //如果已授权，直接登录，否则，不做操作
-  nowLogin(cb){
+  nowLogin(cb) {
     const that = this
-    wx.showLoading({
-      title: '登录中',
-      mask: true
-    })
-    wx.login({
-      withCredentials: true,
-      success: rs => {
-        wx.getUserInfo({
-          success: res => {
-            wx.request({
-              url: that.globalData.host + 'oauth/login',
-              method: 'POST',
-              header: that.globalData.header,
-              data: {
-                code: rs.code,
-                encryptedData: res.encryptedData,
-                iv: res.iv
-              },
-              success: e => {
-                wx.hideLoading()
-                if (!e.header) {
-                  wx.showModal({
-                    title: '提示',
-                    content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。',
-                    showCancel: false
-                  })
-                } else if (200 != e.data.code) {
-                  wx.showToast({
-                    title: '登录失败',
-                  })
-                } else {
-                  that.globalData.header.Cookie = e.header['Set-Cookie'].split(";")[0]
+    wx.getSetting({
+      success: setting => {
+        if (setting.authSetting["scope.userInfo"]) {
+          wx.showLoading({
+            title: '登录中',
+            mask: true
+          })
+          wx.login({
+            withCredentials: true,
+            success: rs => {
+              wx.getUserInfo({
+                success: res => {
+                  wx.request({
+                    url: that.globalData.host + 'oauth/login',
+                    method: 'POST',
+                    header: that.globalData.header,
+                    data: {
+                      code: rs.code,
+                      encryptedData: res.encryptedData,
+                      iv: res.iv
+                    },
+                    success: e => {
+                      wx.hideLoading()
+                      if (!e.header) {
+                        wx.showModal({
+                          title: '提示',
+                          content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。',
+                          showCancel: false
+                        })
+                      } else if (200 != e.data.code) {
+                        wx.showToast({
+                          title: '登录失败',
+                        })
+                      } else {
+                        that.globalData.header.Cookie = e.header['Set-Cookie'].split(";")[0]
 
-                  if (0 == e.data.data.register) {
-                    wx.showModal({
-                      title: '提示',
-                      content: '你还没有绑定手机号码？',
-                      confirmText: '确认绑定',
-                      success: res => {
-                        if (res.confirm) {
-                          wx.navigateTo({
-                            url: '/pages/tel_input/tel_input',
+                        if (0 == e.data.data.register) {
+                          wx.showModal({
+                            title: '提示',
+                            content: '你还没有绑定手机号码？',
+                            confirmText: '确认绑定',
+                            success: res => {
+                              if (res.confirm) {
+                                wx.navigateTo({
+                                  url: '/pages/tel_input/tel_input',
+                                })
+                              } else {
+                                typeof cb == "function" && cb(that.globalData.userInfo)
+                              }
+                            }
                           })
                         } else {
-                          typeof cb == "function" && cb(that.globalData.userInfo)
+                          that.checkLogin(cb)
                         }
                       }
-                    })
-                  } else {
-                    that.checkLogin(cb)
-                  }
+                    }
+                  })
                 }
-              }
-            })
-          }
-        })
+              })
+            }
+          })
+        }else {
+          typeof cb == "function" && cb(that.globalData.userInfo)
+        }
       }
     })
   },

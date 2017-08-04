@@ -146,6 +146,9 @@ Page({
         () => {
           ((index) => {
             if (0 >= clock_time[index]) {
+              for (let i in timer) {
+                clearInterval(timer[i])
+              }
               wx.redirectTo({
                 url: '/pages/all_groups/all_groups?commodity_id=' + that.data.commodity_id,
               })

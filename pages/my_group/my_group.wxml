@@ -16,7 +16,7 @@
         <scroll-view scroll-y class="swiper-scroll" bindscrolltolower="toBottomGroup" data-state="1">
           <block wx:if="{{groups[1].length}}">
             <view class="grouping-item" wx:for="{{groups[1]}}" wx:for-item="grouping" wx:key="id">
-              <view class="grouping-item-top">
+              <view class="grouping-item-top" catchtap="goToCommodity" data-id="{{grouping.id}}" hover-class="push_class" hover-stay-time="150">
                 <image src="{{grouping.img}}" mode="aspectFill" class="grouping-item-img"></image>
                 <view class="grouping-item-content">
                   <view class="grouping-item-name">{{grouping.product}}</view>

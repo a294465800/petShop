@@ -14,7 +14,7 @@
       <swiper-item>
         <scroll-view scroll-y class="scroll">
           <block wx:if="{{orders.unUse.length > 0}}">
-            <view class="been_comment" hover-class="push_class" hover-stay-time="150" wx:for="{{orders.unUse}}" wx:key="*this">
+            <view class="been_comment" hover-class="push_class" hover-stay-time="150" wx:for="{{orders.unUse}}" wx:key="*this" wx:if="{{item.product_type==1}}">
               <view class="been_comment_content">
                 <image src="{{item.img}}" class="been_comment_img" mode="aspectFill"></image>
                 <view class="been_comment_word">
