@@ -87,9 +87,13 @@ Page({
       star_count: arr
     })
 
-    app.nowLogin(() => {
+    if (app.globalData.userInfo) {
       that.requestAll()
-    })
+    } else {
+      app.nowLogin(() => {
+        that.requestAll()
+      })
+    }
   },
 
   //请求第一页数据函数

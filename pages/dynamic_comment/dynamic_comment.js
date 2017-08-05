@@ -41,12 +41,26 @@ Page({
         },
         header: app.globalData.header,
         success: res => {
-          if(200 == res.data.code){
+          if (200 == res.data.code) {
             wx.showToast({
               title: '评论成功',
+              complete: () => {
+                wx.reLaunch({
+                  url: '/pages/index/index',
+                })
+              }
             })
-            wx.reLaunch({
-              url: '/pages/index/index',
+          }else {
+            console.log('not 200')
+            wx.showModal({
+              title: '提示',
+              content: res.data.msg,
+              showCancel: false,
+              success: rs => {
+                if(rs.confirm){
+                  wx.navigateBack()
+                }
+              }
             })
           }
         }
